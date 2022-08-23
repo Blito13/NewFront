@@ -1,13 +1,14 @@
 import styles from "./NavBar.module.css"
-import { Link} from 'react-router-dom';
-
-
+import { Link, useNavigate } from 'react-router-dom';
+import dados   from "../img/fichas.jpg"
+import timer   from "../img/timer.jpg"
+import numbers   from "../img/numbers.jpg"
 export default function NavBar (){
-const cart     = [1]
-const arrayCar = [1]
+const cart     = 5
+var arrayCar = [[],[],[],[]]
 
-const fav = [1]
-const arrayFav = [1]
+const fav = [43]
+const arrayFav = [[],[],[],[],[]]
 
 
 
@@ -18,25 +19,30 @@ const arrayFav = [1]
             <div>
               <img
                 className={styles.logo}
-                
+                src = {dados}
                 alt="logo"
               />
             </div>
+            
           </Link>
+              <h2 className={styles.leftContent}>TuttiCuanti</h2>
+            </div>
+            <div>
+
             </div>
             <ul className={styles.menu}>
           <Link to="/">
             <button className={styles.buttonNavBar}>Home</button>
           </Link>
-          <Link to="/Shop">
+          <Link to="/Start">
             <button className={styles.buttonNavBar}>QuikPLay</button>
           </Link>
           <div className={styles.favCarBtns}>
             <div className={styles.favCarBtns}>
               <img
                 className={styles.icon}
-                src={cart}
-                alt="notifications"
+                src={timer}
+                alt="Schedules"
                // onClick={() => validation((valit = "car"))}
               />
               {arrayCar.length ? <span className={styles.iconsCartFav}>{arrayCar.length}</span> : null}
@@ -44,14 +50,13 @@ const arrayFav = [1]
             <div className={styles.favCarBtns}>
               <img
                 className={styles.icon}
-                src={fav}
-                alt="favorite numbers"
+                src={numbers}
+                alt="Numbers"
                 //onClick={() => validation((valit = "favorites"))}
               />
               {arrayFav.length ? <span className={styles.iconsCartFav}>{arrayFav.length}</span> : null}
             </div>
           </div>
-        </ul>
             <div className={styles.divLogin}>
               <button className={styles.loginText}>Box</button>
             </div>
@@ -64,6 +69,7 @@ const arrayFav = [1]
                   Login{" "}
                 </button>
               </div>
+        </ul>
               
         </div>
     )

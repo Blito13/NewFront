@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import styles from './App.css';
 import Home from "./components/Home";
+import Start from "./components/Start"
 import NavBar from "./components/NavBar"
 import { Provider } from "react-redux";
 import generateStore from "./store";
@@ -12,6 +13,7 @@ function App() {
      <NavBar/>
     <Routes>
       <Route path = '/' element={<Home/>}/>
+      <Route path = '/start' element={<Start/>}/>
     </Routes>
     </Provider>
   );
