@@ -1,8 +1,9 @@
 import styles from "./Start.module.css"
 import DataTable from "react-data-table-component";
 import data from "./data"
-
-
+import { Fragment } from "react";
+import React, { useMemo } from "react";
+import FilterComponent from "./FilterComponent";
 const Start = (props) => {
  const flex  = data.map((e) => {
 var newKeys = {
@@ -73,45 +74,51 @@ const finalResult =  Object.assign(e , newKeys)
           ) : null
       }
     ];
+    const [filterText, setFilterText] = React.useState("");
+    const [resetPaginationToggle, setResetPaginationToggle] = React.useState(false);
+    const filteredItems = data.filter(
+      item =>
+        JSON.stringify(item)
+          .toLowerCase()
+          .indexOf(filterText.toLowerCase()) !== -1
+    );
+  
+    const subHeaderComponent = useMemo(() => {
+      const handleClear = () => {
+        if (filterText) {
+          setResetPaginationToggle(!resetPaginationToggle);
+          setFilterText("");
+        }
+      };
+  
+      return (
+        
+
+          <FilterComponent
+            onFilter={e => setFilterText(e.target.value)}
+            onClear={handleClear}
+            filterText={filterText}
+
+            />
+        
+      );
+    }, [filterText, resetPaginationToggle]);
   
 return (
     <div className={styles.table}>
 
+    
   <DataTable
   columns={columns}
+  defaultSortField="name"
   striped
   pagination
-  data = {data}
+  data = {filteredItems}
+  subHeader
+  subHeaderComponent = {subHeaderComponent}
   >
   </DataTable>
-
-  {/*   <table >
-  <tr>
-    <th>Name</th>
-    <th>Decena de mil</th>
-    <th>Unidad de mil</th>
-    <th>Centena</th>
-    <th>Decena</th>
-    <th>Unidad</th>
-  </tr>
-  <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>2</td>
-    <td>7</td>
-    <td>7</td>
-    <td>7</td>
-    <td>7</td>
-
-  </tr>
-  <tr>
-    <td>Francisco Chang</td>
-    <td>2</td>
-    <td>3</td>
-    <td>4</td>
-    <td>4</td>
-    <td>4</td>
-  </tr>
-</table> */}
+ 
     </div>
 )
 }
