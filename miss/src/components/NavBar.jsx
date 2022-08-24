@@ -31,12 +31,16 @@ const arrayFav = [[],[],[],[],[]]
 
             </div>
             <ul className={styles.menu}>
-          <Link to="/">
-            <button className={styles.buttonNavBar}>Home</button>
+          <Link to="/" className={styles.divLogin}>
+            <button className={styles.loginText/* buttonNavBar */}>Home</button>
+          </Link >
+          <Link to="/Start" className={styles.divLogin}>
+            <button className={styles.loginText/* buttonNavBar */}>List of gambles</button>
           </Link>
-          <Link to="/Start">
-            <button className={styles.buttonNavBar}>QuikPLay</button>
-          </Link>
+            <Link to = "/Create" className={styles.divLogin}>
+              <button className={styles.loginText}>Lets PLay</button>
+
+            </Link>
           <div className={styles.favCarBtns}>
             <div className={styles.favCarBtns}>
               <img
@@ -57,9 +61,6 @@ const arrayFav = [[],[],[],[],[]]
               {arrayFav.length ? <span className={styles.iconsCartFav}>{arrayFav.length}</span> : null}
             </div>
           </div>
-            <div className={styles.divLogin}>
-              <button className={styles.loginText}>Box</button>
-            </div>
             <div className={styles.divLogin} /* onClick={() => loginWithRedirect()} */>
                 <button
                   className={styles.loginText}

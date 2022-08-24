@@ -22,44 +22,51 @@ const finalResult =  Object.assign(e , newKeys)
  
  console.log(data)
     const columns = [
+    
       {
-        numbers: "Numbers",
-        selector: row => row.name,
+        name: "Cantidad de aciertos",
+        /* selector: row => row.name, */
         sortable: true,
-        grow: 2
+        /* grow: 2 */
       },
       {
         name: "Name",
         selector: row => row.name,
         sortable: true,
-        grow: 2
+        /* grow: 2 */
       },
       {
-        name: "Email",
-        selector: row => row.email,
+        name: "Decena de mil",
+        selector: row => row.DecenaDeMil,
         sortable: true,
         hide: "sm"
       },
       {
-        name: "Website",
-        selector: row => row.website ,
+        name: "Unidad de Mil",
+        selector: row => row.UnidadDeMil ,
         sortable: true
       },
       {
-        name: "Company",
-        selector: row => row.company.name,
+        name: "Centena",
+        selector: row => row.Centena,
         sortable: true,
         hide: "md"
       },
       {
-        name: "City",
-        selector: row => row.address.city,
+        name: "Decena",
+        selector: row => row.Decena,
+        sortable: true,
+        hide: "md"
+      },
+      { name: "Unidad",
+        selector: row => row.Unidad,
         sortable: true,
         hide: "md"
       },
       {
         name: "Buttons",
         button: true,
+        grow : 2 ,
         cell: row =>
           row.showButtons ? (
             <>
@@ -72,6 +79,7 @@ const finalResult =  Object.assign(e , newKeys)
               <button onClick={() => props.click(row.name)}>Delete</button>
             </>
           ) : null
+
       }
     ];
     const [filterText, setFilterText] = React.useState("");
