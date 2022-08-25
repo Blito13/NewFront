@@ -63,6 +63,11 @@ const finalResult =  Object.assign(e , newKeys)
         sortable: true,
         hide: "md"
       },
+      { name: "Total gamble",
+        selector: row => row.Unidad,
+        sortable: true,
+        hide: "md"
+      },
       {
         name: "Buttons",
         button: true,
@@ -74,7 +79,7 @@ const finalResult =  Object.assign(e , newKeys)
                 onClick={() => props.click(row.name)}
                 style={{ marginRight: "5px" }}
               >
-                Edit
+                OK
               </button>
               <button onClick={() => props.click(row.name)}>Delete</button>
             </>
