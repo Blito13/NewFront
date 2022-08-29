@@ -10,7 +10,7 @@ import FilterWin from "./FilterWin";
 import { getPlayers } from "../actions/actions";
 const Start = (props) => {
  const dispatch = useDispatch();
-const numbers = [[6],[8],[9],[1],[3]]
+const numbers = [[6],[8],[6],[7],[3]]
 const data =  useSelector( state => state.players)
 console.log(data)
 useEffect (()=>{
