@@ -288,5 +288,25 @@ const data = [
       showButtons: false
     }
   ];
+  const agregar = () => {
+ return  data.map((e) => {
+      var newKeys = {
+        
+        decenaDeMil: Math.floor( Math.random()*(0 , 10)),
+             unidadDeMil : Math.floor( Math.random()*(0 , 10)),
+             decena : Math.floor( Math.random()*(0 , 10)),
+             centena : Math.floor( Math.random()*(0 , 10)),
+             unidad :Math.floor( Math.random()*(0 , 10))
+           }
+           const finalResult =  Object.assign(e , newKeys)
+           
+           console.log(finalResult)
+          })  
+        }
+        console.log(data)
+        agregar()
+       
+  /* export default 
+   data */
+
   
-  export default data;

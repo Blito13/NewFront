@@ -1,26 +1,33 @@
 import styles from "./Start.module.css"
 import DataTable from "react-data-table-component";
-import data from "./data"
+
 import { Fragment } from "react";
 import React, { useMemo } from "react";
+import {useSelector , useDispatch} from "react-redux"
+import { useEffect } from "react";
 import FilterComponent from "./FilterComponent";
+import FilterWin from "./FilterWin";
+import { getPlayers } from "../actions/actions";
 const Start = (props) => {
- const flex  = data.map((e) => {
-var newKeys = {
+ const dispatch = useDispatch();
+const numbers = [[6],[8],[9],[1],[3]]
+const data =  useSelector( state => state.players)
+console.log(data)
+useEffect (()=>{
 
-  DecenaDeMil : "",
-  UnidadDeMil : "",
-  Decena : "",
-  Centena : "",
-  Unidad :""
-}
-const finalResult =  Object.assign(e , newKeys)
+  dispatch(getPlayers())
+  
 
-}
-)
- console.log(data)
- 
- console.log(data)
+},[])
+
+
+
+
+
+
+
+
+  
     const columns = [
     
       {
@@ -28,6 +35,7 @@ const finalResult =  Object.assign(e , newKeys)
         /* selector: row => row.name, */
         sortable: true,
         /* grow: 2 */
+        
       },
       {
         name: "Name",
@@ -37,34 +45,34 @@ const finalResult =  Object.assign(e , newKeys)
       },
       {
         name: "Decena de mil",
-        selector: row => row.DecenaDeMil,
+        selector: row => row.decenaDeMil, 
         sortable: true,
         hide: "sm"
       },
       {
         name: "Unidad de Mil",
-        selector: row => row.UnidadDeMil ,
+        selector: row => row.unidadDeMil ,
         sortable: true
       },
       {
         name: "Centena",
-        selector: row => row.Centena,
+        selector: row => row.centena,
         sortable: true,
         hide: "md"
       },
       {
         name: "Decena",
-        selector: row => row.Decena,
+        selector: row => row.decena,
         sortable: true,
         hide: "md"
       },
       { name: "Unidad",
-        selector: row => row.Unidad,
+        selector: row => row.unidad,
         sortable: true,
         hide: "md"
       },
       { name: "Total gamble",
-        selector: row => row.Unidad,
+        selector: row => row.unidad,
         sortable: true,
         hide: "md"
       },
@@ -106,7 +114,7 @@ const finalResult =  Object.assign(e , newKeys)
   
       return (
         
-
+          
           <FilterComponent
             onFilter={e => setFilterText(e.target.value)}
             onClear={handleClear}
@@ -119,7 +127,13 @@ const finalResult =  Object.assign(e , newKeys)
   
 return (
     <div className={styles.table}>
-
+     {/*  <div>
+        <button onClick={e =>  newNumbers(e)}></button>
+      </div> */}
+      <Fragment>
+      <FilterWin
+      data = {numbers}/>
+      </Fragment>
     
   <DataTable
   columns={columns}

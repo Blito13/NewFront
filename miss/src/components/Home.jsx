@@ -1,4 +1,6 @@
+
 function Home () {
+    
     return(
         <div>
 
@@ -12,6 +14,7 @@ function Home () {
             coincidencias de posicion se suman (jugar el mismo numero y la misma posicion) ambas apuestas se suman 
             la tira se vende toda junta
             la recompensa debe ser directamente proporcional a el monto apostado (prorrata)
+            varios ganadores 
         </div>
         </div>
     )
