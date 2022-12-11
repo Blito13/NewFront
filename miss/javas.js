@@ -68,7 +68,7 @@ const getTotal = (players) => {
     return total
 } 
 //La mitad del total dividido en 5 (cada cifra)
-const getAmountByFigure = () => {
+const getAmountByDigits = () => {
 const total =  getTotal(players)
 var half = total / 2;
 var amount_figure = half / 5 ;
@@ -76,9 +76,15 @@ return amount_figure
 }
 
 const getMatch = () => {
-    players.forEach(e  => {
-        console.log(Object.values(e.numero))
+    players.map(e  => {
+        console.log(typeof e.numero)
+        /* e.numero = Array.from(String(e.numero) , Number); */
+     /*  e.numero.length <= 3 ? e.numero.unshift(0 , 0) : console.log("tata") */
     })
+    console.log(players)
 }
-
+/* The code line Array.from(String(numToSeparate), Number); 
+will convert the number into a string, take each character
+of that string, convert it into a number and put in a new array. 
+Finally, this new array of numbers will be returned. */
  getMatch();
