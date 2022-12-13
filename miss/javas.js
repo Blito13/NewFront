@@ -77,8 +77,8 @@ return amount_figure
 
 const getMatch = () => {
     players.map(e  => {
-        console.log(typeof e.numero)
-        /* e.numero = Array.from(String(e.numero) , Number); */
+       /*  e.numero = Array.from(String(e.numero) ,Number); */
+        console.log(e.numero.toString().padStart(7,'x'))
      /*  e.numero.length <= 3 ? e.numero.unshift(0 , 0) : console.log("tata") */
     })
     console.log(players)
