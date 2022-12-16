@@ -1,63 +1,63 @@
 const players = [{
     apuesta : 50,
-    numero : 37580,  
+    numero : "37580",  
 },{
     apuesta : 80,
-    numero : 44348,  
+    numero : "44348",  
 },{
     apuesta : 65,
-    numero : 71930,  
+    numero : "71930",  
 },{
     apuesta : 45,
-    numero : 10211,  
+    numero : "10211",  
 },{
     apuesta : 95,
-    numero : 55666,  
+    numero : "55666",  
 },{
     apuesta : 55,
-    numero : 60414,  
+    numero : "60414",  
 },{
     apuesta : 60,
-    numero : 29730,  
+    numero : "29730",  
 },{
     apuesta : 40,
-    numero : 65930,  
+    numero : "65930",  
 },{
     apuesta : 85,
-    numero : 88334,  
+    numero : "83342",  
 },{
     apuesta : 70,
-    numero : 00330,
+    numero : "330",
 },{
     apuesta : 75,
-    numero : 99827,  
+    numero : "99827",  
 },{
     apuesta : 90,
-    numero : 83615,  
+    numero : "83615",  
 },{
     apuesta : 83,
-    numero : 20618,  
+    numero : "20618",  
 },{
     apuesta : 68,
-    numero : 01234,  
+    numero : "01234",  
 },{
     apuesta : 74,
-    numero : 81112,  
+    numero : "81112",  
 },{
     apuesta : 89,
-    numero : 69239,  
+    numero : "69239",  
 },{
     apuesta : 66,
-    numero : 38593,  
+    numero : "38593",  
 },{
     apuesta : 59,
-    numero : 73191,  
+    numero : "73191",  
 },{
     apuesta : 72,
-    numero : 94955,  
+    numero : "94955",  
 },{
     apuesta : 80,
-    numero : 11129,  
+    numero : "11129",  
 },]
 //Obtener total apostado
 const getTotal = (players) => {
@@ -76,14 +76,16 @@ return amount_figure
 }
 
 const getMatch = () => {
-    players.map(e  => {
-       /*  e.numero = Array.from(String(e.numero) ,Number); */
-        console.log(e.numero.toString().padStart(7,'x'))
+    players.forEach(e  => {
+        
+    
+       /*  e.numero = Array.from(e.numero.toString()); */
+        console.log(e.numero.padStart(5,'*'))
      /*  e.numero.length <= 3 ? e.numero.unshift(0 , 0) : console.log("tata") */
     })
     console.log(players)
 }
-/* The code line Array.from(String(numToSeparate), Number); 
+/* The code line Array.from(String(numToSeparate), Number);  
 will convert the number into a string, take each character
 of that string, convert it into a number and put in a new array. 
 Finally, this new array of numbers will be returned. */
