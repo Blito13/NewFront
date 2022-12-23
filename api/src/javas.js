@@ -59,26 +59,29 @@ const players = [{
     apuesta : 80,
     numero : "11129",  
 },]
+
 //Obtener total apostado
-const getTotal = (players) => {
+const getTotal = async (players) => {
  var total = 0 ;
- players.forEach(element => {
+await players.forEach(element => {
  total += element.apuesta
 })
     return total
 } 
 //La mitad del total dividido en 5 (cada cifra)
-const getAmountByDigits = () => {
-const total =  getTotal(players)
+const getAmountByDigits = async (total) => {
+/* const total =  getTotal(players) */
+await total;
 var half = total / 2;
-var amount_figure = half / 5 ;
+var amount_figure  =  half / 5 ;
+
 return amount_figure
 }
 
-const getFinnalNumber = () => {
+const getFinalNumber = () => {
    var numberSelected = [];
-   var max = 9
-   var min = 0 
+   var max = 9;
+   var min = 0; 
    for(let i = 0 ; i< 5 ; i++){
        let random = parseInt(Math.random() * (max - min) + min);
       numberSelected = [...numberSelected , random]
@@ -87,6 +90,19 @@ console.log(numberSelected);
 
     return numberSelected
 }
-Promise.all([getAmountByDigits() , getFinnalNumber(), getTotal(players)] , ) .then(response => {
+const getMatches = (getFinalNumber) => {
+    const num = getFinalNumber();
+    console.log(num )
+}
+
+const payMatches = () => {
+
+}
+
+getTotal(players)
+.then( result => getAmountByDigits(result))
+.then( result => console.log(result))
+
+/* Promise.all([getAmountByDigits() , getFinalNumber(), getTotal(players)] , getMatches(getFinalNumber)) .then(response => {
     console.log(response)
-})
+}) */
