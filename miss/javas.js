@@ -75,18 +75,19 @@ var amount_figure = half / 5 ;
 return amount_figure
 }
 
-const getMatch = () => {
-    players.forEach(e  => {
-        
-    
-       /*  e.numero = Array.from(e.numero.toString()); */
-        console.log(e.numero.padStart(5,'*'))
-     /*  e.numero.length <= 3 ? e.numero.unshift(0 , 0) : console.log("tata") */
-    })
-    console.log(players)
+const getMatch = (players) => {
+   var numberSelected = [];
+   var max = 9
+   var min = 0 
+   for(let i = 0 ; i< 5 ; i++){
+
+       let random = parseInt(Math.random() * (max - min) + min);
+      numberSelected = [...numberSelected , random]
+   }
+console.log(numberSelected);
+
+    return numberSelected
 }
-/* The code line Array.from(String(numToSeparate), Number);  
-will convert the number into a string, take each character
-of that string, convert it into a number and put in a new array. 
-Finally, this new array of numbers will be returned. */
- getMatch();
+Promise.all([getAmountByDigits() , getMatch(players), getTotal(players)] , ) .then(response => {
+    console.log(response)
+})
