@@ -75,12 +75,11 @@ var amount_figure = half / 5 ;
 return amount_figure
 }
 
-const getMatch = (players) => {
+const getFinnalNumber = () => {
    var numberSelected = [];
    var max = 9
    var min = 0 
    for(let i = 0 ; i< 5 ; i++){
-
        let random = parseInt(Math.random() * (max - min) + min);
       numberSelected = [...numberSelected , random]
    }
@@ -88,6 +87,6 @@ console.log(numberSelected);
 
     return numberSelected
 }
-Promise.all([getAmountByDigits() , getMatch(players), getTotal(players)] , ) .then(response => {
+Promise.all([getAmountByDigits() , getFinnalNumber(), getTotal(players)] , ) .then(response => {
     console.log(response)
 })
