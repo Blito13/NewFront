@@ -125,7 +125,7 @@ return promise
 
 var getFinalNumber = function () {
     var promise = new Promise (function (resolve , reject){
-
+//falta padStart
         var numberSelected = [];
         var max = 9;
         var min = 0; 
@@ -137,11 +137,23 @@ var getFinalNumber = function () {
      resolve(numberSelected)
     }) 
 
-    return promise
+    return promise 
 }
-const getMatches = (getFinalNumber) => {
-    const num = getFinalNumber();
-    console.log(num )
+const padstart = async () => {
+ const  numbersArray = players.map(e => {
+  return{
+    bet : e.apuesta,
+    numbers : Array.from(e.numero.padStart(5, "*"))
+  } 
+ })
+    console.log(numbersArray, "ww")
+
+}
+const getMatches = async function  (numbers )  {
+  players.map(e => {
+    console.log(Array.from(e.numero))
+  })
+    
 }
 
 const payMatches = () => {
@@ -151,6 +163,8 @@ const payMatches = () => {
 getTotal(players)
 .then(getAmountByDigits)
 .then(getFinalNumber)
+.then(getMatches)
+.then(padstart)
 /* .then( result => getAmountByDigits(result))
 .then( result => console.log(result)) */
 
