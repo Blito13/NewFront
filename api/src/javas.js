@@ -115,7 +115,7 @@ var promise = new Promise(function (resolve , reject){
     
    var half = datos / 2;
    var amount_figure  =  half / 5 ;
-   console.log(datos,"iyiyiyiy" , amount_figure)
+   console.log(datos , amount_figure)
     resolve(amount_figure)
 })
 
@@ -123,8 +123,8 @@ return promise
 
 }
 
-var getFinalNumber = function () {
-    var promise = new Promise (function (resolve , reject){
+const getFinalNumber = async () => {
+  
 //falta padStart
         var numberSelected = [];
         var max = 9;
@@ -134,26 +134,52 @@ var getFinalNumber = function () {
            numberSelected = [...numberSelected , random]
         }
      console.log(numberSelected);
-     resolve(numberSelected)
-    }) 
+     
 
-    return promise 
+
+    return numberSelected;
 }
 const padstart = async () => {
- const  numbersArray = players.map(e => {
+ const  numbersArray = players.map((e,i) => {
+    let numStart = Array.from(e.numero.padStart(5, "*"))
+    let toInt = numStart.map(e => e = Number(e))
   return{
     bet : e.apuesta,
-    numbers : Array.from(e.numero.padStart(5, "*"))
+    numbers : toInt,
+    id : i
   } 
  })
-    console.log(numbersArray, "ww")
 
+    console.log(numbersArray)
+return numbersArray
 }
-const getMatches = async function  (numbers )  {
-  players.map(e => {
-    console.log(Array.from(e.numero))
-  })
-    
+const getMatches = async function  (newArr)  {
+var winner = await getFinalNumber();
+var oneLine = newArr.filter(e => e.numbers[4]===winner[4]);
+var twoLines = oneLine?.filter(e => e.numbers[3] === winner[3]);
+var trheeLines = twoLines?.filter(e => e.numbers[2] === winner[2]);
+var fourLines = trheeLines?.filter(e => e.numbers[1] === winner[1]);
+var fiveLines = fourLines?.filter(e => e.numbers[0] === winner[0]);
+var index = [4];
+var switches  = false;
+
+const match = newArr.map((e,i) => {
+    console.log(e.numbers[4] , e.id)
+   
+  /*  switches === true? oneLine = [... oneLine ,e] : oneLine = [... oneLine ,"not found at all"]  */
+
+
+    //filtrar las condiciones y mapear los resultados
+/* e.numbers[index]==winner[index]?oneLine = [...oneLine , e]:"nose encontro la nose" */
+   
+  /*   dm : [ e.numbers[i]===winner[i]?winner:"nose encontro la nose"],
+    um : [ e.numbers[i]===winner[i]?winner:"nose encontro la nose"],
+    c : [ e.numbers[i]===winner[i]?winner:"nose encontro la nose"],
+    d : [ e.numbers[i]===winner[i]?winner:"nose encontro la nose"],
+    u : [ e.numbers[i]===winner[i]?winner:"nose encontro la nose"], */
+ }
+)
+return console.log(oneLine , twoLines ,trheeLines ,fiveLines ,fourLines,"ansalfial")
 }
 
 const payMatches = () => {
@@ -163,8 +189,8 @@ const payMatches = () => {
 getTotal(players)
 .then(getAmountByDigits)
 .then(getFinalNumber)
-.then(getMatches)
 .then(padstart)
+.then(getMatches)
 /* .then( result => getAmountByDigits(result))
 .then( result => console.log(result)) */
 
