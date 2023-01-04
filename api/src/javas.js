@@ -155,6 +155,7 @@ return numbersArray
 }
 const getMatches = async function  (newArr)  {
 var winner = await getFinalNumber();
+
 var oneLine = newArr.filter(e => e.numbers[4]===winner[4]);
 var twoLines = oneLine?.filter(e => e.numbers[3] === winner[3]);
 var trheeLines = twoLines?.filter(e => e.numbers[2] === winner[2]);
@@ -163,26 +164,12 @@ var fiveLines = fourLines?.filter(e => e.numbers[0] === winner[0]);
 var index = [4];
 var switches  = false;
 
-const match = newArr.map((e,i) => {
-    console.log(e.numbers[4] , e.id)
-   
-  /*  switches === true? oneLine = [... oneLine ,e] : oneLine = [... oneLine ,"not found at all"]  */
 
-
-    //filtrar las condiciones y mapear los resultados
-/* e.numbers[index]==winner[index]?oneLine = [...oneLine , e]:"nose encontro la nose" */
-   
-  /*   dm : [ e.numbers[i]===winner[i]?winner:"nose encontro la nose"],
-    um : [ e.numbers[i]===winner[i]?winner:"nose encontro la nose"],
-    c : [ e.numbers[i]===winner[i]?winner:"nose encontro la nose"],
-    d : [ e.numbers[i]===winner[i]?winner:"nose encontro la nose"],
-    u : [ e.numbers[i]===winner[i]?winner:"nose encontro la nose"], */
- }
-)
-return console.log(oneLine , twoLines ,trheeLines ,fiveLines ,fourLines,"ansalfial")
+return console.log(oneLine , twoLines , trheeLines , fourLines , fiveLines)
 }
 
 const payMatches = () => {
+//validar las cifras sin ganadores para acumular lo apostado para la proxima jugada
 
 }
 
