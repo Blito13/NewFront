@@ -153,7 +153,7 @@ const padstart = async () => {
     console.log(numbersArray)
 return numbersArray
 }
-const getMatches = async function  (newArr)  {
+const getMatches = async function  (newArr )  {
 var winner = await getFinalNumber();
 
 var oneLine = newArr.filter(e => e.numbers[4]===winner[4]);
@@ -165,12 +165,19 @@ var index = [4];
 var switches  = false;
 
 
-return console.log(oneLine , twoLines , trheeLines , fourLines , fiveLines)
+return [oneLine , twoLines , trheeLines , fourLines , fiveLines]
+
 }
 
-const payMatches = () => {
+const payMatches = async function (oneLine , twoLines , trheeLines , fourLines , fiveLines)  {
 //validar las cifras sin ganadores para acumular lo apostado para la proxima jugada
+//PORCENTAJE : AMOUNT_FIGURE / TOTAL DE LAS APUESTAS ganadoras A ESA CIFRA(1,2,3,4,5)
+// RESULTADO DE LA PAGA = PORCENTAJE X CADA APUESTA
+console.log(oneLine , twoLines , trheeLines , fourLines , fiveLines)
 
+var collection  = 0;
+
+console.log(oneLine , "here" )
 }
 
 getTotal(players)
@@ -178,6 +185,7 @@ getTotal(players)
 .then(getFinalNumber)
 .then(padstart)
 .then(getMatches)
+.then(payMatches)
 /* .then( result => getAmountByDigits(result))
 .then( result => console.log(result)) */
 
