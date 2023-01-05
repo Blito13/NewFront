@@ -97,29 +97,28 @@ const players = [{
    .then(function(datos){
      console.log(datos); //debería ser el 'hola' que pasamos en tercerMetodo
    }); */
-var getTotal = function (players) {
-    var promise = new Promise(function (resolve, reject){
+var getTotal = async (players) => {
+    
      var total = 0 ;
 
      players.forEach(element => {
      total += element.apuesta
  })
  console.log(total)
- resolve(total)
-})
-return promise
+
+
+return total
 } 
 //La mitad del total dividido en 5 (cada cifra)
-var getAmountByDigits = function (datos)  {
-var promise = new Promise(function (resolve , reject){
+var getAmountByDigits = async (datos) =>  {
+
     
    var half = datos / 2;
    var amount_figure  =  half / 5 ;
    console.log(datos , amount_figure)
-    resolve(amount_figure)
-})
+   return amount_figure
 
-return promise
+
 
 }
 
@@ -158,26 +157,82 @@ var winner = await getFinalNumber();
 
 var oneLine = newArr.filter(e => e.numbers[4]===winner[4]);
 var twoLines = oneLine?.filter(e => e.numbers[3] === winner[3]);
-var trheeLines = twoLines?.filter(e => e.numbers[2] === winner[2]);
-var fourLines = trheeLines?.filter(e => e.numbers[1] === winner[1]);
+var threeLines = twoLines?.filter(e => e.numbers[2] === winner[2]);
+var fourLines = threeLines?.filter(e => e.numbers[1] === winner[1]);
 var fiveLines = fourLines?.filter(e => e.numbers[0] === winner[0]);
 var index = [4];
 var switches  = false;
+var lines = {oneLine , twoLines , threeLines , fourLines , fiveLines}
 
+return  lines
 
-return [oneLine , twoLines , trheeLines , fourLines , fiveLines]
 
 }
 
-const payMatches = async function (oneLine , twoLines , trheeLines , fourLines , fiveLines)  {
+const payMatches = async function (lines , )  {
 //validar las cifras sin ganadores para acumular lo apostado para la proxima jugada
 //PORCENTAJE : AMOUNT_FIGURE / TOTAL DE LAS APUESTAS ganadoras A ESA CIFRA(1,2,3,4,5)
 // RESULTADO DE LA PAGA = PORCENTAJE X CADA APUESTA
-console.log(oneLine , twoLines , trheeLines , fourLines , fiveLines)
-
+var coeficent= 0;
 var collection  = 0;
+var total = await getTotal(players);
+var amount_figure = await getAmountByDigits(total);
 
-console.log(oneLine , "here" )
+lines.oneLine.map(e=> {
+    collection += e.bet;
+})
+totalPay = lines.oneLine.map(e => {
+    coeficent = amount_figure/collection;
+    return {
+      pay :  coeficent *e.bet,
+      bet : e.bet,
+      number : e.numbers,
+      id : e.id,
+      coeficent : coeficent
+    }
+})
+totalPay = lines.twoLines.map(e => {
+    coeficent = amount_figure*2/collection;
+    return {
+      pay :  coeficent *e.bet,
+      bet : e.bet,
+      number : e.numbers,
+      id : e.id,
+      coeficent : coeficent
+    }
+})
+totalPay = lines.threeLines.map(e => {
+    coeficent = amount_figure*3/collection;
+    return {
+      pay :  coeficent *e.bet,
+      bet : e.bet,
+      number : e.numbers,
+      id : e.id,
+      coeficent : coeficent
+    }
+})
+totalPay = lines.fourLines.map(e => {
+    coeficent = amount_figure*4/collection;
+    return {
+      pay :  coeficent *e.bet,
+      bet : e.bet,
+      number : e.numbers,
+      id : e.id,
+      coeficent : coeficent
+    }
+})
+totalPay = lines.fiveLines.map(e => {
+    coeficent = amount_figure*5/collection;
+    return {
+      pay :  coeficent *e.bet,
+      bet : e.bet,
+      number : e.numbers,
+      id : e.id,
+      coeficent : coeficent
+    }
+})
+
+console.log( totalPay,"hora", lines ,collection , coeficent, "here")
 }
 
 getTotal(players)
