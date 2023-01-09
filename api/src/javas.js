@@ -175,9 +175,10 @@ const payMatches = async function (lines , )  {
 // RESULTADO DE LA PAGA = PORCENTAJE X CADA APUESTA
 var coeficent= 0;
 var collection  = 0;
+var arregloX = [];
 var total = await getTotal(players);
 var amount_figure = await getAmountByDigits(total);
-
+console.log(lines)
 lines.oneLine.map(e=> {
     collection += e.bet;
 })
@@ -191,48 +192,16 @@ totalPay = lines.oneLine.map(e => {
       coeficent : coeficent
     }
 })
-totalPay = lines.twoLines.map(e => {
-    coeficent = amount_figure*2/collection;
-    return {
-      pay :  coeficent *e.bet,
-      bet : e.bet,
-      number : e.numbers,
-      id : e.id,
-      coeficent : coeficent
-    }
-})
-totalPay = lines.threeLines.map(e => {
-    coeficent = amount_figure*3/collection;
-    return {
-      pay :  coeficent *e.bet,
-      bet : e.bet,
-      number : e.numbers,
-      id : e.id,
-      coeficent : coeficent
-    }
-})
-totalPay = lines.fourLines.map(e => {
-    coeficent = amount_figure*4/collection;
-    return {
-      pay :  coeficent *e.bet,
-      bet : e.bet,
-      number : e.numbers,
-      id : e.id,
-      coeficent : coeficent
-    }
-})
-totalPay = lines.fiveLines.map(e => {
-    coeficent = amount_figure*5/collection;
-    return {
-      pay :  coeficent *e.bet,
-      bet : e.bet,
-      number : e.numbers,
-      id : e.id,
-      coeficent : coeficent
-    }
-})
+for(let c in lines){
 
-console.log( totalPay,"hora", lines ,collection , coeficent, "here")
+  lines[c].map(e =>  {
+    arregloX = [...arregloX , {
+        pay :e.bet
+    }]
+        
+    })
+}                                 
+console.log( totalPay,"hora", lines ,collection , coeficent,arregloX, "here")
 }
 
 getTotal(players)
