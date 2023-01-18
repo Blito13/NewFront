@@ -153,18 +153,35 @@ const padstart = async () => {
 return numbersArray
 }
 const getMatches = async function  (newArr )  {
+var total = await getTotal(players);
+var amount_figure = await getAmountByDigits(total);
 var winner = await getFinalNumber();
-
-var oneLine = newArr.filter(e => e.numbers[4]===winner[4]);
-var twoLines = oneLine?.filter(e => e.numbers[3] === winner[3]);
+var coeficent = 0;
+var collection = 0 ;
+var oneLine = newArr.map(e => 
+    {//cuando ya no tenga mas coincidencias ahi recien puedo usar el collection
+        if(e.numbers[4]===winner[4]) {
+            collection += e.bet;
+            return{
+                nambre : e ,
+                epallido : e.bet,
+                collection: collection
+            } 
+        } else {
+            return "no haber ganadores"
+        }
+        
+    }
+    );
+/* var twoLines = oneLine?.filter(e => e.numbers[3] === winner[3]);
 var threeLines = twoLines?.filter(e => e.numbers[2] === winner[2]);
 var fourLines = threeLines?.filter(e => e.numbers[1] === winner[1]);
 var fiveLines = fourLines?.filter(e => e.numbers[0] === winner[0]);
 var index = [4];
 var switches  = false;
 var lines = {oneLine , twoLines , threeLines , fourLines , fiveLines}
-
-return  lines
+ */
+return  oneLine
 
 
 }
@@ -178,11 +195,11 @@ var collection  = 0;
 var arregloX = [];
 var total = await getTotal(players);
 var amount_figure = await getAmountByDigits(total);
-console.log(lines)
-lines.oneLine.map(e=> {
+console.log(lines,"acaman")
+/* lines.oneLine.map(e=> {
     collection += e.bet;
-})
-totalPay = lines.oneLine.map(e => {
+}) */
+/* totalPay = lines.oneLine.map(e => {
     coeficent = amount_figure/collection;
     return {
       pay :  coeficent *e.bet,
@@ -191,8 +208,8 @@ totalPay = lines.oneLine.map(e => {
       id : e.id,
       coeficent : coeficent
     }
-})
-for(let c in lines){
+}) */
+/* for(let c in lines){
 
   lines[c].map(e =>  {
     arregloX = [...arregloX , {
@@ -200,8 +217,8 @@ for(let c in lines){
     }]
         
     })
-}                                 
-console.log( totalPay,"hora", lines ,collection , coeficent,arregloX, "here")
+}   */                               
+console.log( lines )
 }
 
 getTotal(players)
