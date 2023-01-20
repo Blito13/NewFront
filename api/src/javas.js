@@ -159,25 +159,29 @@ var amount_figure = await getAmountByDigits(total);
 var winner = await getFinalNumber();
 var coeficent = 0;
 var sum = 0;
-var collection = newArr.map(e => 
+var dataPayment = {};
+var collection = [];
+
+
+newArr.map(e => {
+    if(e.numbers[4] === winner[4])
     {
-        if(e.numbers[3]===winner[3]) {
-            sum += e.bet
-         return e
-        } else {
-            return "no win"
-            
-            
-        }
-        
+        sum += e.bet 
+        collection = [...collection , e]
+
+    }else {
+        null
     }
-    
-    
-    );
+
+})  
+        
+   /* .filter(e => e.numbers[3] === winner[3]) */;
   collection = [... collection , {
     total :sum,
-    coe : amount_figure/sum
+    coe : amount_figure/sum,
+   
 }]
+
 /* var twoLines = oneLine?.filter(e => e.numbers[3] === winner[3]);
 var threeLines = twoLines?.filter(e => e.numbers[2] === winner[2]);
 var fourLines = threeLines?.filter(e => e.numbers[1] === winner[1]);
