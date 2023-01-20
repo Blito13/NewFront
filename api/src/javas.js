@@ -152,27 +152,32 @@ const padstart = async () => {
     console.log(numbersArray)
 return numbersArray
 }
-const getMatches = async function  (newArr )  {
+const getMatches = async function  ()  {
+var newArr = await padstart();    
 var total = await getTotal(players);
 var amount_figure = await getAmountByDigits(total);
 var winner = await getFinalNumber();
 var coeficent = 0;
-var collection = 0 ;
-var oneLine = newArr.map(e => 
-    {//cuando ya no tenga mas coincidencias ahi recien puedo usar el collection
-        if(e.numbers[4]===winner[4]) {
-            collection += e.bet;
-            return{
-                nambre : e ,
-                epallido : e.bet,
-                collection: collection
-            } 
+var sum = 0;
+var collection = newArr.map(e => 
+    {
+        if(e.numbers[3]===winner[3]) {
+            sum += e.bet
+         return e
         } else {
-            return "no haber ganadores"
+            return "no win"
+            
+            
         }
         
     }
+    
+    
     );
+  collection = [... collection , {
+    total :sum,
+    coe : amount_figure/sum
+}]
 /* var twoLines = oneLine?.filter(e => e.numbers[3] === winner[3]);
 var threeLines = twoLines?.filter(e => e.numbers[2] === winner[2]);
 var fourLines = threeLines?.filter(e => e.numbers[1] === winner[1]);
@@ -181,7 +186,7 @@ var index = [4];
 var switches  = false;
 var lines = {oneLine , twoLines , threeLines , fourLines , fiveLines}
  */
-return  oneLine
+return console.log( collection);
 
 
 }
@@ -220,13 +225,13 @@ console.log(lines,"acaman")
 }   */                               
 console.log( lines )
 }
-
-getTotal(players)
+getMatches();
+/* getTotal(players)
 .then(getAmountByDigits)
 .then(getFinalNumber)
 .then(padstart)
 .then(getMatches)
-.then(payMatches)
+.then(payMatches) */
 /* .then( result => getAmountByDigits(result))
 .then( result => console.log(result)) */
 
