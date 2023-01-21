@@ -108,7 +108,7 @@ var getTotal = async (players) => {
 
 
 return total
-} 
+}
 //La mitad del total dividido en 5 (cada cifra)
 var getAmountByDigits = async (datos) =>  {
 
@@ -176,11 +176,17 @@ newArr.map(e => {
 })  
         
    /* .filter(e => e.numbers[3] === winner[3]) */;
-  collection = [... collection , {
+  collection.map(e => e['payment'] ={
+    
+     pay : (amount_figure/sum)*e.bet,
+  })
+  
+  
+  /*  = [... collection , {
     total :sum,
     coe : amount_figure/sum,
    
-}]
+}] */
 
 /* var twoLines = oneLine?.filter(e => e.numbers[3] === winner[3]);
 var threeLines = twoLines?.filter(e => e.numbers[2] === winner[2]);
