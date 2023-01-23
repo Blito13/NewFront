@@ -156,15 +156,16 @@ const getMatches = async function  ()  {
 var newArr = await padstart();    
 var total = await getTotal(players);
 var amount_figure = await getAmountByDigits(total);
-var winner = await getFinalNumber();
+var winner =/*  await getFinalNumber(); */[5,6,4,3,0]
 var coeficent = 0;
 var sum = 0;
 var dataPayment = {};
 var collection = [];
+var index = 4;
 
 
 newArr.map(e => {
-    if(e.numbers[4] === winner[4])
+    if(e.numbers[index] === winner[index])
     {
         sum += e.bet 
         collection = [...collection , e]
@@ -174,12 +175,18 @@ newArr.map(e => {
     }
 
 })  
+
         
-   /* .filter(e => e.numbers[3] === winner[3]) */;
-  collection.map(e => e['payment'] ={
-    
-     pay : (amount_figure/sum)*e.bet,
-  })
+var garua = collection.map(e =>{
+    e['payment'] =(amount_figure/sum)*e.bet 
+    e['coe'] = amount_figure/sum
+   
+})
+index <= 0 ? null: index--;
+/* newArr = collection; */
+console.log(newArr ,garua)
+/* var twoLines = collection?.filter(e => e.numbers[3] === winner[3]) */
+
   
   
   /*  = [... collection , {
@@ -196,7 +203,7 @@ var index = [4];
 var switches  = false;
 var lines = {oneLine , twoLines , threeLines , fourLines , fiveLines}
  */
-return console.log( collection);
+return console.log( collection , garua);
 
 
 }
