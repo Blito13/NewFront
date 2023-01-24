@@ -156,35 +156,36 @@ const getMatches = async function  ()  {
 var newArr = await padstart();    
 var total = await getTotal(players);
 var amount_figure = await getAmountByDigits(total);
-var winner =/*  await getFinalNumber(); */[5,6,4,3,0]
+var winner =/*  await getFinalNumber(); */[5,6,4,2,7]
 var coeficent = 0;
 var sum = 0;
 var dataPayment = {};
 var collection = [];
 var index = 4;
+var count_acerts = 0;
 
-
-newArr.map(e => {
+collection =newArr.map(e => { 
     if(e.numbers[index] === winner[index])
     {
-        sum += e.bet 
-        collection = [...collection , e]
+        index--
 
-    }else {
-        null
+        return e
+    } else {
+        index =4
     }
 
 })  
 
-        
-var garua = collection.map(e =>{
+
+/* index <= 0 ? index = 0 : index--;
+ collection.map(e =>{
     e['payment'] =(amount_figure/sum)*e.bet 
     e['coe'] = amount_figure/sum
    
-})
-index <= 0 ? null: index--;
+}) */
+
 /* newArr = collection; */
-console.log(newArr ,garua)
+/* console.log(newArr ,collection , index , "ldkjasha scbui") */
 /* var twoLines = collection?.filter(e => e.numbers[3] === winner[3]) */
 
   
@@ -203,7 +204,7 @@ var index = [4];
 var switches  = false;
 var lines = {oneLine , twoLines , threeLines , fourLines , fiveLines}
  */
-return console.log( collection , garua);
+return console.log(collection);
 
 
 }
