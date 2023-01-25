@@ -156,7 +156,7 @@ const getMatches = async function  ()  {
 var newArr = await padstart();    
 var total = await getTotal(players);
 var amount_figure = await getAmountByDigits(total);
-var winner =/*  await getFinalNumber(); */[5,6,4,2,7]
+var winner =/*  await getFinalNumber(); */[5,9,8,2,7]
 var coeficent = 0;
 var sum = 0;
 var dataPayment = {};
@@ -164,15 +164,26 @@ var collection = [];
 var index = 4;
 var count_acerts = 0;
 
-collection =newArr.map(e => { 
-    if(e.numbers[index] === winner[index])
-    {
-        index--
+collection =[];
+newArr.map(e => { 
 
-        return e
-    } else {
-        index =4
-    }
+    let click = false;
+    var currentNum = e.numbers.reverse().map(e =>
+
+        {
+            if(e === winner[index]){
+                
+                index--
+               click =true;
+           } else {
+            index =4
+            return null
+           }
+
+        }
+         ) 
+    console.log(currentNum)
+ click === true ? collection = [...collection , e] : null;
 
 })  
 
@@ -204,7 +215,7 @@ var index = [4];
 var switches  = false;
 var lines = {oneLine , twoLines , threeLines , fourLines , fiveLines}
  */
-return console.log(collection);
+return console.log(collection , winner);
 
 
 }
