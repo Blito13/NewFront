@@ -1,6 +1,6 @@
 const players = [{
     apuesta : 50,
-    numero : "37580",  
+    numero : "31580",  
 },{
     apuesta : 80,
     numero : "44348",  
@@ -156,68 +156,59 @@ const getMatches = async function  ()  {
 var newArr = await padstart();    
 var total = await getTotal(players);
 var amount_figure = await getAmountByDigits(total);
-var winner =/*  await getFinalNumber(); */[5,9,8,2,7]
+var winner =/*  await getFinalNumber(); */[7,1,9,3,0]
 var coeficent = 0;
 var sum = 0;
 var dataPayment = {};
 var collection = [];
-var index = 4;
-var count_acerts = 0;
+var idx = 3;
 
-collection =[];
-newArr.map(e => { 
+var index = 1;
 
-    let click = false;
-    var currentNum = e.numbers.reverse().map(e =>
-
-        {
-            if(e === winner[index]){
-                
-                index--
-               click =true;
-           } else {
-            index =4
-            return null
-           }
-
-        }
-         ) 
-    console.log(currentNum)
- click === true ? collection = [...collection , e] : null;
-
-})  
-
-
-/* index <= 0 ? index = 0 : index--;
- collection.map(e =>{
-    e['payment'] =(amount_figure/sum)*e.bet 
-    e['coe'] = amount_figure/sum
+var count_acerts = 1;
+collection =newArr.filter (e => e.numbers[4] === winner[4])
+collection.map(e  => e['acerts'] =1 )
+collection?.map( (e , i)=>{ 
    
-}) */
+    var boolean = false;
+    var boolean2 = false;
+    var boolean3 = false;
+    var boolean4 = false;
+    var boolean5 = false;
+    sum = sum + e.bet
+ 
+   e.numbers.reverse().map((e , i) => {
+    console.log(index , " p " , idx , "d")
+       if(i === index && e === winner[idx]){
+        boolean =true
+    }else if(i === index +1 && e === winner[idx-1]){
+       boolean2 =  true
+    } 
+    else if(i === index +2 && e === winner[idx-2] ){
+       console.log("s1")
+       boolean3 =  true
+     }
+    else if(i === index +3 && e === winner[idx-3] ){
 
-/* newArr = collection; */
-/* console.log(newArr ,collection , index , "ldkjasha scbui") */
-/* var twoLines = collection?.filter(e => e.numbers[3] === winner[3]) */
-
-  
-  
-  /*  = [... collection , {
-    total :sum,
-    coe : amount_figure/sum,
-   
-}] */
-
-/* var twoLines = oneLine?.filter(e => e.numbers[3] === winner[3]);
-var threeLines = twoLines?.filter(e => e.numbers[2] === winner[2]);
-var fourLines = threeLines?.filter(e => e.numbers[1] === winner[1]);
-var fiveLines = fourLines?.filter(e => e.numbers[0] === winner[0]);
-var index = [4];
-var switches  = false;
-var lines = {oneLine , twoLines , threeLines , fourLines , fiveLines}
- */
-return console.log(collection , winner);
+        boolean4 =  true
+     }
+     else console.log("ss")
+    
+})
+boolean === true ? e.acerts = e.acerts +1 : null;
+boolean2 === true && e.acerts>1 ? e.acerts = e.acerts +1 : null;
+boolean3 === true  && e.acerts>2 ?e.acerts = e.acerts +1 : null;
+boolean4 === true && e.acerts>3 ? e.acerts = e.acerts +1 : null;
 
 
+console.log(i , "this i")
+ 
+}
+)
+collection.map(e =>{
+    e.numbers.reverse()
+})
+return console.log(collection , "w ", winner)
 }
 
 const payMatches = async function (lines , )  {
