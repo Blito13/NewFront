@@ -59,6 +59,5 @@ const players = [{
     apuesta : 80,
     numero : "11129",  
 },]
-module.exports= {
+module.exports= 
     players
-}
