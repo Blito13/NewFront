@@ -172,8 +172,7 @@ newArr.map((e) => {
     e.acerts===4 ? sumFourthLine += e.bet :
     e.acerts===5 ? sumFifthLine += e.bet: "nothing";
 })
-/* 
-se tienen que sumar las apuestas de los que tienen mas de un aceirto tambien */
+
 
 return console.log(sumFirstLine ,"1", sumSecondLine ,"2", sumThirdLine ,"3", sumFourthLine ,"4", sumFifthLine ,"5")
 }
