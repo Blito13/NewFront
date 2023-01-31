@@ -128,7 +128,7 @@ boolean4 === true && e.acerts>3 ? e.acerts = e.acerts +1 : null;
 e.numbers.reverse();
  
 })
-console.log(collection)
+/* console.log(collection) */
 return collection
 }
 const postRecipe = async (req , res) =>{
@@ -166,15 +166,19 @@ var sumFourthLine = 0;
 var sumFifthLine = 0; 
 
 newArr.map((e) => {
-    e.acerts===1 ? sumFirstLine += e.bet : 
-    e.acerts===2 ? sumSecondLine += e.bet :
-    e.acerts===3 ? sumThirdLine += e.bet :
-    e.acerts===4 ? sumFourthLine += e.bet :
-    e.acerts===5 ? sumFifthLine += e.bet: "nothing";
+if(e.acerts >=1) sumFirstLine += e.bet;
+if(e.acerts >=  2) sumSecondLine += e.bet;
+if(e.acerts >=  3) sumThirdLine += e.bet;
+if(e.acerts >=  4) sumFourthLine += e.bet;
+if(e.acerts >=  5) sumFifthLine += e.bet;
 })
+const coe1 =  amount_figure/sumFirstLine;
+const coe2 =  (amount_figure/sumFirstLine) +coe1; 
+const coe3 =  (amount_figure/sumFirstLine) +coe2; 
+const coe4 =  (amount_figure/sumFirstLine) +coe3; 
+const coe5 =  (amount_figure/sumFirstLine) +coe4; 
 
-
-return console.log(sumFirstLine ,"1", sumSecondLine ,"2", sumThirdLine ,"3", sumFourthLine ,"4", sumFifthLine ,"5")
+return console.log( newArr ,"navaja"  ,sumFirstLine ,"1", sumSecondLine ,"2", sumThirdLine ,"3", sumFourthLine ,"4", sumFifthLine ,"5")
 }
 module.exports = {
     getPlayers
