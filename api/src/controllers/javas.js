@@ -83,16 +83,21 @@ var players = await getPlayers();
 var newArr = await padstart();    
 var total = await getTotal();
 var amount_figure = await getAmountByDigits(total);
-var winner =/*  await getFinalNumber(); */[4,7,3,3,0]
+var winner =/*  await getFinalNumber(); */[7,1,9,3,0]
 var coeficent = 0;
 var sum = 0;
 var dataPayment = {};
 var collection = [];
 var idx = 3;
-
 var index = 1;
-
 var count_acerts = 1;
+var sumFirstLine = 0;
+var sumSecondLine = 0;
+var sumThirdLine = 0;
+var sumFourthLine = 0;
+var sumFifthLine = 0; 
+
+
 collection =newArr.filter (e => e.numbers[4] === winner[4])
 collection.map(e  => e['acerts'] =1 )
 collection?.map( (e , i)=>{ 
@@ -107,29 +112,37 @@ collection?.map( (e , i)=>{
    e.numbers.reverse().map((e , i) => {
     
        if(i === index && e === winner[idx]){
+      /* sumFirstLine += e.bet; */
         boolean = true
     }else if(i === index +1 && e === winner[idx-1]){
+        /* sumSecondLine += e.bet */
        boolean2 =  true
     } 
     else if(i === index +2 && e === winner[idx-2] ){
-      
+      /* sumThirdLine += e.bet; */
        boolean3 =  true
      }
     else if(i === index +3 && e === winner[idx-3] ){
-
+       /*  sumFourthLine += e.bet */
         boolean4 =  true
      }
     else return
     })
-boolean === true ? e.acerts = e.acerts +1 : null;
-boolean2 === true && e.acerts>1 ? e.acerts = e.acerts +1 : null;
-boolean3 === true  && e.acerts>2 ?e.acerts = e.acerts +1 : null;
-boolean4 === true && e.acerts>3 ? e.acerts = e.acerts +1 : null;
+   sumFirstLine +=e.bet
+   boolean === true ? (e.acerts = e.acerts +1 ) && (sumSecondLine +=e.bet) : null;
+   boolean2 === true && e.acerts>1 ? (e.acerts = e.acerts +1) && (sumThirdLine += e.bet) : null;
+   boolean3 === true  && e.acerts>2 ?(e.acerts = e.acerts +1) &&(sumFourthLine += e.bet) : null;
+   boolean4 === true && e.acerts>3 ? (e.acerts = e.acerts +1)&&(sumFifthLine += e.bet) : null;
+   
+   
 e.numbers.reverse();
  
 })
-/* console.log(collection) */
-return collection
+
+                                        
+
+console.log(collection,"acaadasdasdasdasd")
+return {collection , sumFirstLine , sumSecondLine ,sumThirdLine , sumFourthLine , sumFifthLine } 
 }
 const postRecipe = async (req , res) =>{
     
@@ -155,30 +168,33 @@ const payMatches = async function ( )  {
 //validar las cifras sin ganadores para acumular lo apostado para la proxima jugada
 //PORCENTAJE : AMOUNT_FIGURE / TOTAL DE LAS APUESTAS ganadoras A ESA CIFRA(1,2,3,4,5)
 // RESULTADO DE LA PAGA = PORCENTAJE X CADA APUESTA
-var newArr = await getMatches();
+var newArr =  (await getMatches()).collection;
 var total = await getTotal();
 var amount_figure = await getAmountByDigits(total);
+console.log(newArr , "here 174")
+var coeFirstLine = amount_figure/(await getMatches()).sumFirstLine;
+var coeSecondLine = amount_figure/(await getMatches()).sumSecondLine;
+var coeThirdLine = amount_figure/(await getMatches()).sumThirdLine;
+var coeFourthLine = amount_figure/(await getMatches()).sumFourthLine;
+var coeFifthLine = amount_figure/(await getMatches()).sumFifthLine; 
 
-var sumFirstLine = 0;
-var sumSecondLine = 0;
-var sumThirdLine = 0;
-var sumFourthLine = 0;
-var sumFifthLine = 0; 
-
-newArr.map((e) => {
-if(e.acerts >=1) sumFirstLine += e.bet;
-if(e.acerts >=  2) sumSecondLine += e.bet;
-if(e.acerts >=  3) sumThirdLine += e.bet;
-if(e.acerts >=  4) sumFourthLine += e.bet;
-if(e.acerts >=  5) sumFifthLine += e.bet;
+console.log(coeFirstLine , coeSecondLine , coeThirdLine , coeFourthLine ,coeFifthLine, "despierta")
+/* e["paymentOneLine"] = (amount_figure/ e.first) *e.bet
+e["paymentTwoLine"] = (amount_figure/ e.second) *e.bet
+e["paymentThirdLine"] = (amount_figure/ e.third) *e.bet
+e["paymentFourthLine"] = (amount_figure/ e.fourth) *e.bet
+e["paymentFifthLine"] = (amount_figure/ e.fifth) *e.bet */
+newArr.map(e => {
+    e.acerts===5?e['pay-line-5'] = ( coeFifthLine + coeSecondLine + coeThirdLine +coeFourthLine + coeFifthLine) * e.bet:
+    e.acerts === 1? e['pay-first-line'] = e.bet * coeFifthLine:
+    e.acerts===2?e['pay-line-2'] = ( coeFifthLine + coeSecondLine) * e.bet:
+    e.acerts===3?e['pay-line-3'] = ( coeFifthLine + coeSecondLine + coeThirdLine) * e.bet:
+    e.acerts===4?e['pay-line-4'] = ( coeFifthLine + coeSecondLine + coeThirdLine + coeFourthLine) * e.bet:
+    e['pay'] = "aca tiene q decolver lo reacudado"
+    
+    
 })
-const coe1 =  amount_figure/sumFirstLine;
-const coe2 =  (amount_figure/sumFirstLine) +coe1; 
-const coe3 =  (amount_figure/sumFirstLine) +coe2; 
-const coe4 =  (amount_figure/sumFirstLine) +coe3; 
-const coe5 =  (amount_figure/sumFirstLine) +coe4; 
-
-return console.log( newArr ,"navaja"  ,sumFirstLine ,"1", sumSecondLine ,"2", sumThirdLine ,"3", sumFourthLine ,"4", sumFifthLine ,"5")
+console.log(newArr)
 }
 module.exports = {
     getPlayers
