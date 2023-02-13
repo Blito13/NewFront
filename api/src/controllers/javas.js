@@ -35,15 +35,10 @@ return total
 }
 //La mitad del total dividido en 5 (cada cifra)
 var getAmountByDigits = async (datos) =>  {
-
-    
    var half = datos / 2;
    var amount_figure  =  half / 5 ;
    console.log(datos , amount_figure)
    return amount_figure
-
-
-
 }
 
 const getFinalNumber = async () => {
@@ -97,9 +92,10 @@ var sumThirdLine = 0;
 var sumFourthLine = 0;
 var sumFifthLine = 0; 
 
-
+//clear array
 collection =newArr.filter (e => e.numbers[4] === winner[4])
 collection.map(e  => e['acerts'] =1 )
+//found matches
 collection?.map( (e , i)=>{ 
    
     var boolean = false;
@@ -108,7 +104,6 @@ collection?.map( (e , i)=>{
     var boolean4 = false;
 
     sum = sum + e.bet
- 
    e.numbers.reverse().map((e , i) => {
     
        if(i === index && e === winner[idx]){
@@ -136,15 +131,19 @@ collection?.map( (e , i)=>{
    
    
 e.numbers.reverse();
- 
 })
+var coeFirstLine = amount_figure/sumFirstLine;
+var coeSecondLine = amount_figure/sumSecondLine;
+var coeThirdLine = amount_figure/sumThirdLine;
+var coeFourthLine = amount_figure/sumFourthLine;
+var coeFifthLine = amount_figure/sumFifthLine; 
 
                                         
 
 console.log(collection,"acaadasdasdasdasd")
-return {collection , sumFirstLine , sumSecondLine ,sumThirdLine , sumFourthLine , sumFifthLine } 
+return {collection ,coeFirstLine, coeSecondLine ,coeThirdLine , coeFourthLine , coeFifthLine } 
 }
-const postRecipe = async (req , res) =>{
+/* const postRecipe = async (req , res) =>{
     
     const { name, summary, score, healthScore, steps, diets, image, createdINBd } = req.body;
 
@@ -160,38 +159,20 @@ const postRecipe = async (req , res) =>{
     const typesDb = await Diet.findAll({where: {name: diets}}) 
     console.log(recipeCreated)
     recipeCreated.addDiet(typesDb)
-    /* recipeCreated.addStep(steps) */
+    recipeCreated.addStep(steps)
     res.send('Recipe created successfully')
 
-}
+} */
 const payMatches = async function ( )  {
-//validar las cifras sin ganadores para acumular lo apostado para la proxima jugada
-//PORCENTAJE : AMOUNT_FIGURE / TOTAL DE LAS APUESTAS ganadoras A ESA CIFRA(1,2,3,4,5)
-// RESULTADO DE LA PAGA = PORCENTAJE X CADA APUESTA
+
 var newArr =  (await getMatches()).collection;
 var total = await getTotal();
-var amount_figure = await getAmountByDigits(total);
-console.log(newArr , "here 174")
-var coeFirstLine = amount_figure/(await getMatches()).sumFirstLine;
-var coeSecondLine = amount_figure/(await getMatches()).sumSecondLine;
-var coeThirdLine = amount_figure/(await getMatches()).sumThirdLine;
-var coeFourthLine = amount_figure/(await getMatches()).sumFourthLine;
-var coeFifthLine = amount_figure/(await getMatches()).sumFifthLine; 
 
-console.log(coeFirstLine , coeSecondLine , coeThirdLine , coeFourthLine ,coeFifthLine, "despierta")
-/* e["paymentOneLine"] = (amount_figure/ e.first) *e.bet
-e["paymentTwoLine"] = (amount_figure/ e.second) *e.bet
-e["paymentThirdLine"] = (amount_figure/ e.third) *e.bet
-e["paymentFourthLine"] = (amount_figure/ e.fourth) *e.bet
-e["paymentFifthLine"] = (amount_figure/ e.fifth) *e.bet */
+console.log(coeFirstLine , coeSecondLine , coeThirdLine , coeFourthLine ,coeFifthLine)
+
 newArr.map(e => {
-    e.acerts===5?e['pay-line-5'] = ( coeFifthLine + coeSecondLine + coeThirdLine +coeFourthLine + coeFifthLine) * e.bet:
-    e.acerts === 1? e['pay-first-line'] = e.bet * coeFifthLine:
-    e.acerts===2?e['pay-line-2'] = ( coeFifthLine + coeSecondLine) * e.bet:
-    e.acerts===3?e['pay-line-3'] = ( coeFifthLine + coeSecondLine + coeThirdLine) * e.bet:
-    e.acerts===4?e['pay-line-4'] = ( coeFifthLine + coeSecondLine + coeThirdLine + coeFourthLine) * e.bet:
-    e['pay'] = "aca tiene q decolver lo reacudado"
-    
+
+
     
 })
 console.log(newArr)
@@ -201,15 +182,3 @@ module.exports = {
 } 
 getMatches()
     .then(payMatches);
-/* getTotal(players)
-.then(getAmountByDigits)
-.then(getFinalNumber)
-.then(padstart)
-.then(getMatches)
-.then(payMatches) */
-/* .then( result => getAmountByDigits(result))
-.then( result => console.log(result)) */
-
-/* Promise.all([getAmountByDigits() , getFinalNumber(), getTotal(players)] , getMatches(getFinalNumber)) .then(response => {
-    console.log(response)
-}) */
