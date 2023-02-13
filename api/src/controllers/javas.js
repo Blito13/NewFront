@@ -1,11 +1,72 @@
-require('dotenv').config(); 
+/* require('dotenv').config(); 
 const axios = require ('axios');
 const { types } = require('pg');
 const {Recipe , Diet , Step} = require ('../db')
 const {YOUR_API_KEY} = process.env;
 
 const players = require('../models/Players');
-console.log(players)
+console.log(players) */
+const players = [{
+    apuesta : 50,
+    numero : "37580",  
+},{
+    apuesta : 80,
+    numero : "44348",  
+},{
+    apuesta : 65,
+    numero : "71930",  
+},{
+    apuesta : 45,
+    numero : "10211",  
+},{
+    apuesta : 95,
+    numero : "55666",  
+},{
+    apuesta : 55,
+    numero : "60414",  
+},{
+    apuesta : 60,
+    numero : "29730",  
+},{
+    apuesta : 40,
+    numero : "65930",  
+},{
+    apuesta : 85,
+    numero : "83342",  
+},{
+    apuesta : 70,
+    numero : "330",
+},{
+    apuesta : 75,
+    numero : "99827",  
+},{
+    apuesta : 90,
+    numero : "83615",  
+},{
+    apuesta : 83,
+    numero : "20618",  
+},{
+    apuesta : 68,
+    numero : "01234",  
+},{
+    apuesta : 74,
+    numero : "81112",  
+},{
+    apuesta : 89,
+    numero : "69239",  
+},{
+    apuesta : 66,
+    numero : "38593",  
+},{
+    apuesta : 59,
+    numero : "73191",  
+},{
+    apuesta : 72,
+    numero : "94955",  
+},{
+    apuesta : 80,
+    numero : "11129",  
+},]
 const getPlayers = async () =>{
     return players
 }
@@ -77,11 +138,11 @@ const padstart = async () => {
 return numbersArray
 }
 const getMatches = async function  ()  {
-    get
+    
 var newArr = await padstart();    
 var total = await getTotal(players);
 var amount_figure = await getAmountByDigits(total);
-var winner =/*  await getFinalNumber(); */[4,4,3,4,8]
+var winner =/*  await getFinalNumber(); */[4,4,3,3,0]
 var coeficent = 0;
 var sum = 0;
 var dataPayment = {};
@@ -120,14 +181,14 @@ collection?.map( (e , i)=>{
     else return
     })
 boolean === true ? e.acerts = e.acerts +1 : null;
-boolean2 === true && e.acerts>1 ? e.acerts = e.acerts +1 : null;
+boolean2 === true && e.acerts>1 ? e.acerts = e.acerts +1  : null;
 boolean3 === true  && e.acerts>2 ?e.acerts = e.acerts +1 : null;
 boolean4 === true && e.acerts>3 ? e.acerts = e.acerts +1 : null;
 e.numbers.reverse();
  
 })
 
-return console.log(collection , "w ", winner)
+return console.log("este es el numero ganador ", winner , "estas son las jugadas con sus aciertos" , collection)
 }
 const postRecipe = async (req , res) =>{
     
@@ -183,9 +244,9 @@ console.log(lines,"acaman")
 }   */                               
 console.log( lines )
 }
-module.exports = {
+/* module.exports = {
     getPlayers
-} 
+}  */
 getMatches();
 /* getTotal(players)
 .then(getAmountByDigits)
