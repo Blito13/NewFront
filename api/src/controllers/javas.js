@@ -9,7 +9,7 @@ console.log(players.map(e =>e ) ,"this")
 const getPlayers = async () =>{
     return players
 }
-const getDB = async () =>{ 
+/* const getDB = async () =>{ 
 
     return await Player.findAll({  
         include: { 
@@ -20,7 +20,7 @@ const getDB = async () =>{
             }
         },
        
-    })}
+    })} */
 var getTotal = async () => {
     console.log(players ,"here")
      var total = 0 ;
@@ -133,14 +133,14 @@ collection?.map( (e , i)=>{
 e.numbers.reverse();
 })
 var coeFirstLine = amount_figure/sumFirstLine;
-var coeSecondLine = amount_figure/sumSecondLine;
-var coeThirdLine = amount_figure/sumThirdLine;
-var coeFourthLine = amount_figure/sumFourthLine;
-var coeFifthLine = amount_figure/sumFifthLine; 
+var coeSecondLine = (amount_figure/sumSecondLine) + coeFirstLine;
+var coeThirdLine = (amount_figure/sumThirdLine) + coeSecondLine;
+var coeFourthLine = (amount_figure/sumFourthLine) + coeThirdLine;
+var coeFifthLine = (amount_figure/sumFifthLine) + coeFourthLine; 
 
                                         
 
-console.log(collection,"acaadasdasdasdasd")
+console.log( coeSecondLine )
 return {collection ,coeFirstLine, coeSecondLine ,coeThirdLine , coeFourthLine , coeFifthLine } 
 }
 /* const postRecipe = async (req , res) =>{
@@ -167,15 +167,20 @@ const payMatches = async function ( )  {
 
 var newArr =  (await getMatches()).collection;
 var total = await getTotal();
-
-console.log(coeFirstLine , coeSecondLine , coeThirdLine , coeFourthLine ,coeFifthLine)
+var lastLine = (await getMatches()).coeFifthLine;
+var fourthLine = (await getMatches()).coeFourthLine;
+var thirdLine = (await getMatches()).coeThirdLine;
+var secondLine = (await getMatches()).coeSecondLine;
+var firstLine = (await getMatches()).coeFirstLine;
 
 newArr.map(e => {
-
-
-    
+e.acerts === 5 ? e['pay'] = e.bet * lastLine:
+e.acerts === 4 ? e['pay'] = e.bet * fourthLine:
+e.acerts === 3 ? e['pay'] = e.bet * thirdLine:
+e.acerts === 2 ? e['pay'] = e.bet * secondLine:
+e.acerts === 1 ? e['pay'] = e.bet * firstLine:null             
 })
-console.log(newArr)
+console.log(newArr , "ll")
 }
 module.exports = {
     getPlayers
