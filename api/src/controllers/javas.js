@@ -4,10 +4,12 @@ const { types } = require('pg');
 const {Recipe , Diet , Step} = require ('../db')
 const {YOUR_API_KEY} = process.env;
  */
-const players = require('../mock/Players');
-console.log(players.map(e =>e ) ,"this")
-const getPlayers = async () =>{
-    return players
+const players = require('../mock/playeres.js');
+
+const getPlayers = async (req , res) =>{
+    var lex =   players
+
+    res.send(JSON.stringify(players))
 }
 /* const getDB = async () =>{ 
 
@@ -140,7 +142,7 @@ var coeFifthLine = (amount_figure/sumFifthLine) + coeFourthLine;
 
                                         
 
-console.log( coeSecondLine )
+console.log(coeFirstLine, coeSecondLine ,coeThirdLine , coeFourthLine , coeFifthLine)
 return {collection ,coeFirstLine, coeSecondLine ,coeThirdLine , coeFourthLine , coeFifthLine } 
 }
 /* const postRecipe = async (req , res) =>{
@@ -155,7 +157,7 @@ return {collection ,coeFirstLine, coeSecondLine ,coeThirdLine , coeFourthLine , 
         steps,   
         image,
         createdINBd 
-    });
+    }); 
     const typesDb = await Diet.findAll({where: {name: diets}}) 
     console.log(recipeCreated)
     recipeCreated.addDiet(typesDb)
@@ -185,5 +187,4 @@ console.log(newArr , "ll")
 module.exports = {
     getPlayers
 } 
-getMatches()
-    .then(payMatches);
+
