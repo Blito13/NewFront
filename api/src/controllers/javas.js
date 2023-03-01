@@ -4,12 +4,20 @@ const { types } = require('pg');
 const {Recipe , Diet , Step} = require ('../db')
 const {YOUR_API_KEY} = process.env;
  */
-const players = require('../mock/playeres.js');
-
-const getPlayers = async (req , res) =>{
-    var lex =   players
-
-    res.send(JSON.stringify(players))
+const thsPlayers = require('../mock/playeres.js');
+const {Playerxs} = require ('../db')
+const getPlayersDb = async () =>{
+var pla = await Playerxs.findAll();
+        var viccio = pla.map(e => {
+            return {
+                name : e.name,
+                id : e.id,
+                apuesta : e.apuesta,
+                numero : e.numeros,
+                createdInDb : e.createdINBd
+            }
+        })
+return viccio;
 }
 /* const getDB = async () =>{ 
 
@@ -23,20 +31,22 @@ const getPlayers = async (req , res) =>{
         },
        
     })} */
-var getTotal = async () => {
-    console.log(players ,"here")
+const getTotal = async () => {
+    /* console.log(players ,"here") */
+    var lex =  await getPlayersDb();
      var total = 0 ;
 
-     players.forEach(element => {
+     lex.forEach(element => {
      total += element.apuesta
  })
- console.log(total)
 
 
-return total
+return total;
+
 }
 //La mitad del total dividido en 5 (cada cifra)
-var getAmountByDigits = async (datos) =>  {
+var getAmountByDigits = async () =>  {
+    var datos = await  getTotal();
    var half = datos / 2;
    var amount_figure  =  half / 5 ;
    console.log(datos , amount_figure)
@@ -60,7 +70,7 @@ const getFinalNumber = async () => {
     return numberSelected;
 }
 const padstart = async () => {
-  
+  var players = await getPlayersDb();
     console.log(players , "pix")
  const  numbersArray = players.map((e,i) => {
     let numStart = Array.from(e.numero.padStart(5, "*"))
@@ -68,7 +78,7 @@ const padstart = async () => {
   return{
     bet : e.apuesta,
     numbers : toInt,
-    id : i
+
   } 
  })
 
@@ -76,10 +86,10 @@ const padstart = async () => {
 return numbersArray
 }
 const getMatches = async function  ()  {
-var players = await getPlayers();
+
 var newArr = await padstart();    
 var total = await getTotal();
-var amount_figure = await getAmountByDigits(total);
+var amount_figure = await getAmountByDigits();
 var winner =/*  await getFinalNumber(); */[7,1,9,3,0]
 var coeficent = 0;
 var sum = 0;
@@ -145,30 +155,30 @@ var coeFifthLine = (amount_figure/sumFifthLine) + coeFourthLine;
 console.log(coeFirstLine, coeSecondLine ,coeThirdLine , coeFourthLine , coeFifthLine)
 return {collection ,coeFirstLine, coeSecondLine ,coeThirdLine , coeFourthLine , coeFifthLine } 
 }
-/* const postRecipe = async (req , res) =>{
-    
-    const { name, summary, score, healthScore, steps, diets, image, createdINBd } = req.body;
+const saveGame = async (req , res) =>{
+    //funcion utilizada para trabajar con los valores de la base de datos , en production sera un post para cada jugador
+    const jugadores =  thsPlayers;
+    console.log(jugadores ,"skdlaskñdalksdñl")
 
-    const recipeCreated = await Recipe.create({                
-        name,
-        summary,
-        score,
-        healthScore,
-        steps,   
-        image,
-        createdINBd 
-    }); 
-    const typesDb = await Diet.findAll({where: {name: diets}}) 
+
+    var cartola = jugadores.map(e => {
+    
+        Playerxs.create({                
+         apuesta : e.apuesta,
+         numeros : e.numero
+        }); 
+        })
+        res.send("hasta aca bien")
+  /*   const typesDb = await Diet.findAll({where: {name: diets}}) 
     console.log(recipeCreated)
     recipeCreated.addDiet(typesDb)
-    recipeCreated.addStep(steps)
-    res.send('Recipe created successfully')
+    recipeCreated.addStep(steps) */
 
-} */
-const payMatches = async function ( )  {
+}
+const payMatches = async function ( req , res )  {
 
 var newArr =  (await getMatches()).collection;
-var total = await getTotal();
+console.log(newArr, "xlx")
 var lastLine = (await getMatches()).coeFifthLine;
 var fourthLine = (await getMatches()).coeFourthLine;
 var thirdLine = (await getMatches()).coeThirdLine;
@@ -182,9 +192,17 @@ e.acerts === 3 ? e['pay'] = e.bet * thirdLine:
 e.acerts === 2 ? e['pay'] = e.bet * secondLine:
 e.acerts === 1 ? e['pay'] = e.bet * firstLine:null             
 })
-console.log(newArr , "ll")
+res.status(200).send(newArr)
 }
+const getMoves= async function(req , res)  {
+    var constr =  await getPlayersDb();
+    console.log(constr.length ,"lala")
+    res.status(200).send(constr)
+}
+
 module.exports = {
-    getPlayers
+    getMoves,
+    saveGame,
+    payMatches
 } 
 

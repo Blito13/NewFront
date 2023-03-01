@@ -4,33 +4,34 @@ const { DataTypes, STRING } = require('sequelize');
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('Player', {
+  sequelize.define('Playerxs', {
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     id:{
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey :true
     },
-    summary : {
-      type: DataTypes.TEXT,
-      allowNull : false,
-      },
-    score : {
-      type :DataTypes.FLOAT,
+     apuesta: {
+      type :DataTypes.INTEGER,
     },
-    healthScore : {
-      type: DataTypes.FLOAT,
-      
-    },
-    steps : {
-      type: DataTypes.JSON,
+  
+    moneda: {
+      type: DataTypes.STRING,
     },
 
     image : {
       type:DataTypes.STRING,
+      allowNull : true
+    },
+    image : {
+      type:DataTypes.STRING,
+      allowNull : true
+    },
+    numeros : {
+      type:DataTypes.STRING, //para agregarlos como arrays usar terminacion JSON
       allowNull : true
     },
     createdINBd: {                  
