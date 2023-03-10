@@ -90,7 +90,7 @@ const getMatches = async function  ()  {
 var newArr = await padstart();    
 var total = await getTotal();
 var amount_figure = await getAmountByDigits();
-var winner =/*  await getFinalNumber(); */[7,1,9,3,0]
+var winner =/*  await getFinalNumber(); */[7,1,9,2,5]
 var coeficent = 0;
 var sum = 0;
 var dataPayment = {};
@@ -108,6 +108,8 @@ var sumFifthLine = 0;
 collection =newArr.filter (e => e.numbers[4] === winner[4])
 collection.map(e  => e['acerts'] =1 )
 //found matches
+//funciones hash
+
 collection?.map( (e , i)=>{ 
    
     var boolean = false;
