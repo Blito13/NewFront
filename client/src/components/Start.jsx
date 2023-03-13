@@ -7,7 +7,7 @@ import {useSelector , useDispatch} from "react-redux"
 import { useEffect } from "react";
 import FilterComponent from "./FilterComponent";
 import FilterWin from "./FilterWin";
-import { getPlayers } from "../actions/actions";
+import { getPlayers } from "../redux/actions";
 const Start = (props) => {
  const dispatch = useDispatch();
 const numbers = [[6],[8],[6],[7],[3]]
@@ -18,8 +18,8 @@ useEffect (()=>{
   dispatch(getPlayers())
   
 
+  console.log(data)
 },[])
-
 
 
 
@@ -45,29 +45,29 @@ useEffect (()=>{
       },
       {
         name: "Decena de mil",
-        selector: row => row.decenaDeMil, 
+        selector: row => row.numeros[0], 
         sortable: true,
         hide: "sm"
       },
       {
         name: "Unidad de Mil",
-        selector: row => row.unidadDeMil ,
+        selector: row => row.numeros[1],
         sortable: true
       },
       {
         name: "Centena",
-        selector: row => row.centena,
+        selector: row => row.numeros[2],
         sortable: true,
         hide: "md"
       },
       {
         name: "Decena",
-        selector: row => row.decena,
+        selector: row => row.numeros[3],
         sortable: true,
         hide: "md"
       },
       { name: "Unidad",
-        selector: row => row.unidad,
+        selector: row => row.numeros[4],
         sortable: true,
         hide: "md"
       },

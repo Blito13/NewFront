@@ -1,6 +1,6 @@
 import {combineReducers,compose,applyMiddleware, legacy_createStore} from "redux"
 import thunk from "redux-thunk"
-import rootReducer from "./reducers/reducers"
+import rootReducer from "./redux/reducers"
 
 const reducer = combineReducers ({
     rootReducer,

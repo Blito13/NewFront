@@ -1,4 +1,4 @@
-import { GET_PLAYERS} from "../actions/actions";  
+import { GET_PLAYERS} from "./actions";  
 /* import data from "../components/data" */
 
 const initialState = {
