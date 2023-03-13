@@ -6,18 +6,12 @@ const {YOUR_API_KEY} = process.env;
  */
 const thsPlayers = require('../mock/playeres.js');
 const {Playerxs} = require ('../db')
-const getPlayersDb = async () =>{
-var pla = await Playerxs.findAll();
-        var viccio = pla.map(e => {
-            return {
-                name : e.name,
-                id : e.id,
-                apuesta : e.apuesta,
-                numero : e.numeros,
-                createdInDb : e.createdINBd
-            }
-        })
-return viccio;
+const getPlayersDb = async (req , res) =>{
+const pla = await Playerxs.findAll();
+       console.log(pla)
+       res.json(pla);
+      
+  
 }
 /* const getDB = async () =>{ 
 
@@ -33,20 +27,28 @@ return viccio;
     })} */
 const getTotal = async () => {
     /* console.log(players ,"here") */
-    var lex =  await getPlayersDb();
+    var lex =  await Playerxs.findAll({});
      var total = 0 ;
 
      lex.forEach(element => {
      total += element.apuesta
  })
+ var viccio = lex.map(e => {
+            return {
+                name : e.name,
+                id : e.id,
+                apuesta : e.apuesta,
+                numero : e.numeros,
+                createdInDb : e.createdINBd
+            }
+        })
 
-
-return total;
+return {total , viccio}
 
 }
 //La mitad del total dividido en 5 (cada cifra)
 var getAmountByDigits = async () =>  {
-    var datos = await  getTotal();
+    var datos =   (await getTotal()).total;
    var half = datos / 2;
    var amount_figure  =  half / 5 ;
    console.log(datos , amount_figure)
@@ -70,15 +72,16 @@ const getFinalNumber = async () => {
     return numberSelected;
 }
 const padstart = async () => {
-  var players = await getPlayersDb();
-    console.log(players , "pix")
- const  numbersArray = players.map((e,i) => {
+   var datos = await  (await getTotal()).viccio
+    console.log(datos , "pix")
+ const  numbersArray = datos.map((e,i) => {
     let numStart = Array.from(e.numero.padStart(5, "*"))
     let toInt = numStart.map(e => e = Number(e))
   return{
     bet : e.apuesta,
     numbers : toInt,
-
+    name : e.name,
+    id : e.id
   } 
  })
 
@@ -90,7 +93,7 @@ const getMatches = async function  ()  {
 var newArr = await padstart();    
 var total = await getTotal();
 var amount_figure = await getAmountByDigits();
-var winner =/*  await getFinalNumber(); */[7,1,9,2,5]
+var winner =/*  await getFinalNumber(); */[7,1,9,8,6]
 var coeficent = 0;
 var sum = 0;
 var dataPayment = {};
@@ -159,18 +162,19 @@ return {collection ,coeFirstLine, coeSecondLine ,coeThirdLine , coeFourthLine , 
 }
 const saveGame = async (req , res) =>{
     //funcion utilizada para trabajar con los valores de la base de datos , en production sera un post para cada jugador
-    const jugadores =  thsPlayers;
+   /*  const jugadores =  thsPlayers;
     console.log(jugadores ,"skdlaskñdalksdñl")
-
-
-    var cartola = jugadores.map(e => {
-    
-        Playerxs.create({                
-         apuesta : e.apuesta,
-         numeros : e.numero
+ */
+  const {  name , apuesta , numeros } = req.body;
+    /* var cartola = jugadores.map(e => { */
+    console.log( name , apuesta , numeros)
+       const playerCreated = Playerxs.create({  
+         name : name,              
+         apuesta : apuesta,
+         numeros :numeros
         }); 
-        })
-        res.send("hasta aca bien")
+      /*   }) */
+        res.send(playerCreated)
   /*   const typesDb = await Diet.findAll({where: {name: diets}}) 
     console.log(recipeCreated)
     recipeCreated.addDiet(typesDb)
@@ -197,14 +201,15 @@ e.acerts === 1 ? e['pay'] = e.bet * firstLine:null
 res.status(200).send(newArr)
 }
 const getMoves= async function(req , res)  {
-    var constr =  await getPlayersDb();
-    console.log(constr.length ,"lala")
+    var constr = await padstart();
+    console.log(constr ,"lala")
     res.status(200).send(constr)
 }
 
 module.exports = {
     getMoves,
     saveGame,
-    payMatches
+    payMatches,
+    getPlayersDb
 } 
 
