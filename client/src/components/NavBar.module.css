@@ -1,110 +1,104 @@
 
-  .container {
-    background-color: rgb(255, 128, 0);
-    display: flex;
-    flex-direction: row;
+.navigation {
+  height: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 0.5rem 0rem;
+  background-color: #fff;
+  color: black;
+  box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
+}
+.brandName {
+  text-decoration: none;
+  color: black;
+  font-size: 1.3rem;
+  margin-left: 1rem;
+}
+.navigationMenu {
+  margin-left: auto;
+}
+.navigationMenu ul {
+  display: flex;
+  padding: 0;
+}
+.navigationMenu li {
+ 
+  list-style-type: none;
+  margin: 0 1rem;
+}
+.navigationMenu li a {
+  /* increases the surface area of the anchor tag to span more than just the anchor text */
+  text-decoration: none;
+  display: block;
+  width: 100%;
+}
+.hamburger {
+  /* removes default border on button element */
+  border: 0;
+  height: 40px;
+  width: 40px;
+  padding: 0.5rem;
+  border-radius: 50%;
+  background-color: #283b8b;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+/* positions the icon to the right and center aligns it vertically */
+  position: absolute;
+  top: 50%;
+  right: 25px;
+  transform: translateY(-50%);
+  display: none;
+}
+.hamburger:hover {
+  background-color: #2642af;
+}
+@media screen and (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+  .navigationMenu2 ul {
+    
+    position: absolute;
+    top: 60px;
+    left: 0;
+    /* stacks the li tags vertically  */
+    flex-direction: column;
+   /* makes menu span full height and width */
     width: 100%;
-    height: 3rem;
-    font-family: Cabin;
+    height: calc(100vh - 77px);
+    background-color: white;
+    border-top: 1px solid black;
+    display: block;
+    list-style-type: none;
+   
+    
+  }
+ 
+  .navigationMenu ul {
+    /*  navigation menu is positioned to start 60px from the top of the document (which is directly below the navbar) */
 
+    display: none;
+   
   }
-  
-  .leftContent {
-    display: flex;
-    width: 50%;
-    justify-content: flex-start;
-    height: 100%;
+  .navigationMenu2 li {
+   /* centers link text and strips off margin */
+    text-align: center;
+    margin: 0;
   }
-  .rigthContent{
-  display: flex;
-  flex-direction: row-reverse;
-    width: 50%;
-    height: 100%;
-   justify-content: flex-start;
-  }
-  .divLogo {
-  margin-left: -3rem;
-  width: 15%;
+  .navigationMenu2 li a {
+    color: black;
+    /* increases the surface area of the anchor tag to span the full width of the menu */
+    width: 100%;
+    padding: 1.5rem 0;
+    text-decoration: none;
+    display: block;
+    width: 100%;
   
   }
-  .logo {
-    width: 6rem;
-    height: 3rem;
-    filter :brightness(1.1);
-    mix-blend-mode: multiply;
+  .navigationMenu2 li:hover {
+    background-color: #eee;
   }
-  .menu {
-   display: flex;
-   align-items: center;
-   width:  100%; 
-   justify-content: flex-start;
-   list-style-type: none;
-   margin-top: 3px;
-  }
-.rigthMenu{
-  display: flex;
-  flex-direction: row-reverse;
-   align-items: center;
-   width:  100%; 
-   justify-content: flex-start;
-   list-style-type: none;
-   margin-top: 3px;
   
 }
-  ul {
-    text-decoration: none;
-  }
-  .title{
-   margin-top: -10px;
-    justify-content: space-around;
-    width:25%;
-    font-family: monospace;
-  }
-  .title h1{
-    
-    color: rgb(49, 51, 49);
-  }
-  .buttonNavBar {
-    align-items: center;
-    font-family: monospace;
-   justify-content: center;
-    padding: 11px;
-    max-height: 3em;
-  }
-  .buttonNavBar a {
-    display: flex;
-  color: rgb(0, 0, 0);
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  justify-content: center;
-  }
-  .buttonNavBar:hover {
-    cursor: pointer;
-    background-color: rgb(17, 94, 5);
-  }
- 
-  @media only screen and (max-width: 777px) {
- 
-    .leftContent{
-      position: relative;
-      display: inline;
-    }
-    .leftContent :hover{
-      display: inline-block;
-      background: #f70606;
-      z-index: 1
-      ;
-    }
-
- 
-    
-    .buttonNavBar  {
-    /*   overflow: hidden; */
-    padding: 11px;
-      justify-content: space-between;
-      align-items: center;
-      max-height: 3em;
-      ;
-    }
-  }
