@@ -85,36 +85,19 @@
   }
  
   @media only screen and (max-width: 777px) {
-  .container{
-    display: flex;
-    width: 100%;
-    justify-content: flex-start;
-    align-items: center;
-    justify-content: center;
-    max-height: 3em;
-  }
-  .container .logo{
-    display: none;
-    position : absolute;
-  }
-    .title{
-      position : absolute;
-      display: none;
+ 
+    .leftContent{
+      position: relative;
+      display: inline;
     }
-    .menu{
-      display: flex;
-      padding-left: 0px;
-      margin-top: 3px;
-      /* margin-bottom: px; */
+    .leftContent :hover{
+      display: inline-block;
+      background: #f70606;
+      z-index: 1
+      ;
     }
-    .rigthMenu{
-      display: flex;
-      padding-left: 0px;
-      margin-top: 3px;
-    }
-    .logo{
-      display: none;
-    }
+
+ 
     
     .buttonNavBar  {
     /*   overflow: hidden; */
