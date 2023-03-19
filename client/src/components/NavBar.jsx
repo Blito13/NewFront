@@ -22,6 +22,7 @@ const arrayFav = [[],[],[],[],[]]
                 alt="logo"
               />
           </Link>
+         
              <div className={styles.leftContent}>
               <span className={styles.title}>
                 <h1>
@@ -29,7 +30,6 @@ const arrayFav = [[],[],[],[],[]]
                   </h1>
                 </span>
             <ul className={styles.menu}>
-           
           <li className={styles.buttonNavBar}>
           <a href="/">Home</a>
           </li>
@@ -39,11 +39,19 @@ const arrayFav = [[],[],[],[],[]]
           <li className={styles.buttonNavBar}>
           <a href="/create"> Lets play</a>
           </li>
-        
             </ul>
             </div>
-            
-              
+               <div className={styles.rigthContent}>
+                <ul className={styles.rigthMenu}>  
+               <li className={styles.buttonNavBar}>
+                <a>LogIn</a>
+               </li>
+               <li className={styles.buttonNavBar}>
+                <a>About Us</a>
+               </li>
+                </ul>
+               </div>
+               
         </div>
     )
 }
