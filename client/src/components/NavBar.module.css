@@ -58,47 +58,34 @@
   .hamburger {
     display: block;
   }
-  .navigationMenu2 ul {
-    
+  .navigationMenu ul {
+    flex-direction: column;
     position: absolute;
     top: 60px;
     left: 0;
-    /* stacks the li tags vertically  */
-    flex-direction: column;
-   /* makes menu span full height and width */
     width: 100%;
-    height: calc(100vh - 77px);
+    height: calc(100vh - 60px);
     background-color: white;
     border-top: 1px solid black;
-    display: block;
-    list-style-type: none;
-   
-    
+    display: none; 
   }
- 
-  .navigationMenu ul {
-    /*  navigation menu is positioned to start 60px from the top of the document (which is directly below the navbar) */
-
-    display: none;
-   
-  }
-  .navigationMenu2 li {
+  .navigationMenu li {
    /* centers link text and strips off margin */
     text-align: center;
     margin: 0;
   }
-  .navigationMenu2 li a {
+  .navigationMenu li a {
     color: black;
-    /* increases the surface area of the anchor tag to span the full width of the menu */
     width: 100%;
     padding: 1.5rem 0;
-    text-decoration: none;
-    display: block;
-    width: 100%;
   
   }
-  .navigationMenu2 li:hover {
+  .navigationMenu li:hover {
     background-color: #eee;
   }
+  .expanded ul {
+display: block;
+  }
+
   
 }

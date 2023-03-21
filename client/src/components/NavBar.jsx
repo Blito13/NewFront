@@ -40,7 +40,7 @@ const [isNavExpanded, setIsNavExpanded] = useState(false)
       </button>
       <div 
          className={
-          isNavExpanded ?   styles.navigationMenu2 : styles.navigationMenu
+          isNavExpanded ?   `${styles.navigationMenu} ${styles.expanded}`: styles.navigationMenu
         }>
         <ul>
           <li>
