@@ -2,7 +2,8 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const players = require ('./routes/Players.js')
+const players = require ('./routes/Players.js');
+
 const server = express();
 
 server.name = 'API';

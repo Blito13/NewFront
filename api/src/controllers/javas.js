@@ -5,9 +5,22 @@ const {Recipe , Diet , Step} = require ('../db')
 const {YOUR_API_KEY} = process.env;
  */
 const thsPlayers = require('../mock/playeres.js');
-const {Playerxs} = require ('../db')
+const {Playerxs} = require ('../db');
+const {Roles} = require ('../db');
+
+
+
+
 const getPlayersDb = async (req , res) =>{
-const pla = await Playerxs.findAll();
+const pla = await Playerxs.findAll({
+    include: { 
+        model: Roles, 
+        attributes: ['id'],
+        through: {
+            attributes: [],   
+        }
+    },
+});
        console.log(pla)
        res.json(pla);
       
@@ -33,6 +46,7 @@ const getTotal = async () => {
      lex.forEach(element => {
      total += element.apuesta
  })
+
  var viccio = lex.map(e => {
             return {
                 name : e.name,
@@ -160,27 +174,7 @@ var coeFifthLine = (amount_figure/sumFifthLine) + coeFourthLine;
 console.log(coeFirstLine, coeSecondLine ,coeThirdLine , coeFourthLine , coeFifthLine)
 return {collection ,coeFirstLine, coeSecondLine ,coeThirdLine , coeFourthLine , coeFifthLine } 
 }
-const saveGame = async (req , res) =>{
-    //funcion utilizada para trabajar con los valores de la base de datos , en production sera un post para cada jugador
-   /*  const jugadores =  thsPlayers;
-    console.log(jugadores ,"skdlaskñdalksdñl")
- */
-  const {  name , apuesta , numeros } = req.body;
-    /* var cartola = jugadores.map(e => { */
-    console.log( name , apuesta , numeros)
-       const playerCreated = Playerxs.create({  
-         name : name,              
-         apuesta : apuesta,
-         numeros :numeros
-        }); 
-      /*   }) */
-        res.send(playerCreated)
-  /*   const typesDb = await Diet.findAll({where: {name: diets}}) 
-    console.log(recipeCreated)
-    recipeCreated.addDiet(typesDb)
-    recipeCreated.addStep(steps) */
 
-}
 const payMatches = async function ( req , res )  {
 
 var newArr =  (await getMatches()).collection;
@@ -208,7 +202,7 @@ const getMoves= async function(req , res)  {
 
 module.exports = {
     getMoves,
-    saveGame,
+ 
     payMatches,
     getPlayersDb
 } 

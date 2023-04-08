@@ -38,8 +38,23 @@ module.exports = (sequelize) => {
       type: DataTypes.BOOLEAN,  
       allowNull: false,  
       defaultValue: true
+    },
+    neto : {
+      type:DataTypes.INTEGER,
+      
+    },
+    inicial : {
+      type: DataTypes.INTEGER,
+    },
+    userName : {
+      type:DataTypes.STRING,
+    },
+    passWord:{
+      type:DataTypes.STRING,
+    },
+    email:{
+      type:DataTypes.STRING,
     }
-
     
   }, {timestamps:false});
 
