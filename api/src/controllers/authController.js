@@ -21,21 +21,16 @@ if (count > 0 ) return;
 roles.map(e => {Roles.create({name : e})})
 }
 const signUp = async (req , res) =>{
-  const {  name , apuesta , numeros , neto , userName , passWord  ,inicial , roles , email} = req.body;
+  const {  userName , passWord  , roles , email} = req.body;
    //validaciones en ./ss
    createRoll();
-   const playerCreated = await Playerxs.create({  
-     name : name,              
-     apuesta : apuesta,
-     numeros :numeros,
-     neto : neto,
+   const playerCreated = await Playerxs.create({                
      userName,
      passWord : await encryptPassword(passWord),
-     inicial,
      email
      
     }); 
-    console.log(roles)
+    
    if(roles){
 
        const typesDb = await Roles.findAll({where: {name: roles}}) ;
@@ -57,7 +52,7 @@ const signUp = async (req , res) =>{
 const signIn = async (req , res) => {
     const {email , password} = req.body;
     const match =  await Playerxs.findOne({ where: { email : email }});
-    if(!match) return res.satus(400).json({message : "user not found"});
+    if(!match) return res.status(400).json({message : "user not found"});
     const resc =  await comparePassword( password , match.passWord);
     if(!resc) return res.status(401).json({token:null , message :"invalid password"});
     const token =  jwt.sign({id:match.id} , SECRET , {expiresIn: 86400})

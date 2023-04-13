@@ -78,8 +78,8 @@ Review.belongsTo(Product, { foreignKey: "productId", targetId: "id" });
 Instructions.belongsTo(Recipe) */
 /* Recipe.belongsToMany(Instructions ,  { foreignKey: "RecipeId", sourceKey: "id" })
 Instructions.belongsToMany(Recipe , {foreignKey: "RecipeId", targetId: "id" }) */
-Playerxs.belongsToMany(Roles , {through : "Playerxs-Roles"});
-Roles.belongsToMany(Playerxs , {through : "Playerxs-Roles"});
+Playerxs.belongsToMany(Roles , {through : "PlayerxsRoles"});
+Roles.belongsToMany(Playerxs , {through : "PlayerxsRoles"});
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
