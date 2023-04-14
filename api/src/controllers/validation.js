@@ -23,9 +23,8 @@ const isModerator = async (req , res , next) =>{
    for(let i=0 ; i< rol.length ; i++){
        if (rol[i].name === "admin") {
         next();
-           
-       }
         return;
+       }
    }
 
   return res.status(403).json({message : "Unauthorized"});
