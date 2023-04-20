@@ -6,13 +6,13 @@
   align-items: center;
   position: relative;
   padding: 0.5rem 0rem;
-  background-color: #fff;
+  background-color: #000000;
   color: black;
   box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
 }
 .brandName {
   text-decoration: none;
-  color: black;
+  color: rgb(22, 111, 2);
   font-size: 1.3rem;
   margin-left: 1rem;
 }
@@ -27,11 +27,13 @@
  
   list-style-type: none;
   margin: 0 1rem;
+  
 }
 .navigationMenu li a {
   /* increases the surface area of the anchor tag to span more than just the anchor text */
   text-decoration: none;
   display: block;
+  color :rgb(22, 111, 2);
   width: 100%;
 }
 .hamburger {
@@ -41,7 +43,7 @@
   width: 40px;
   padding: 0.5rem;
   border-radius: 50%;
-  background-color: #283b8b;
+  background-color: #6d717f;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
 /* positions the icon to the right and center aligns it vertically */
@@ -52,19 +54,24 @@
   display: none;
 }
 .hamburger:hover {
-  background-color: #2642af;
+background-color :rgb(22, 111, 2)
 }
-@media screen and (max-width: 768px) {
+.crazyBox{
+background: #c91212;
+transition-duration: 3s, 5s;
+}
+@media screen and (max-width: 550px) {
   .hamburger {
     display: block;
   }
   .navigationMenu ul {
     flex-direction: column;
     position: absolute;
+ 
     top: 60px;
     left: 0;
     width: 100%;
-    height: calc(100vh - 60px);
+    height: calc(100vh -70px);
     background-color: white;
     border-top: 1px solid black;
     display: none; 

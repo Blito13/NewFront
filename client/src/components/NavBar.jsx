@@ -5,55 +5,67 @@ import dados   from "../img/fichas.jpg";
 import fly  from "../img/flyMoney.jpg";
 import moneda from "../img/moneda.jpg";
 import numbers   from "../img/numbers.jpg";
+import Session from './Session';
+import LogIn from '../components/LogIn';
 export default function NavBar (){
-const cart     = 5
-var arrayCar = [[],[],[],[]]
-
-const fav = [43]
-const arrayFav = [[],[],[],[],[]]
-const [isNavExpanded, setIsNavExpanded] = useState(false)
 
 
+const [isNavExpanded, setIsNavExpanded] = useState(false);
+const [isLoggedIn, setIsLoggedIn] = useState(false);
+const [showLogin , setShowlogin] = useState(false);
+  const handleLogin = () => {
+    // handle login logic here
+    setIsLoggedIn(true);
+  };
 
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
+
+  const handleClick = () =>{
+    setShowlogin(true)
+  }
     return (
-     
+     <>
       <nav className={styles.navigation}>
       <a href="/" className={styles.brandName}>
-        MacroSoft
+       Tutti Cuanty
       </a>
       <button className={styles.hamburger} onClick={() => {
           setIsNavExpanded(!isNavExpanded)
         }}>
-        {/* icon from heroicons.com */}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5"
-          viewBox="0 0 20 20"
-          fill="white"
-        >
-          <path
-            fillRule="evenodd"
-            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
-            clipRule="evenodd"
-          />
-        </svg>
       </button>
       <div 
          className={
-          isNavExpanded ?   `${styles.navigationMenu} ${styles.expanded}`: styles.navigationMenu
+          isNavExpanded ?`${styles.navigationMenu} ${styles.expanded}`: styles.navigationMenu
         }>
         <ul>
           <li>
-            <a href="/home">Home</a>
+            <a href="/">Home</a>
           </li>
           <li>
-            <a href="/about">About</a>
+            <a href="/start">About</a>
           </li>
           <li>
-            <a href="/contact">Contact</a>
+          <div >
+      {isLoggedIn ? (
+          <li>
+            <button onClick={handleLogout}>Log Out</button>
+          </li>
+      ) : (
+        <li>
+          <button onClick={handleLogin}>Ingresar</button>
+        </li>
+      )}
+    </div>
           </li>
         </ul>
       </div>
-    </nav>
+    </nav> {
+      isLoggedIn? (
+        <div className={styles.crazyBox}><LogIn></LogIn></div>
+      ): null
+    }
+     </>
     )
 }
