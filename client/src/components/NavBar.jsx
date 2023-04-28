@@ -1,5 +1,5 @@
 import styles from "./NavBar.module.css";
-import { useState } from "react";
+import { useState ,Fragment }from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import dados   from "../img/fichas.jpg";
 import fly  from "../img/flyMoney.jpg";
@@ -7,7 +7,7 @@ import moneda from "../img/moneda.jpg";
 import numbers   from "../img/numbers.jpg";
 import Session from './Session';
 import LogIn from '../components/LogIn';
-export default function NavBar (){
+export default function NavBar ({showReg}){
 
 
 const [isNavExpanded, setIsNavExpanded] = useState(false);
@@ -15,11 +15,14 @@ const [isLoggedIn, setIsLoggedIn] = useState(false);
 const [showLogin , setShowlogin] = useState(false);
   const handleLogin = () => {
     // handle login logic here
+  showReg(true)
     setIsLoggedIn(true);
   };
 
   const handleLogout = () => {
+    showReg(false)
     setIsLoggedIn(false);
+    console.log("prpr-pr-pr-pr")
   };
 
   const handleClick = () =>{
@@ -32,9 +35,17 @@ const [showLogin , setShowlogin] = useState(false);
        Tutti Cuanty
       </a>
       <button className={styles.hamburger} onClick={() => {
-          setIsNavExpanded(!isNavExpanded)
-        }}>
+        setIsNavExpanded(!isNavExpanded)
+      }}>
       </button>
+          {/* {
+          isLoggedIn? (
+            <div className={styles.crazy}>
+                  <Fragment>
+                <LogIn></LogIn>
+              </Fragment>
+                </div>
+          ): null} */}
       <div 
          className={
           isNavExpanded ?`${styles.navigationMenu} ${styles.expanded}`: styles.navigationMenu
@@ -46,26 +57,28 @@ const [showLogin , setShowlogin] = useState(false);
           <li>
             <a href="/start">About</a>
           </li>
-          <li>
-          <div >
       {isLoggedIn ? (
           <li>
-            <button onClick={handleLogout}>Log Out</button>
+            <a onClick={handleLogout}>Log Out</a>
           </li>
       ) : (
         <li>
-          <button onClick={handleLogin}>Ingresar</button>
+          <a onClick={handleLogin}>Ingresar</a>
         </li>
       )}
-    </div>
-          </li>
         </ul>
       </div>
-    </nav> {
+    </nav> {/* {
       isLoggedIn? (
-        <div className={styles.crazyBox}><LogIn></LogIn></div>
+        <div className={styles.crazy}>
+              <Fragment>
+            <LogIn></LogIn>
+          </Fragment>
+            </div>
+        
+       
       ): null
-    }
+    } */}
      </>
     )
 }

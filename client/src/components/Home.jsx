@@ -1,4 +1,5 @@
-
+import React from "react";
+import LogIn from "./LogIn";
 function Home () {
     
     return(

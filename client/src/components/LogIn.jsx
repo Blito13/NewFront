@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from './LogIn.module.css'
 
 const LogIn = ({handleLogin}) => {
   const [username, setUsername] = useState('');
@@ -18,7 +19,8 @@ const LogIn = ({handleLogin}) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+     
+    <form className={styles.formulario} onSubmit={handleSubmit}>
       <div>
         <label htmlFor="username">Username:</label>
         <input
@@ -39,6 +41,7 @@ const LogIn = ({handleLogin}) => {
       </div>
       <button type="submit">Log In</button>
     </form>
+      
   );
 };
 
