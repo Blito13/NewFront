@@ -22,7 +22,9 @@ const Create = () => {
    apuesta : 0,
    numeros : ""
        
-    })
+    });
+    const cofia = useSelector(state => state.loged );
+    console.log(cofia);
     const handleChange = (e) => {
         e.preventDefault();
         const {name , value} =  e.target;

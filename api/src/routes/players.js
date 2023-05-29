@@ -9,7 +9,7 @@ var express = require('express');
 var router = express.Router();
 router.post('/create' , signUp );
 router.get('/players', getPlayersDb);
-router.post('/config' , [validation , isModerator ] ,setUpPlayers)
+router.post('/config' , [validation , isModerator ] ,setUpPlayers);
 router.post('/login' , signIn);
 router.get('/Payments' , payMatches );
 router.get('/prueva' , getMoves);

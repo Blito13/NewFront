@@ -1,4 +1,4 @@
-talblas:
+tablas:
 *jugadores.
 *jugador.
 *ganadores.

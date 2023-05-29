@@ -1,7 +1,19 @@
 import React from "react";
 import LogIn from "./LogIn";
+import { useEffect } from "react";
+import { useSelector , useDispatch} from "react-redux";
+import { getLoged, getLogedStatus } from "../redux/actions";
+
 function Home () {
-    
+    const dispatch = useDispatch();
+    const token =  useSelector(state => state.token);
+    console.log(token);
+    useEffect(()=>{
+        return () =>{
+
+            dispatch(getLogedStatus(token));
+        }
+    },[dispatch])
     return(
         <div>
 

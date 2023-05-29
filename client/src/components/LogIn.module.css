@@ -1,14 +1,3 @@
-/* .container{
-    background-color: rgba(0, 0, 0, 0.2);
-    width: 100vw;
-    height: 100vh;
-    z-index: 0;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    position: absolute;  
-} */
-
 .formulario{
     display: flex;
     flex-direction: column;
@@ -16,15 +5,29 @@
     width: 19.250rem;
     height: 10rem;
     z-index: 1;
-    /* margin: 250px; */
-    background-color: aqua;
-   
+    background-color: rgb(18, 117, 117);
     justify-content: center;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    };
-    .formulario {
-      
+    border-radius: 3em;
     }
+    .formulario  div{
+        display: flex;
+        justify-content: space-evenly;
+        
+    }
+    .closeBtn {
+       
+        position : absolute;
+        top : 4% ;
+        left: 90%;
+        border-radius: 3em;
+    }
+  .btn{
+  position : absolute;
+  border-radius: 3em;
+   bottom: 13%;
+   left : 40%;
+  }
    

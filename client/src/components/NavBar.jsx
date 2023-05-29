@@ -1,36 +1,65 @@
 import styles from "./NavBar.module.css";
-import { useState ,Fragment }from "react";
+import { useState ,Fragment , useEffect }from "react";
 import { Link, useNavigate } from 'react-router-dom';
-import dados   from "../img/fichas.jpg";
-import fly  from "../img/flyMoney.jpg";
-import moneda from "../img/moneda.jpg";
-import numbers   from "../img/numbers.jpg";
-import Session from './Session';
-import LogIn from '../components/LogIn';
-export default function NavBar ({showReg}){
+import NavBarMenu from "./NavBarMenu";
+import { useDispatch,useSelector } from "react-redux";
+import { getLoged , getLogedStatus, getUserState, logUser} from "../redux/actions";
+import LogIn from "./LogIn";
+
+export default function NavBar ({handleLog , handleHand}){
+  
+  const [isNavExpanded, setIsNavExpanded] = useState(false);
+  const [showLogIn,setShowLogIn] = useState(false);
+  const [showMenu , setShowmenu] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  const dispatch =  useDispatch();
 
 
-const [isNavExpanded, setIsNavExpanded] = useState(false);
-const [isLoggedIn, setIsLoggedIn] = useState(false);
-const [showLogin , setShowlogin] = useState(false);
+  useEffect(() => {
+    // Verificar si el usuario está autenticado al cargar el componente
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    console.log(isLoggedIn, "aca braulio");
+    if (isLoggedIn) {
+      setLoggedIn(true);
+    }
+  }, []);
+  
   const handleLogin = () => {
-    // handle login logic here
-  showReg(true)
-    setIsLoggedIn(true);
+   
+    setLoggedIn(true);
+    localStorage.setItem('isLoggedIn', 'true');
+   
+    console.log("pasando por aca")
+ 
+    setShowLogIn(false);
+   
+
   };
 
   const handleLogout = () => {
-    showReg(false)
-    setIsLoggedIn(false);
-    console.log("prpr-pr-pr-pr")
-  };
+    setShowmenu(false);
+   setShowLogIn(false);
+   setLoggedIn(false);
+    localStorage.removeItem('isLoggedIn');
 
-  const handleClick = () =>{
-    setShowlogin(true)
+  };
+  const showModal = (e) => {
+    e.preventDefault();
+    setShowLogIn(true);
+  }
+  const dropMenu = (e) => {
+   e.preventDefault();
+    setShowmenu(true);
   }
     return (
      <>
-      <nav className={styles.navigation}>
+     {
+     showLogIn?
+      <LogIn handle = {handleLogin} close = {handleLogout}></LogIn>:
+    null
+     }
+      <nav className={styles.navigation} >
       <a href="/" className={styles.brandName}>
        Tutti Cuanty
       </a>
@@ -38,47 +67,36 @@ const [showLogin , setShowlogin] = useState(false);
         setIsNavExpanded(!isNavExpanded)
       }}>
       </button>
-          {/* {
-          isLoggedIn? (
-            <div className={styles.crazy}>
-                  <Fragment>
-                <LogIn></LogIn>
-              </Fragment>
-                </div>
-          ): null} */}
       <div 
          className={
           isNavExpanded ?`${styles.navigationMenu} ${styles.expanded}`: styles.navigationMenu
         }>
         <ul>
           <li>
-            <a href="/">Home</a>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <a href="/start">About</a>
+            <Link to="/start">About</Link>
           </li>
-      {isLoggedIn ? (
           <li>
-            <a onClick={handleLogout}>Log Out</a>
+            <Link to="/create">Create</Link>
           </li>
-      ) : (
+          {
+            loggedIn?
+            <button onClick = {dropMenu}> aca vendria la foto del user</button>:
         <li>
-          <a onClick={handleLogin}>Ingresar</a>
+          <a onClick={showModal}>Ingresar</a>
         </li>
-      )}
+          }
+     
         </ul>
       </div>
-    </nav> {/* {
-      isLoggedIn? (
-        <div className={styles.crazy}>
-              <Fragment>
-            <LogIn></LogIn>
-          </Fragment>
-            </div>
-        
-       
-      ): null
-    } */}
+    </nav> 
+    {
+      showMenu?
+      <NavBarMenu func = {handleLogout} ></NavBarMenu>:
+      null
+    }
      </>
     )
 }
