@@ -3,74 +3,13 @@ const axios = require ('axios');
 const { types } = require('pg');
 const {Recipe , Diet , Step} = require ('../db')
 const {YOUR_API_KEY} = process.env;
-
-const players = require('../models/Players');
-console.log(players) */
-const players = [{
-    apuesta : 50,
-    numero : "37580",  
-},{
-    apuesta : 80,
-    numero : "44348",  
-},{
-    apuesta : 65,
-    numero : "71930",  
-},{
-    apuesta : 45,
-    numero : "10211",  
-},{
-    apuesta : 95,
-    numero : "55666",  
-},{
-    apuesta : 55,
-    numero : "60414",  
-},{
-    apuesta : 60,
-    numero : "29730",  
-},{
-    apuesta : 40,
-    numero : "65930",  
-},{
-    apuesta : 85,
-    numero : "83342",  
-},{
-    apuesta : 70,
-    numero : "330",
-},{
-    apuesta : 75,
-    numero : "99827",  
-},{
-    apuesta : 90,
-    numero : "83615",  
-},{
-    apuesta : 83,
-    numero : "20618",  
-},{
-    apuesta : 68,
-    numero : "01234",  
-},{
-    apuesta : 74,
-    numero : "81112",  
-},{
-    apuesta : 89,
-    numero : "69239",  
-},{
-    apuesta : 66,
-    numero : "38593",  
-},{
-    apuesta : 59,
-    numero : "73191",  
-},{
-    apuesta : 72,
-    numero : "94955",  
-},{
-    apuesta : 80,
-    numero : "11129",  
-},]
+ */
+const players = require('../mock/Players');
+console.log(players.map(e =>e ) ,"this")
 const getPlayers = async () =>{
     return players
 }
-const getDB = async () =>{ 
+/* const getDB = async () =>{ 
 
     return await Player.findAll({  
         include: { 
@@ -81,9 +20,9 @@ const getDB = async () =>{
             }
         },
        
-    })}
-var getTotal = async (players) => {
-    console.log(players)
+    })} */
+var getTotal = async () => {
+    console.log(players ,"here")
      var total = 0 ;
 
      players.forEach(element => {
@@ -96,15 +35,10 @@ return total
 }
 //La mitad del total dividido en 5 (cada cifra)
 var getAmountByDigits = async (datos) =>  {
-
-    
    var half = datos / 2;
    var amount_figure  =  half / 5 ;
    console.log(datos , amount_figure)
    return amount_figure
-
-
-
 }
 
 const getFinalNumber = async () => {
@@ -124,6 +58,8 @@ const getFinalNumber = async () => {
     return numberSelected;
 }
 const padstart = async () => {
+  
+    console.log(players , "pix")
  const  numbersArray = players.map((e,i) => {
     let numStart = Array.from(e.numero.padStart(5, "*"))
     let toInt = numStart.map(e => e = Number(e))
@@ -134,26 +70,32 @@ const padstart = async () => {
   } 
  })
 
-    console.log(numbersArray)
+    console.log(numbersArray ,"prix")
 return numbersArray
 }
 const getMatches = async function  ()  {
-    
+var players = await getPlayers();
 var newArr = await padstart();    
-var total = await getTotal(players);
+var total = await getTotal();
 var amount_figure = await getAmountByDigits(total);
-var winner =/*  await getFinalNumber(); */[4,4,3,3,0]
+var winner =/*  await getFinalNumber(); */[7,1,9,3,0]
 var coeficent = 0;
 var sum = 0;
 var dataPayment = {};
 var collection = [];
 var idx = 3;
-
 var index = 1;
-
 var count_acerts = 1;
+var sumFirstLine = 0;
+var sumSecondLine = 0;
+var sumThirdLine = 0;
+var sumFourthLine = 0;
+var sumFifthLine = 0; 
+
+//clear array
 collection =newArr.filter (e => e.numbers[4] === winner[4])
 collection.map(e  => e['acerts'] =1 )
+//found matches
 collection?.map( (e , i)=>{ 
    
     var boolean = false;
@@ -162,35 +104,46 @@ collection?.map( (e , i)=>{
     var boolean4 = false;
 
     sum = sum + e.bet
- 
    e.numbers.reverse().map((e , i) => {
     
        if(i === index && e === winner[idx]){
-        boolean =true
+      /* sumFirstLine += e.bet; */
+        boolean = true
     }else if(i === index +1 && e === winner[idx-1]){
+        /* sumSecondLine += e.bet */
        boolean2 =  true
     } 
     else if(i === index +2 && e === winner[idx-2] ){
-      
+      /* sumThirdLine += e.bet; */
        boolean3 =  true
      }
     else if(i === index +3 && e === winner[idx-3] ){
-
+       /*  sumFourthLine += e.bet */
         boolean4 =  true
      }
     else return
     })
-boolean === true ? e.acerts = e.acerts +1 : null;
-boolean2 === true && e.acerts>1 ? e.acerts = e.acerts +1  : null;
-boolean3 === true  && e.acerts>2 ?e.acerts = e.acerts +1 : null;
-boolean4 === true && e.acerts>3 ? e.acerts = e.acerts +1 : null;
+   sumFirstLine +=e.bet
+   boolean === true ? (e.acerts = e.acerts +1 ) && (sumSecondLine +=e.bet) : null;
+   boolean2 === true && e.acerts>1 ? (e.acerts = e.acerts +1) && (sumThirdLine += e.bet) : null;
+   boolean3 === true  && e.acerts>2 ?(e.acerts = e.acerts +1) &&(sumFourthLine += e.bet) : null;
+   boolean4 === true && e.acerts>3 ? (e.acerts = e.acerts +1)&&(sumFifthLine += e.bet) : null;
+   
+   
 e.numbers.reverse();
- 
 })
+var coeFirstLine = amount_figure/sumFirstLine;
+var coeSecondLine = (amount_figure/sumSecondLine) + coeFirstLine;
+var coeThirdLine = (amount_figure/sumThirdLine) + coeSecondLine;
+var coeFourthLine = (amount_figure/sumFourthLine) + coeThirdLine;
+var coeFifthLine = (amount_figure/sumFifthLine) + coeFourthLine; 
 
-return console.log("este es el numero ganador ", winner , "estas son las jugadas con sus aciertos" , collection)
+                                        
+
+console.log( " aca esstan los coeficientes"  , coeFirstLine , coeSecondLine , coeThirdLine ,coeFourthLine , coeFifthLine)
+return {collection ,coeFirstLine, coeSecondLine ,coeThirdLine , coeFourthLine , coeFifthLine } 
 }
-const postRecipe = async (req , res) =>{
+/* const postRecipe = async (req , res) =>{
     
     const { name, summary, score, healthScore, steps, diets, image, createdINBd } = req.body;
 
@@ -206,57 +159,31 @@ const postRecipe = async (req , res) =>{
     const typesDb = await Diet.findAll({where: {name: diets}}) 
     console.log(recipeCreated)
     recipeCreated.addDiet(typesDb)
-    /* recipeCreated.addStep(steps) */
+    recipeCreated.addStep(steps)
     res.send('Recipe created successfully')
 
-}
-const payMatches = async function (lines , )  {
-//validar las cifras sin ganadores para acumular lo apostado para la proxima jugada
-//PORCENTAJE : AMOUNT_FIGURE / TOTAL DE LAS APUESTAS ganadoras A ESA CIFRA(1,2,3,4,5)
-// RESULTADO DE LA PAGA = PORCENTAJE X CADA APUESTA
-var coeficent= 0;
-var collection  = 0;
-var arregloX = [];
-var total = await getTotal(players);
-var amount_figure = await getAmountByDigits(total);
-console.log(lines,"acaman")
-/* lines.oneLine.map(e=> {
-    collection += e.bet;
-}) */
-/* totalPay = lines.oneLine.map(e => {
-    coeficent = amount_figure/collection;
-    return {
-      pay :  coeficent *e.bet,
-      bet : e.bet,
-      number : e.numbers,
-      id : e.id,
-      coeficent : coeficent
-    }
-}) */
-/* for(let c in lines){
+} */
+const payMatches = async function ( )  {
 
-  lines[c].map(e =>  {
-    arregloX = [...arregloX , {
-        pay :e.bet
-    }]
-        
-    })
-}   */                               
-console.log( lines )
+var newArr =  (await getMatches()).collection;
+var total = await getTotal();
+var lastLine = (await getMatches()).coeFifthLine;
+var fourthLine = (await getMatches()).coeFourthLine;
+var thirdLine = (await getMatches()).coeThirdLine;
+var secondLine = (await getMatches()).coeSecondLine;
+var firstLine = (await getMatches()).coeFirstLine;
+
+newArr.map(e => {
+e.acerts === 5 ? e['pay'] = e.bet * lastLine:
+e.acerts === 4 ? e['pay'] = e.bet * fourthLine:
+e.acerts === 3 ? e['pay'] = e.bet * thirdLine:
+e.acerts === 2 ? e['pay'] = e.bet * secondLine:
+e.acerts === 1 ? e['pay'] = e.bet * firstLine:null             
+})
+console.log(newArr , "ll")
 }
-/* module.exports = {
+module.exports = {
     getPlayers
-}  */
-getMatches();
-/* getTotal(players)
-.then(getAmountByDigits)
-.then(getFinalNumber)
-.then(padstart)
-.then(getMatches)
-.then(payMatches) */
-/* .then( result => getAmountByDigits(result))
-.then( result => console.log(result)) */
-
-/* Promise.all([getAmountByDigits() , getFinalNumber(), getTotal(players)] , getMatches(getFinalNumber)) .then(response => {
-    console.log(response)
-}) */
+} 
+getMatches()
+    .then(payMatches);
