@@ -1,0 +1,48 @@
+.contenedor{
+  background-color: green;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center;
+  justify-content: center; */
+  height: 87.5vh;
+  
+}
+.form{
+    display: flex;
+    /* position: absolute; */
+   /*  flex-direction: row; */
+   align-items: center;
+  justify-content: center;
+  height: 29.16vh;
+}
+.head {
+  display: flex;
+  flex-direction: row;
+  /* position: absolute; */
+  align-items: center;
+  justify-content: center;
+  height: 29.16vh;
+ 
+ 
+}
+.head li {
+  display: flex;
+/*   height: 1vh; */
+  flex-direction: row;
+
+  /* margin-bottom :20rem; */
+/*   margin-left: 1rem  ; */
+}
+.footer{
+  display: flex;
+  flex-direction: row;
+  /* position: absolute; */
+   align-items:center;
+  justify-content: center;
+  height: 29.16vh;
+}
+.footer li {
+  display: flex;
+  flex-direction: row;
+  
+}

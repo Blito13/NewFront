@@ -2,13 +2,8 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const players = require ('./routes/Players.js');
 
-/* const routes = require('./routes/index.js'); */
-/* require('./db.js'); */
-const diets = require('./routes/diets.js')
-/* const recipe = require('./routes/recipe.js') */
-const recipes = require('./routes/recipes.js')
-const steps = require('./routes/steps.js')
 const server = express();
 
 server.name = 'API';
@@ -24,11 +19,8 @@ server.use((req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   next();
 });
-
-server.use(diets);
-/* server.use(recipe); */
-server.use(recipes);
-server.use(steps);
+ 
+server.use(players);
 
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars

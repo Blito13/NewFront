@@ -4,10 +4,27 @@ const { types } = require('pg');
 const {Recipe , Diet , Step} = require ('../db')
 const {YOUR_API_KEY} = process.env;
  */
-const players = require('../mock/Players');
-console.log(players.map(e =>e ) ,"this")
-const getPlayers = async () =>{
-    return players
+const thsPlayers = require('../mock/playeres.js');
+const {Playerxs} = require ('../db');
+const {Roles} = require ('../db');
+
+
+
+
+const getPlayersDb = async (req , res) =>{
+const pla = await Playerxs.findAll({
+    include: { 
+        model: Roles, 
+        attributes: ['id'],
+        through: {
+            attributes: [],   
+        }
+    },
+});
+       console.log(pla)
+       res.json(pla);
+      
+  
 }
 /* const getDB = async () =>{ 
 
@@ -21,20 +38,31 @@ const getPlayers = async () =>{
         },
        
     })} */
-var getTotal = async () => {
-    console.log(players ,"here")
+const getTotal = async () => {
+    /* console.log(players ,"here") */
+    var lex =  await Playerxs.findAll({});
      var total = 0 ;
 
-     players.forEach(element => {
+     lex.forEach(element => {
      total += element.apuesta
  })
- console.log(total)
 
+ var viccio = lex.map(e => {
+            return {
+                name : e.name,
+                id : e.id,
+                apuesta : e.apuesta,
+                numero : e.numeros,
+                createdInDb : e.createdINBd
+            }
+        })
 
-return total
+return {total , viccio}
+
 }
 //La mitad del total dividido en 5 (cada cifra)
-var getAmountByDigits = async (datos) =>  {
+var getAmountByDigits = async () =>  {
+    var datos =   (await getTotal()).total;
    var half = datos / 2;
    var amount_figure  =  half / 5 ;
    console.log(datos , amount_figure)
@@ -58,15 +86,16 @@ const getFinalNumber = async () => {
     return numberSelected;
 }
 const padstart = async () => {
-  
-    console.log(players , "pix")
- const  numbersArray = players.map((e,i) => {
+   var datos = await  (await getTotal()).viccio
+    console.log(datos , "pix")
+ const  numbersArray = datos.map((e,i) => {
     let numStart = Array.from(e.numero.padStart(5, "*"))
     let toInt = numStart.map(e => e = Number(e))
   return{
     bet : e.apuesta,
     numbers : toInt,
-    id : i
+    name : e.name,
+    id : e.id
   } 
  })
 
@@ -74,11 +103,11 @@ const padstart = async () => {
 return numbersArray
 }
 const getMatches = async function  ()  {
-var players = await getPlayers();
+
 var newArr = await padstart();    
 var total = await getTotal();
-var amount_figure = await getAmountByDigits(total);
-var winner =/*  await getFinalNumber(); */[7,1,9,3,0]
+var amount_figure = await getAmountByDigits();
+var winner =/*  await getFinalNumber(); */[7,1,9,8,0]
 var coeficent = 0;
 var sum = 0;
 var dataPayment = {};
@@ -96,6 +125,8 @@ var sumFifthLine = 0;
 collection =newArr.filter (e => e.numbers[4] === winner[4])
 collection.map(e  => e['acerts'] =1 )
 //found matches
+//funciones hash
+
 collection?.map( (e , i)=>{ 
    
     var boolean = false;
@@ -140,33 +171,14 @@ var coeFifthLine = (amount_figure/sumFifthLine) + coeFourthLine;
 
                                         
 
-console.log( " aca esstan los coeficientes"  , coeFirstLine , coeSecondLine , coeThirdLine ,coeFourthLine , coeFifthLine)
+console.log(coeFirstLine, coeSecondLine ,coeThirdLine , coeFourthLine , coeFifthLine)
 return {collection ,coeFirstLine, coeSecondLine ,coeThirdLine , coeFourthLine , coeFifthLine } 
 }
-/* const postRecipe = async (req , res) =>{
-    
-    const { name, summary, score, healthScore, steps, diets, image, createdINBd } = req.body;
 
-    const recipeCreated = await Recipe.create({                
-        name,
-        summary,
-        score,
-        healthScore,
-        steps,   
-        image,
-        createdINBd 
-    });
-    const typesDb = await Diet.findAll({where: {name: diets}}) 
-    console.log(recipeCreated)
-    recipeCreated.addDiet(typesDb)
-    recipeCreated.addStep(steps)
-    res.send('Recipe created successfully')
-
-} */
-const payMatches = async function ( )  {
+const payMatches = async function ( req , res )  {
 
 var newArr =  (await getMatches()).collection;
-var total = await getTotal();
+console.log(newArr, "xlx")
 var lastLine = (await getMatches()).coeFifthLine;
 var fourthLine = (await getMatches()).coeFourthLine;
 var thirdLine = (await getMatches()).coeThirdLine;
@@ -180,10 +192,18 @@ e.acerts === 3 ? e['pay'] = e.bet * thirdLine:
 e.acerts === 2 ? e['pay'] = e.bet * secondLine:
 e.acerts === 1 ? e['pay'] = e.bet * firstLine:null             
 })
-console.log(newArr , "ll")
+res.status(200).send(newArr)
 }
+const getMoves= async function(req , res)  {
+    var constr = await padstart();
+    console.log(constr ,"lala")
+    res.status(200).send(constr)
+}
+
 module.exports = {
-    getPlayers
+    getMoves,
+ 
+    payMatches,
+    getPlayersDb
 } 
-getMatches()
-    .then(payMatches);
+

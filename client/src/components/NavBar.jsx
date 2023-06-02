@@ -1,77 +1,102 @@
-import styles from "./NavBar.module.css"
+import styles from "./NavBar.module.css";
+import { useState ,Fragment , useEffect }from "react";
 import { Link, useNavigate } from 'react-router-dom';
-import dados   from "../img/fichas.jpg"
-import timer   from "../img/timer.jpg"
-import numbers   from "../img/numbers.jpg"
-export default function NavBar (){
-const cart     = 5
-var arrayCar = [[],[],[],[]]
+import NavBarMenu from "./NavBarMenu";
+import { useDispatch,useSelector } from "react-redux";
+import { getLoged , getLogedStatus, getUserState, logUser} from "../redux/actions";
+import LogIn from "./LogIn";
 
-const fav = [43]
-const arrayFav = [[],[],[],[],[]]
+export default function NavBar ({handleLog , handleHand}){
+  
+  const [isNavExpanded, setIsNavExpanded] = useState(false);
+  const [showLogIn,setShowLogIn] = useState(false);
+  const [showMenu , setShowmenu] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  const dispatch =  useDispatch();
 
 
+  useEffect(() => {
+    // Verificar si el usuario está autenticado al cargar el componente
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    console.log(isLoggedIn, "aca ");
+    if (isLoggedIn) {
+      setLoggedIn(true);
+    }
+  }, []);
+  
+  const handleLogin = () => {
+   
+    setLoggedIn(true);
+    localStorage.setItem('isLoggedIn', 'true');
+   
+    console.log("handleLogin");
+ 
+    setShowLogIn(false);
+   
 
+  };
+
+  const handleLogout = () => {
+    setShowmenu(false);
+   setShowLogIn(false);
+   setLoggedIn(false);
+    localStorage.removeItem('isLoggedIn');
+
+  };
+  const showModal = (e) => {
+    e.preventDefault();
+    setShowLogIn(true);
+  }
+  const dropMenu = (e) => {
+   e.preventDefault();
+    setShowmenu(true);
+  }
     return (
-        <div className={styles.container}>
-             <div className={styles.leftContent}>
-          <Link to="/" className={styles.divLogo}>
-            <div>
-              <img
-                className={styles.logo}
-                src = {dados}
-                alt="logo"
-              />
-            </div>
-            
-          </Link>
-              <h2 className={styles.leftContent}>TuttiCuanti</h2>
-            </div>
-            <div>
-
-            </div>
-            <ul className={styles.menu}>
-          <Link to="/" className={styles.divLogin}>
-            <button className={styles.loginText/* buttonNavBar */}>Home</button>
-          </Link >
-          <Link to="/Start" className={styles.divLogin}>
-            <button className={styles.loginText/* buttonNavBar */}>List of gambles</button>
-          </Link>
-            <Link to = "/Create" className={styles.divLogin}>
-              <button className={styles.loginText}>Lets PLay</button>
-
-            </Link>
-          <div className={styles.favCarBtns}>
-            <div className={styles.favCarBtns}>
-              <img
-                className={styles.icon}
-                src={timer}
-                alt="Schedules"
-               // onClick={() => validation((valit = "car"))}
-              />
-              {arrayCar.length ? <span className={styles.iconsCartFav}>{arrayCar.length}</span> : null}
-            </div>
-            <div className={styles.favCarBtns}>
-              <img
-                className={styles.icon}
-                src={numbers}
-                alt="Numbers"
-                //onClick={() => validation((valit = "favorites"))}
-              />
-              {arrayFav.length ? <span className={styles.iconsCartFav}>{arrayFav.length}</span> : null}
-            </div>
-          </div>
-            <div className={styles.divLogin} /* onClick={() => loginWithRedirect()} */>
-                <button
-                  className={styles.loginText}
-                  /* onClick={() => loginWithRedirect()} */
-                >
-                  {" "}
-                  Login{" "}
-                </button>
-              </div>
+     <>
+     {
+     showLogIn?
+      <LogIn handle = {handleLogin} close = {handleLogout}></LogIn>:
+    null
+     }
+      <nav className={styles.navigation} >
+      <a href="/" className={styles.brandName}>
+       Tutti Cuanty
+      </a>
+      <button className={styles.hamburger} onClick={() => {
+        setIsNavExpanded(!isNavExpanded)
+      }}>
+      </button>
+      <div 
+         className={
+          isNavExpanded ?`${styles.navigationMenu} ${styles.expanded}`: styles.navigationMenu
+        }>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/start">About</Link>
+          </li>
+          <li>
+            <Link to="/create">Create</Link>
+          </li>
+          {
+            loggedIn?
+            <button onClick = {dropMenu}> aca vendria la foto del user</button>:
+        <li>
+          <a onClick={showModal}>Ingresar</a>
+        </li>
+          }
+     
         </ul>
-              
-        </div>
+      </div>
+    </nav> 
+    {
+      showMenu?
+      <NavBarMenu func = {handleLogout} ></NavBarMenu>:
+      null
+    }
+     </>
     )
 }

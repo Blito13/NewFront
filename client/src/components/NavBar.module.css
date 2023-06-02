@@ -1,196 +1,100 @@
-body {
-    margin-top: 0;
-  }
+
+.navigation {
+  height: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 0.5rem 0rem;
+  background-color: #000000;
+  color: black;
+  box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
+}
+.brandName {
+  text-decoration: none;
+  color: rgb(22, 111, 2);
+  font-size: 1.3rem;
+  margin-left: 1rem;
+}
+.navigationMenu {
+  margin-left: auto;
+}
+.navigationMenu ul {
+  display: flex;
+  padding: 0;
+}
+.navigationMenu li {
+ 
+  list-style-type: none;
+  margin: 0 1rem;
   
-  .container {
-    background-color: white;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+}
+.navigationMenu li a {
+  /* increases the surface area of the anchor tag to span more than just the anchor text */
+  text-decoration: none;
+  display: block;
+  color :rgb(22, 111, 2);
+  width: 100%;
+  cursor: pointer;
+}
+.hamburger {
+  /* removes default border on button element */
+  border: 0;
+  height: 40px;
+  width: 40px;
+  padding: 0.5rem;
+  border-radius: 50%;
+  background-color: #6d717f;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+/* positions the icon to the right and center aligns it vertically */
+  position: absolute;
+  top: 50%;
+  right: 25px;
+  transform: translateY(-50%);
+  display: none;
+}
+.hamburger:hover {
+background-color :rgb(22, 111, 2)
+}
+.crazyBox{
+  background: #c91212;
+  transition-duration: 3s, 5s;
+}
+
+@media screen and (max-width: 550px) {
+  .hamburger {
+    display: block;
+  }
+  .navigationMenu ul {
+    flex-direction: column;
+    position: absolute;
+ 
+    top: 60px;
+    left: 0;
     width: 100%;
-    height: 4rem;
-    /* border: 1px solid black; */
-    font-family: Cabin;
-    border-bottom: 0.08rem solid rgb(190, 190, 190);
+    height: calc(100vh -70px);
+    background-color: white;
+    border-top: 1px solid black;
+    display: none; 
   }
+  .navigationMenu li {
+   /* centers link text and strips off margin */
+    text-align: center;
+    margin: 0;
+  }
+  .navigationMenu li a {
+    color: black;
+    width: 100%;
+    padding: 1.5rem 0;
   
-  .leftContent {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    width: 25%;
-    /* border: 1px solid black; */
-    justify-content: flex-start;
-    /* align-items: center; */
-    height: 100%;
-    
+  }
+  .navigationMenu li:hover {
+    background-color: #eee;
+  }
+  .expanded ul {
+display: block;
   }
 
   
-  .divLogo {
-    margin: 0;
-    padding: 0;
-    /* border: 1px solid black; */
-    width: 30%;
-    display: flex;
-    align-items: center;
-  }
-  
-  .logo {
-    border: #ff0d00;
-    /* margin: 0 0 0 0.5rem; */
-    width: 80%;
-    /* border: 1px solid black; */
-  }
-  
-  .divLogin {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    width: 70%;
-    align-items: center;
-    /* border: 1px solid black; */
-  }
-  
-  .pictureprofile {
-    height: 75%;
-    border-radius: 50%;
-  }
-  
-  .loginText {
-    font-family: Koulen;
-    font-size: 1rem;
-    color: black;
-    border: none;
-    text-decoration: none;
-    background-color: transparent;
-    width: fit-content;
-    /* border: 1px solid black; */
-  }
-  
-  .divLogin:hover {
-    cursor: pointer;
-    /* border-bottom: 0.1rem solid rgb(226, 226, 226); */
-    background-color: rgb(106, 203, 233);
-  }
-  
-  .menu {
-    display: flex;
-    text-decoration: none;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-    width: 50%;
-    padding: 0;
-    /* border: 1px solid black; */
-  }
-  .menu2 {
-    display: flex;
-    text-decoration: none;
-    align-items: left;
-    justify-content: left;
-    margin-left: 0.0.0.1rem; 
-    width: 50%;
-    padding: 0;
-    /* border: 1px solid black; */
-  }
-  
-  ul {
-    text-decoration: none;
-  }
-  
-  .buttonNavBar {
-    font-family: Koulen;
-    font-size: 1rem;
-    color: black;
-    display: flex;
-    flex-direction: row;
-    margin-left: 2rem;
-    border: none;
-    text-decoration: none;
-    background-color: white;
-    /* border: 1px solid black; */
-  }
-  
-  .button:hover {
-    cursor: pointer;
-  }
-  
-  .favCarBtns {
-    
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-right: 0.5rem;
-    margin-left: 0.5rem;
-  }
-  
-  .icon {
-    height: 4rem;
-    margin-left: 0.2rem;
-    margin-right: 0.5rem;
-  }
-  
-  .icon:hover {
-    cursor: pointer;
-  }
-  
-  a {
-    text-decoration: none;
-  }
-  
-  .customFont {
-    font-family: Koulen;
-    font-size: 1rem;
-    color: black;
-    border: none;
-    text-decoration: none;
-    /* margin-top: 0.5rem; */
-    height: 3.5rem;
-    background-color: transparent;
-  }
-  
-  .customFont:hover {
-    cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.205);
-  }
-  
-  .drpMenuStyles {
-    position: fixed;
-    z-index: 1000;
-    background-color: #F1F2F3;
-    /* border-end-end-radius: 10px;
-    border-end-start-radius: 10px; */
-    border: 1px solid rgb(106, 203, 233);
-    border-top: none;
-    width: 17.1%;
-    /* height: 100px; */
-    left: 7.4%;
-    top: 4rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  
-  .loadingInfo {
-    margin: 0 auto;
-  }
-  
-  .divSearch {
-    width: 25%;
-    padding-right: 1.5rem;
-  }
-  
-  .iconsCartFav {
-    background-color: #6acbe9;
-    border-radius: 50%;
-    padding: 0.2rem 0.5rem;
-    font-size: 0.8rem;
-    margin-top: -1.5rem;
-    margin-left: -0.3rem;
-    color: white;
-  }
-  
-  .buttonNavBar {
-    cursor: pointer;
-  }
+}
