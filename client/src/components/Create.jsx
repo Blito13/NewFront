@@ -77,13 +77,14 @@ return (
             <input type='number'  placeholder = "apuesta" name='apuesta' onChange={(e) =>handleChange(e)} />
             <input type='text'  placeholder = "tus numeros" name='numeros' onChange={(e) =>handleChange(e)} />
             <button >
-             Create</button>  
+             Create
+             </button>  
             </form> 
   </div>
             <div className={styles.footer}>
             <li>
                 <ul>
-                    user Status
+                user Status
                 </ul>
                 <ul>
                     user Status

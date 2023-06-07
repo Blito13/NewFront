@@ -2,47 +2,78 @@
   background-color: green;
   display: flex;
   flex-direction: column;
-  /* align-items: center;
-  justify-content: center; */
   height: 87.5vh;
-  
+  align-items:center;
+  justify-content: center;
 }
+.head{
+  display: flex;
+  flex-direction: row;
+  position: relative;
+   align-items:center;
+  justify-content: center;
+
+}
+.head li {
+  --bg-menu-wrapper: 28, 28, 28;
+  position: relative;
+    display: flex;
+    align-items:center;
+  justify-content: center;
+    border-radius: 12px;
+    background: rgba(var(--bg-menu-wrapper), 0.9);
+        min-width: 0;
+    max-width: -moz-fit-content;
+    max-width: fit-content;
+}
+ .head ul{
+  padding: 1em;
+ }
 .form{
     display: flex;
-    /* position: absolute; */
-   /*  flex-direction: row; */
+    position: relative;
+    flex-direction: column;
    align-items: center;
   justify-content: center;
   height: 29.16vh;
+  margin:5rem;
 }
-.head {
+.form input {
   display: flex;
-  flex-direction: row;
-  /* position: absolute; */
-  align-items: center;
-  justify-content: center;
-  height: 29.16vh;
- 
- 
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    margin:0.8rem;
+  
 }
-.head li {
-  display: flex;
-/*   height: 1vh; */
-  flex-direction: row;
+.form button{
+  position: relative;
+margin :auto;
+display: flex;
 
-  /* margin-bottom :20rem; */
-/*   margin-left: 1rem  ; */
+
 }
+
 .footer{
   display: flex;
   flex-direction: row;
-  /* position: absolute; */
+  position: relative;
    align-items:center;
   justify-content: center;
-  height: 29.16vh;
+/*   height: 29.16vh; */
 }
 .footer li {
-  display: flex;
-  flex-direction: row;
-  
+  --bg-menu-wrapper: 28, 28, 28;
+    position: relative;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    border-radius: 12px;
+    background: rgba(var(--bg-menu-wrapper), 0.9);
+    min-width: 0;
+    max-width: -moz-fit-content;
+    max-width: fit-content;
 }
+ .footer ul{
+  padding: 1em;
+ }
