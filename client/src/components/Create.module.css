@@ -48,10 +48,8 @@
 }
 .form button{
   position: relative;
-margin :auto;
-display: flex;
-
-
+  margin :auto;
+  display: flex;
 }
 
 .footer{
