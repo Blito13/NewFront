@@ -51,6 +51,7 @@ const signUp = async (req , res) =>{
 
 const signIn = async (req , res) => {
     const {email , password} = req.body;
+    console.log(email , password);
     const match =  await Playerxs.findOne({ where: { email : email }});
     if(!match) return res.status(400).json({message : "user not found"});
     const resc =  await comparePassword( password , match.passWord);

@@ -1,0 +1,33 @@
+/* html { background-color: #000; } 
+body {
+    min-height: 100vh;
+    max-width: 400px;
+    background-color: papayawhip; 
+    margin: 0 auto;
+} */
+.container {
+    display:flex;
+    background-color: blueviolet;
+    
+    align-items:flex-start;
+ 
+    min-height: 87.5vh;
+}
+
+.title{
+
+    background-color: yellowgreen;
+    width: 100%;
+
+
+}
+@media screen and (max-width: 550px) {
+    html { background-color: #000; } 
+    body {
+        min-height: 100vh;
+        max-width: 400px;
+        background-color: papayawhip; 
+        margin: 0 auto;
+    }
+    
+  }

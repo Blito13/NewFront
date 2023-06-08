@@ -19,7 +19,7 @@ export default function NavBar ({handleLog , handleHand}){
   useEffect(() => {
     // Verificar si el usuario está autenticado al cargar el componente
     const isLoggedIn = localStorage.getItem('isLoggedIn');
-    console.log(isLoggedIn, "aca braulio");
+    console.log(isLoggedIn, "aca ");
     if (isLoggedIn) {
       setLoggedIn(true);
     }
@@ -30,7 +30,7 @@ export default function NavBar ({handleLog , handleHand}){
     setLoggedIn(true);
     localStorage.setItem('isLoggedIn', 'true');
    
-    console.log("pasando por aca")
+    console.log("handleLogin");
  
     setShowLogIn(false);
    
