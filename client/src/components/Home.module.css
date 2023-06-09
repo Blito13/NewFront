@@ -1,26 +1,38 @@
-/* html { background-color: #000; } 
-body {
-    min-height: 100vh;
-    max-width: 400px;
-    background-color: papayawhip; 
-    margin: 0 auto;
-} */
+
 .container {
     display:flex;
     background-color: blueviolet;
-    
     align-items:flex-start;
- 
-    min-height: 87.5vh;
+   width: 100%;
+   height: 100%;
+   flex-wrap: wrap;
+   overflow:hidden;
 }
 
 .title{
-
+    /* position :relative; */
     background-color: yellowgreen;
-    width: 100%;
-
+  /* width: 200%; */
+    /* animation-name: yertle; */
+   /*  animation-duration: 15s; */
+    animation: 15s linear 1s infinite running  yertle;
+    overflow:hidden;
+    /* font-size: large; */
+    /* white-space: nowrap */
+   /*  flex-wrap: wrap; */
+}
+.title h1{
+/* position:relative; */
+/* display: flex; */
+text-overflow: ellipsis;
+white-space: nowrap;
 
 }
+@keyframes yertle {
+    from { transform: translate(80%);}
+    to {transform: translate(-80%);}
+  }
+  
 @media screen and (max-width: 550px) {
     html { background-color: #000; } 
     body {

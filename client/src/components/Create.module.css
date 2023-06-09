@@ -24,6 +24,7 @@
    width: 90%;
   flex-wrap: wrap;
 }
+
 .form{
     display: flex;
     position: relative;
@@ -63,4 +64,3 @@
    width: 90%;
   flex-wrap: wrap;
 }
-

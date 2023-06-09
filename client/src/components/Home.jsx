@@ -18,11 +18,12 @@ function Home () {
     return(
         <div className ={styles.container}>
         <div className={styles.title}>
+            <h1>
             renderizar el pozo actual en vivo de las  apuestas con el premio y sus respectivos aciertos en base a la tabla
             coincidencias de posicion se suman (jugar el mismo numero y la misma posicion) ambas apuestas se suman 
-            la tira se vende toda junta
-            la recompensa debe ser directamente proporcional a el monto apostado (prorrata)
+            la tira se vende toda juntala recompensa debe ser directamente proporcional a el monto apostado (prorrata)
             varios ganadores 
+            </h1>
         </div>
         </div>
     )
