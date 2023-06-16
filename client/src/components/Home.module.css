@@ -1,4 +1,43 @@
+.container {
+    height: 30px;
+    overflow: hidden;
+    line-height: 30px;
+    position:relative ;
+    
+}
 
+.marquee   {
+  display: flex;
+  justify-content: space-around;
+  top: 0;
+  left: 100%;
+  width:100%;
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
+  animation: marquee 30s linear infinite;
+  background-color: blue;
+}
+
+.marquee2  {
+  animation: marquee 30s linear infinite;
+    background-color: #f40a0a;
+   position: absolute;
+   width: 100%;
+   
+}
+  @keyframes marquee {
+    0% {
+      left: 100%;
+    }
+    100% {
+      left: -100%
+    }
+  }
+
+
+
+/* 
 .container {
     display:flex;
     background-color: blueviolet;
@@ -7,32 +46,62 @@
    height: 100%;
    flex-wrap: wrap;
    overflow:hidden;
+   align-items: center;
+   justify-content: center;
 }
 
-.title{
-    /* position :relative; */
-    background-color: yellowgreen;
-  /* width: 200%; */
-    /* animation-name: yertle; */
-   /*  animation-duration: 15s; */
-    animation: 15s linear 1s infinite running  yertle;
-    /* overflow:hidden; */
-    text-overflow: ellipsis;
-    /* font-size: large; */
-    white-space: nowrap;
-   /*  flex-wrap: wrap; */
+.ticketWrapper ul{
+    position: relative;
+    top: 30px;
+    left:0%;
+    border: 1px solid #444;
+    background: #fff;
+    width: 99.9%;
+    height: 30px;
+    overflow: hidden;
+    cursor: pointer;
 }
-.title h1{
-/* position:relative; */
-/* display: flex; */
-/* text-overflow: ellipsis;
-white-space: nowrap; */
+.list li{
+    position: relative;
+    display: inline-block;
+    list-style: none;
+    padding:0;
+    margin:0;
+    animation: yertle 30s linear infinite;; 
+}
+.lis2 li {
+    position: absolute;
+    display: inline-block;
+    list-style: none;
+    padding:0;
+    margin:0;
+    background-color: #000;
+    animation: yertle 15s linear infinite;; 
 
 }
-@keyframes yertle {
-    from { transform: translate(100%);}
-    to {transform: translate(-100%);}
+.list span {
+    float: left;
+    padding-left: 20px;
+    font-family: verdana;
+    font-size: 16pt;
+    animation: 16s linear 1s infinite running  yertle;  
+} 
+.cloned {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
   }
+  @keyframes yertle {
+    0% {
+        left: 100%;
+      }
+      100% {
+        left: -100%
+      }
+    
+  }
+  
   
 @media screen and (max-width: 550px) {
     html { background-color: #000; } 
@@ -43,4 +112,4 @@ white-space: nowrap; */
         margin: 0 auto;
     }
     
-  }
+  } */
