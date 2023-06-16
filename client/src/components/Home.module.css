@@ -16,21 +16,22 @@
     /* animation-name: yertle; */
    /*  animation-duration: 15s; */
     animation: 15s linear 1s infinite running  yertle;
-    overflow:hidden;
+    /* overflow:hidden; */
+    text-overflow: ellipsis;
     /* font-size: large; */
-    /* white-space: nowrap */
+    white-space: nowrap;
    /*  flex-wrap: wrap; */
 }
 .title h1{
 /* position:relative; */
 /* display: flex; */
-text-overflow: ellipsis;
-white-space: nowrap;
+/* text-overflow: ellipsis;
+white-space: nowrap; */
 
 }
 @keyframes yertle {
-    from { transform: translate(80%);}
-    to {transform: translate(-80%);}
+    from { transform: translate(100%);}
+    to {transform: translate(-100%);}
   }
   
 @media screen and (max-width: 550px) {
