@@ -20,7 +20,7 @@ function Home () {
         
       <div className={styles.container}>
       <div className={styles.marquee}>
-        <span><b>3,588.39</b></span>
+        <span>dasdas<b>3,588.39</b></span>
         <span>XRP<b>0.32</b></span>
         <span>ETH<b>116.36</b></span>
         <span>EOS<b>2.44</b></span>
