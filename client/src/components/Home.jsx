@@ -10,16 +10,28 @@ function Home () {
     const token =  useSelector(state => state.token);
     console.log(token);
     const numberOfBoxes = [4,4,3,2,5,6];
-    const headerRef = useRef(null);
-    const [item ,setItem] = useState(1);
-    const [current ,setCurrent] = useState(null);
+    const headerRef = useRef(0);
+    const [item ,setItem] = useState(null);
+    /* const [current ,setCurrent] = useState(null); */
     const moveFow = (e) =>{
       e.preventDefault()
-      const {name} =  e.target;
-      if (name === 'fow') setItem(item + 1)
-      else setItem(item - 1) 
+      const {name ,value} =  e.target;
+      let current = item;
+      if (name === 'fow') {
+
+     /*    setItem( item +1) */
+        current = current +1 
+      }
+      else{
+        
+    /*     setItem( item -1) */
+        current = current -1 
+      } 
+      setItem(current);
       const listNode = headerRef.current;
-      const imgNode = listNode.querySelectorAll('div')[item];
+      
+      const imgNode = listNode.querySelectorAll('div')[current];
+
       console.log(item);
       imgNode.scrollIntoView({
       behavior: 'smooth',
@@ -65,8 +77,8 @@ function Home () {
           </div>
       </div>
       <div className = {styles.buttons}>
-        <button name = 'back'  onClick={e=>moveFow(e)}>back</button>
-        <button name ='fow' onClick={e=>moveFow(e)}>fows</button>
+        <button name = 'back' value={+1}  onClick={e=>moveFow(e)}>back</button>
+        <button name ='fow'value={-1} onClick={e=>moveFow(e)}>fows</button>
       </div>
       <div className={styles.caruselConteiner} ref={headerRef}>
       <div className={styles.carusel}>0</div>
