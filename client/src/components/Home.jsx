@@ -1,45 +1,21 @@
 import React, { useState } from "react";
-import LogIn from "./LogIn";
+import Carousel from "./Carousel.component";
 import styles from './Home.module.css';
-import { useEffect  ,useRef} from "react";
+import { useEffect} from "react";
 import { useSelector , useDispatch} from "react-redux";
 import { getLoged, getLogedStatus } from "../redux/actions";
-
+import dados from "../img/dados.jpg"
+import fichas from "../img/fichas.jpg"
+import flyMoney from "../img/moneda.jpg"
 function Home () {
     const dispatch = useDispatch();
     const token =  useSelector(state => state.token);
-    console.log(token);
-    const numberOfBoxes = [4,4,3,2,5,6];
-    const headerRef = useRef(0);
+    
+    const images = [dados , fichas , flyMoney ];
+   
     const [item ,setItem] = useState(null);
-    /* const [current ,setCurrent] = useState(null); */
-    const moveFow = (e) =>{
-      e.preventDefault()
-      const {name ,value} =  e.target;
-      let current = item;
-      if (name === 'fow') {
+    
 
-     /*    setItem( item +1) */
-        current = current +1 
-      }
-      else{
-        
-    /*     setItem( item -1) */
-        current = current -1 
-      } 
-      setItem(current);
-      const listNode = headerRef.current;
-      
-      const imgNode = listNode.querySelectorAll('div')[current];
-
-      console.log(item);
-      imgNode.scrollIntoView({
-      behavior: 'smooth',
-      block: 'nearest',
-      inline: 'end'
-    });
-  console.log(item ,"dlkasldka")
-  } 
     useEffect(()=>{
         return () =>{
 
@@ -76,17 +52,10 @@ function Home () {
             <span>ADA<b>0.04</b></span>
           </div>
       </div>
-      <div className = {styles.buttons}>
-        <button name = 'back' value={+1}  onClick={e=>moveFow(e)}>back</button>
-        <button name ='fow'value={-1} onClick={e=>moveFow(e)}>fows</button>
-      </div>
-      <div className={styles.caruselConteiner} ref={headerRef}>
-      <div className={styles.carusel}>0</div>
-      <div className={styles.carusel}>1</div>
-      <div className={styles.carusel}>2</div>
-      <div className={styles.carusel}>3</div>
-  
-      </div>
+     <Carousel
+      images = {images}
+     />
+      <div className = {styles.footer}></div>
     </div>
     )
 } 

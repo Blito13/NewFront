@@ -1,0 +1,45 @@
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* margin-top:60px; */
+  width: 400px;
+  height: 400px;
+  overflow: hidden;
+  position : relative;
+}
+.carouselImage{
+  position: relative;
+  width: 200px;
+  height: 300px;
+/*   max-width: 200px;
+  max-height: 300px; */
+  scroll-behavior: smooth;
+  /* overflow: hidden  ; */
+}
+.animate {
+  animation: scrollImg 2s linear ;
+}
+@keyframes scrollImg {
+  0% {
+    left: 50%;
+  }
+  100% {
+    left: 0%
+  }
+}
+.prevButton ,
+.nextButton {
+  
+position : relative;
+  background-color: #333;
+  color : #fff;
+  padding: 10px 20px;
+  border:none;
+  cursor: pointer;
+  margin: 0 10px;
+}
+.prevButton:hover,
+.nextButton:hover {
+  background-color: #555;
+}
