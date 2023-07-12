@@ -6,6 +6,7 @@
   height: 400px;
   overflow: hidden;
   position : relative;
+  border : 2px solid red;
 }
 .carouselImage{
   position: relative;
@@ -13,7 +14,17 @@
   height: 300px;
   scroll-behavior: smooth;
   overflow: hidden  ;
+  border : 2px solid red;
 }
+.imgCont{
+  display: flex;
+  align-items: center;
+  border : 2px solid red;
+  justify-content: center;
+  width: 220px;
+  height: 320px;
+  overflow: hidden;
+} 
 .animate {
   animation: scrollImgFwr 1s linear ;
 }

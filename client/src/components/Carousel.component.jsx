@@ -4,7 +4,8 @@ import styles from "./Carousel.module.css"
 function Carousel ({images}) {
 const [currentimage , setCurrentImage] = useState(0);
 const [animationDirection , setAnimationDirection] = useState(false);
-const nextImage = () => {
+const nextImage = (e) => {
+  e.preventDefault();
   setAnimationDirection(`${styles.animate}`);
   setCurrentImage((currentimage + 1) % images.length);
   setTimeout(()=>{
@@ -25,7 +26,9 @@ return (
   <button className={styles.prevButton} onClick={e=>prevImage(e)}>
     Prev
   </button>
+  <div className={styles.imgCont}>
   <img className = {`${styles.carouselImage} ${animationDirection}`} src = {images[currentimage]} alt="carusel"/>
+  </div>
   <button className={styles.nextButton} onClick={nextImage}>
     Next
   </button>
