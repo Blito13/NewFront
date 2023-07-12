@@ -9,6 +9,7 @@ const nextImage = (e) => {
   e.preventDefault();
   setAnimate(true);
   setCurrentImage((currentimage + 1) % images.length);
+  console.log(currentimage );
   setTimeout(()=>{
 
     setAnimate(false);
@@ -16,8 +17,9 @@ const nextImage = (e) => {
 };
 
 const prevImage = () =>{
-  
+  console.log(images.length)
   setCurrentImage((currentimage-1+images.length) % images.length);
+  console.log("th" ,  currentimage);
   console.log("stata");
 }
 
