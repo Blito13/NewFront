@@ -4,14 +4,15 @@ import styles from './Home.module.css';
 import { useEffect} from "react";
 import { useSelector , useDispatch} from "react-redux";
 import { getLoged, getLogedStatus } from "../redux/actions";
-import dados from "../img/dados.jpg"
-import fichas from "../img/fichas.jpg"
-import flyMoney from "../img/moneda.jpg"
+import dados from "../img/dados.jpg";
+import fichas from "../img/fichas.jpg";
+import flyMoney from "../img/moneda.jpg";
+import moneda from "../img/numbers.jpg";
 function Home () {
     const dispatch = useDispatch();
     const token =  useSelector(state => state.token);
     
-    const images = [dados , fichas , flyMoney ];
+    const images = [dados , fichas , flyMoney ,moneda ];
    
     const [item ,setItem] = useState(null);
     
