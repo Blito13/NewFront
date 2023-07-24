@@ -24,7 +24,7 @@ function Home () {
         }
     },[dispatch])
 
-    return(
+    return( 
         
       <div className={styles.container}>
         <div className={styles.scrollText}>
