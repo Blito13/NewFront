@@ -3,36 +3,39 @@ import styles from "./Carousel.module.css"
 
 function Carousel ({images}) {
 const [currentimage , setCurrentImage] = useState(0);
-const [animate , setAnimate]  = useState(false);
+const [animationDirection , setAnimationDirection] = useState(false);
 
 const nextImage = (e) => {
   e.preventDefault();
-  setAnimate(true);
-  setCurrentImage((currentimage + 1) % images.length);
+  setAnimationDirection(`${styles.animate}`);
+  setCurrentImage((currentimage + 1) % images.length); 
   console.log(currentimage );
   setTimeout(()=>{
-
-    setAnimate(false);
-  },2000);
+    setAnimationDirection(false);
+  },1000);
 };
 
-const prevImage = () =>{
-  console.log(images.length)
+const prevImage = (e) =>{
+  e.preventDefault(); 
+  setAnimationDirection(`${styles.animatedBack}`);
   setCurrentImage((currentimage-1+images.length) % images.length);
-  console.log("th" ,  currentimage);
-  console.log("stata");
-}
+  setTimeout(()=>{
+    setAnimationDirection(false);
+  },1000);
+}; 
 
 return (
 <div className={styles.carousel}>
   <button className={styles.prevButton} onClick={e=>prevImage(e)}>
     Prev
   </button>
-  <img className = {`${styles.carouselImage} ${animate === true? styles.animate : styles.carouselImage}`} src = {images[currentimage]} alt="carusel"/>
+  <div className={styles.imgCont}>
+  <img className = {`${styles.carouselImage} ${animationDirection}`} src = {images[currentimage]} alt="carusel"/>
+  </div>
   <button className={styles.nextButton} onClick={nextImage}>
     Next
   </button>
 </div>
 )
-}
+};
 export default Carousel;

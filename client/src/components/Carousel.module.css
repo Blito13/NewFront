@@ -2,30 +2,49 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* margin-top:60px; */
   width: 400px;
   height: 400px;
   overflow: hidden;
   position : relative;
+  border : 2px solid red;
 }
 .carouselImage{
   position: relative;
   width: 200px;
   height: 300px;
-/*   max-width: 200px;
-  max-height: 300px; */
   scroll-behavior: smooth;
-  /* overflow: hidden  ; */
+  overflow: hidden  ;
+  border : 2px solid red;
 }
+.imgCont{
+  display: flex;
+  align-items: center;
+  border : 2px solid red;
+  justify-content: center;
+  width: 220px;
+  height: 320px;
+  overflow: hidden;
+} 
 .animate {
-  animation: scrollImg 2s linear ;
+  animation: scrollImgFwr 1s linear ;
 }
-@keyframes scrollImg {
+.animatedBack {
+  animation: scrollImgBwr 1s linear ;
+}
+@keyframes scrollImgFwr {
   0% {
     left: 50%;
   }
   100% {
     left: 0%
+  }
+}
+@keyframes scrollImgBwr {
+  0% {
+    right: 50%;
+  }
+  100% {
+    right: 0%
   }
 }
 .prevButton ,
