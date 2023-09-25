@@ -1,5 +1,3 @@
-import { Action } from "history";
-
 
 import {GET_PLAYERS ,
    GET_LOGED , 

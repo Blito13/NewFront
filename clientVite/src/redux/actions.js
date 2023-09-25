@@ -4,7 +4,7 @@ export const GET_PLAYERS = "GET_PLAYERS";
 export const GET_LOGED = "GET_LOGED";
 export const LOG_USER = "LOG_USER";
 export const GET_USER_STATE = "GET_USER_STATE";
-/* export const getPlayers  = () => {
+export const getPlayers  = () => {
     return async function (dispatch){
         try{
             await  axios.get("").then ((json )=> 
@@ -20,7 +20,7 @@ export const GET_USER_STATE = "GET_USER_STATE";
             console.log(error)
         }
     }
-} */
+}
 export const getUserState = () => {
     console.log( "aca chango")
     return{
@@ -81,5 +81,4 @@ export function logUser (payload){
             console.log(error)
         }
     } 
-     
-}    
+}
