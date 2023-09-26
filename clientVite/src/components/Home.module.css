@@ -5,7 +5,10 @@
   position: relative;
 
 }
-
+.swip{
+  display: flex;
+  justify-content: center;
+}
 
 .scrollText {
   position: relative;
@@ -34,17 +37,7 @@
   /* top : 10%; */
 }
 .caruselConteiner {
-  display: flex;
-  top:100px;
-  /* background-color: #f40a0a; */
-  width: 400%;
-  height: 300px;
-  justify-content: center;
-  align-items: center;
- /*  overflow: hidden; */
-  position: relative;
-  /* flex-wrap: nowrap; */
-  object-fit: cover;
+ 
 }
 
 /* .carusel{

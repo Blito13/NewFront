@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Carousel from "./Carousel.component";
+import CarouselComponent from "./CarouselComponent";
 import styles from './Home.module.css';
 import { useEffect} from "react";
 import { useSelector , useDispatch} from "react-redux";
@@ -53,9 +53,9 @@ function Home () {
             <span>ADA<b>0.04</b></span>
           </div>
       </div>
-     <Carousel
-      images = {images}
-     />
+      <div className={styles.swip}>
+     <CarouselComponent/>
+      </div>
       <div className = {styles.footer}></div>
     </div>
     )
