@@ -9,7 +9,16 @@ const {Playerxs} = require ('../db');
 const {Roles} = require ('../db');
 
 
-
+const postPlayers =  async (req, res) =>{
+    const  {name , apuesta , numeros} =req.body; 
+  /*   User.create({ firstName: "Jane", lastName: "Doe" }); */
+    const create =  await Playerxs.create({
+        name: name,
+        apuesta : apuesta,
+        numeros:numeros
+    })
+    res.json(create)
+}
 
 const getPlayersDb = async (req , res) =>{
 const pla = await Playerxs.findAll({
@@ -202,7 +211,7 @@ const getMoves= async function(req , res)  {
 
 module.exports = {
     getMoves,
- 
+    postPlayers,
     payMatches,
     getPlayersDb
 } 
