@@ -5,8 +5,9 @@ import { wrap } from "popmotion";
 /* import { images } from "./image-data"; */
 import styles from "./Carousel.module.css";
 const texts = [
-  "Tutti cuanti es un juego de apuestas de un numero de hasta 5 digitos y la ganancia es proporcional a la cantidad de aciertos",
-  "Los aciertos son acumulativos desde la unidad hasta la decena de mil ",
+  "Que es tutti cuanty??",
+  "Tutti cuanty es un juego de apuestas de un numero de hasta 5 digitos y la ganancia es proporcional a la cantidad de aciertos",
+  "Los aciertos son acumulativos y estan encadenados , es decir , debe coincidir desde la unidad hasta la decena de mil suscesivamente",
   "Los numeros validos van desde el 0 hasta el 9",
   "Se sortean 2 veces por dia todos los dias UTC(18:00) ",
   "A ganar"
@@ -88,10 +89,10 @@ const swipePower = (offset, velocity) => {
           <p>{texts[textIndex]}</p>
         </motion.div>
       </AnimatePresence>
-      <div className={styles.prev} onClick={() => paginate(1)}>
+      <div className={styles.next} onClick={() => paginate(1)}>
         {"‣"}
       </div>
-      <div className={styles.next} onClick={() => paginate(-1)}>
+      <div className={styles.prev} onClick={() => paginate(-1)}>
         {"‣"}
       </div>
     </div>

@@ -36,7 +36,13 @@ token : ''
       const prev = state.token;
       console.log(prev , "make me crazy");
       return {...state , token : prev};
-  
+      
+      case GET_PLAYERS :
+         const players =  payload;
+         console.log(players);
+         return {
+            ...state ,  players : payload 
+         }
 
                default:
             return state;

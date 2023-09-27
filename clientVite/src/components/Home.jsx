@@ -3,7 +3,7 @@ import CarouselComponent from "./CarouselComponent";
 import styles from './Home.module.css';
 import { useEffect} from "react";
 import { useSelector , useDispatch} from "react-redux";
-import { getLoged, getLogedStatus } from "../redux/actions";
+import { getLoged, getLogedStatus ,  getPlayers} from "../redux/actions";
 import dados from "../img/dados.jpg";
 import fichas from "../img/fichas.jpg";
 import flyMoney from "../img/moneda.jpg";
@@ -20,7 +20,7 @@ function Home () {
     useEffect(()=>{
         return () =>{
 
-            dispatch(getLogedStatus(token));
+            dispatch(getPlayers());
         }
     },[dispatch])
 
