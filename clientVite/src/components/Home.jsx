@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Carousel from "./Carousel.component";
+import CarouselComponent from "./CarouselComponent";
 import styles from './Home.module.css';
 import { useEffect} from "react";
 import { useSelector , useDispatch} from "react-redux";
-import { getLoged, getLogedStatus } from "../redux/actions";
+import { getLoged, getLogedStatus ,  getPlayers} from "../redux/actions";
 import dados from "../img/dados.jpg";
 import fichas from "../img/fichas.jpg";
 import flyMoney from "../img/moneda.jpg";
@@ -20,11 +20,11 @@ function Home () {
     useEffect(()=>{
         return () =>{
 
-            dispatch(getLogedStatus(token));
+            dispatch(getPlayers());
         }
     },[dispatch])
 
-    return(
+    return( 
         
       <div className={styles.container}>
         <div className={styles.scrollText}>
@@ -53,9 +53,9 @@ function Home () {
             <span>ADA<b>0.04</b></span>
           </div>
       </div>
-     <Carousel
-      images = {images}
-     />
+      <div className={styles.swip}>
+     <CarouselComponent/>
+      </div>
       <div className = {styles.footer}></div>
     </div>
     )

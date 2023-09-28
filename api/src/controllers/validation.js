@@ -12,7 +12,7 @@ const validation =  async (req , res , next) =>{
     req.userId = decoded.id;
     const usr =  await Playerxs.findByPk(decoded.id);
     
-    if(!usr) return res.status(404).json({message : "ni ha visto"})
+    if(!usr) return res.status(404).json({message : "no user provided"})
     next()
 }
 const isModerator = async (req , res , next) =>{
