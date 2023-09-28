@@ -166,8 +166,78 @@ console.log(coeFirstLine, coeSecondLine ,coeThirdLine , coeFourthLine , coeFifth
 return {collection ,coeFirstLine, coeSecondLine ,coeThirdLine , coeFourthLine , coeFifthLine } 
 
 };
-
 const payMatches = async function ( req , res )  {
+
+var newArr =  (await getMatches()).collection;
+console.log(newArr, "xlx")
+var lastLine = (await getMatches()).coeFifthLine;
+var fourthLine = (await getMatches()).coeFourthLine;
+var thirdLine = (await getMatches()).coeThirdLine;
+var secondLine = (await getMatches()).coeSecondLine;
+var firstLine = (await getMatches()).coeFirstLine;
+const results = await betPercentaje();
+newArr.map(e => {
+    if(e.acerts === 5 ){
+        e['total'] = e.bet * lastLine
+        e['4aciertos'] = e.bet * fourthLine
+        e['3aciertos'] = e.bet * thirdLine
+        e['2aciertos'] = e.bet * secondLine
+        e['1acierto'] = e.bet * firstLine      
+    }
+    else if(e.acerts === 4 ){
+        e['4aciertos'] = e.bet * fourthLine
+        e['3aciertos'] = e.bet * thirdLine
+        e['2aciertos'] = e.bet * secondLine
+        e['1acierto'] = e.bet * firstLine    
+    }
+    else if(e.acerts === 3){
+        e['3aciertos'] = e.bet * thirdLine
+        e['2aciertos'] = e.bet * secondLine
+        e['1acierto'] = e.bet * firstLine     
+    }
+    else if(e.acerts === 2 ){
+        e['2aciertos'] = e.bet * secondLine
+        e['1acierto'] = e.bet * firstLine     
+    }
+    else if(e.acerts === 1 ){
+        e['1acierto'] = e.bet * firstLine 
+    }
+    else return
+})        
+
+res.status(200).send(newArr)
+};
+const betPercentaje = async ( req , res)=>{
+const bet =  req.body;
+const arrPlayers = await padstart();  
+const numbers = [0,1,2,3,5,6,7,8,9];
+const index = 0;
+var totalZero = 0;
+var totalOne = 0;
+var totalTwo = 0;
+var totalThree = 0;
+var totalFour = 0;
+var totalFive = 0;
+var totalSix = 0;
+var totalSeven = 0;
+var totalEigth = 0;
+var totalNine = 0;  
+var amount_figure = await getAmountByDigits();
+arrPlayers.map(e=>{
+    if(e.numbers[e.numbers.length-1] !== numbers[index]){
+        return
+    }
+    else totalZero += e.bet;
+});
+const probabilitiesUnit=(totalZero/amount_figure)*bet;
+/* var coeFirstLine = amount_figure/sumFirstLine;
+var coeSecondLine = (amount_figure/sumSecondLine) + coeFirstLine;
+var coeThirdLine = (amount_figure/sumThirdLine) + coeSecondLine;
+var coeFourthLine = (amount_figure/sumFourthLine) + coeThirdLine;
+var coeFifthLine = (amount_figure/sumFifthLine) + coeFourthLine;  */
+console.log(totalZero/amount_figure);
+};
+/* const payMatches = async function ( req , res )  {
 
 var newArr =  (await getMatches()).collection;
 console.log(newArr, "xlx")
@@ -185,7 +255,7 @@ e.acerts === 2 ? e['pay'] = e.bet * secondLine:
 e.acerts === 1 ? e['pay'] = e.bet * firstLine:null             
 })
 res.status(200).send(newArr)
-};
+}; */
 const getMoves= async function(req , res)  {
     var constr = await padstart();
     console.log(constr ,"lala")
