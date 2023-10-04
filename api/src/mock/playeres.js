@@ -20,4 +20,129 @@ const players =[
     { apuesta: 72, numero: '94955', nombre: 'Player18' },
     { apuesta: 80, numero: '11129', nombre: 'Player19' }
   ]
-module.exports= players;
+  const dbPlayersMock= [
+    {
+      bet: 50,
+      numbers: [ 3, 7, 5, 8, 0 ],
+      name: undefined,
+      id: undefined
+    },
+    {
+      bet: 80,
+      numbers: [ 4, 4, 3, 4, 8 ],
+      name: undefined,
+      id: undefined
+    },
+    {
+      bet: 65,
+      numbers: [ 7, 1, 9, 3, 0 ],
+      name: undefined,
+      id: undefined
+    },
+    {
+      bet: 45,
+      numbers: [ 1, 0, 2, 1, 1 ],
+      name: undefined,
+      id: undefined
+    },
+    {
+      bet: 95,
+      numbers: [ 5, 5, 6, 6, 6 ],
+      name: undefined,
+      id: undefined
+    },
+    {
+      bet: 55,
+      numbers: [ 6, 0, 4, 1, 4 ],
+      name: undefined,
+      id: undefined
+    },
+    {
+      bet: 60,
+      numbers: [ 2, 9, 7, 3, 0 ],
+      name: undefined,
+      id: undefined
+    },
+    {
+      bet: 40,
+      numbers: [ 6, 5, 9, 3, 0 ],
+      name: undefined,
+      id: undefined
+    },
+    {
+      bet: 85,
+      numbers: [ 8, 3, 3, 4, 2 ],
+      name: undefined,
+      id: undefined
+    },
+    {
+      bet: 70,
+      numbers: [ NaN, NaN, 3, 3, 0 ],
+      name: undefined,
+      id: undefined
+    },
+    {
+      bet: 75,
+      numbers: [ 9, 9, 8, 2, 7 ],
+      name: undefined,
+      id: undefined
+    },
+    {
+      bet: 90,
+      numbers: [ 8, 3, 6, 1, 5 ],
+      name: undefined,
+      id: undefined
+    },
+    {
+      bet: 83,
+      numbers: [ 2, 0, 6, 1, 8 ],
+      name: undefined,
+      id: undefined
+    },
+    {
+      bet: 68,
+      numbers: [ 0, 1, 2, 3, 4 ],
+      name: undefined,
+      id: undefined
+    },
+    {
+      bet: 74,
+      numbers: [ 8, 1, 1, 1, 2 ],
+      name: undefined,
+      id: undefined
+    },
+    {
+      bet: 89,
+      numbers: [ 6, 9, 2, 3, 9 ],
+      name: undefined,
+      id: undefined
+    },
+    {
+      bet: 66,
+      numbers: [ 3, 8, 5, 9, 3 ],
+      name: undefined,
+      id: undefined
+    },
+    {
+      bet: 59,
+      numbers: [ 7, 3, 1, 9, 1 ],
+      name: undefined,
+      id: undefined
+    },
+    {
+      bet: 72,
+      numbers: [ 9, 4, 9, 5, 5 ],
+      name: undefined,
+      id: undefined
+    },
+    {
+      bet: 80,
+      numbers: [ 1, 1, 1, 2, 9 ],
+      name: undefined,
+      id: undefined
+    }
+  ]
+module.exports= {
+  players,
+  dbPlayersMock
+};

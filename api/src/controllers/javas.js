@@ -54,7 +54,7 @@ const getTotal = async () => {
                 createdInDb : e.createdINBd
             }
         })
-
+console.log(total)
 return {total , viccio}
 };
 //La mitad del total dividido en 5 (cada cifra)
@@ -63,6 +63,7 @@ var getAmountByDigits = async () =>  {
    var half = datos / 2;
    var amount_figure  =  half / 5 ;
    console.log(datos , amount_figure)
+   console.log(amount_figure , "amount_figure")
    return amount_figure
 };
 const getFinalNumber = async () => {
@@ -175,7 +176,7 @@ var fourthLine = (await getMatches()).coeFourthLine;
 var thirdLine = (await getMatches()).coeThirdLine;
 var secondLine = (await getMatches()).coeSecondLine;
 var firstLine = (await getMatches()).coeFirstLine;
-const results = await betPercentaje();
+/* const results = await betPercentaje(); */
 newArr.map(e => {
     if(e.acerts === 5 ){
         e['total'] = e.bet * lastLine
@@ -208,8 +209,9 @@ newArr.map(e => {
 res.status(200).send(newArr)
 };
 const betPercentaje = async ( req , res)=>{
-const bet =  req.body;
-const arrPlayers = await padstart();  
+    const arrPlayers = await padstart();  
+const sts = new Set(arrPlayers['numero'][3])
+console.log(sts , "this");
 const numbers = [0,1,2,3,5,6,7,8,9];
 const index = 0;
 var totalZero = 0;
@@ -223,19 +225,8 @@ var totalSeven = 0;
 var totalEigth = 0;
 var totalNine = 0;  
 var amount_figure = await getAmountByDigits();
-arrPlayers.map(e=>{
-    if(e.numbers[e.numbers.length-1] !== numbers[index]){
-        return
-    }
-    else totalZero += e.bet;
-});
-const probabilitiesUnit=(totalZero/amount_figure)*bet;
-/* var coeFirstLine = amount_figure/sumFirstLine;
-var coeSecondLine = (amount_figure/sumSecondLine) + coeFirstLine;
-var coeThirdLine = (amount_figure/sumThirdLine) + coeSecondLine;
-var coeFourthLine = (amount_figure/sumFourthLine) + coeThirdLine;
-var coeFifthLine = (amount_figure/sumFifthLine) + coeFourthLine;  */
-console.log(totalZero/amount_figure);
+/* arrPlayers.filter((e.numero) {
+}) */
 };
 /* const payMatches = async function ( req , res )  {
 
@@ -263,8 +254,10 @@ const getMoves= async function(req , res)  {
 };
 
 module.exports = {
+    padstart,
     setDemoPlayers,
     getMoves,
+    betPercentaje,
     getMatches,
     postPlayers,
     payMatches,
