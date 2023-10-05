@@ -4,16 +4,15 @@ const layout = {
     barbas :  true , 
     clinas : true ,
     piojos: true,
-    laFunct : nameFunc = ( indexNumbers , arra , numberToFind) => {
+    searchMatches : searchFunc = ( indexOfNumber , arra , numberToFind) => {
         let reslt = arra.filter(e => 
            
-            e.numbers[indexNumbers] === numberToFind
+            e.numbers[indexOfNumber] === numberToFind
         );
-
         //sacar coes de cada columna
-        return console.log(reslt);
+        return reslt;
     },
-    lePadStrt : funcPad = (arra) =>{
+    padStart : funcPad = (arra) =>{
         const  numbersArray = arra.map((e,i) => {
             let numStart = Array.from(e.numero.padStart(5, "*"))
             let toInt = numStart.map(e => e = Number(e))
@@ -25,7 +24,14 @@ const layout = {
           } 
          })
          return console.log(numbersArray);
-    }
+    },
+    getCoes : funcCoe = (amountFingure , sum , prevSum , figure)=>{
+       let coe = (amountFingure/sum) + prevSum;
+       return coe`${figure}`;
+    },
+    getSumOfBets : funcSum = () =>{
+
+    },
 }
 
-layout.laFunct(3 , dbPlayersMock , 3);
+layout.searchMatches(3 , dbPlayersMock , 3);
