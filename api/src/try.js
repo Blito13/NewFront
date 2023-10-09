@@ -1,15 +1,17 @@
 const {players ,dbPlayersMock} = require('../src/mock/playeres');
 
 const layout = {
-    barbas :  true , 
-    clinas : true ,
-    piojos: true,
+currentCoe : 0,
     searchMatches : searchFunc = ( indexOfNumber , arra , numberToFind) => {
-        let reslt = arra.filter(e => 
+         if (indexOfNumber > 4 || indexOfNumber < 0) return console.log("error in index of number");
+         if (numberToFind > 9 || numberToFind < 0) return console.log(" error in  number to find");
+
+        let reslt = arra.filter(e     => 
            
             e.numbers[indexOfNumber] === numberToFind
         );
-        //sacar coes de cada columna
+       
+    
         return reslt;
     },
     padStart : funcPad = (arra) =>{
@@ -25,13 +27,25 @@ const layout = {
          })
          return console.log(numbersArray);
     },
-    getCoes : funcCoe = (amountFingure , sum , prevSum , figure)=>{
-       let coe = (amountFingure/sum) + prevSum;
-       return coe`${figure}`;
+    getCoes : funcCoe = (amountFingure , sum , prevSum , figure , number)=>{
+        //tengo q ver donde almacenar los coe de cada lista
+        let currentFigure = figure===4? "unit" : figure === 3 ? "ten" : figure === 2 ?  "hundred" : figure === 1 ? "unit of a thousand" : "ten thousand";
+        let coe = (amountFingure/sum) + prevSum;
+        return coe` of ${number} in${currentFigure}`;
     },
-    getSumOfBets : funcSum = () =>{
+    getSumOfBets : funcSum = (arra) =>{
+        let sum = 0 ; 
+        arra.map(e => sum += e.bet);
+        return sum;
 
     },
+    getRelativePay : funcRelativePay = (bet, coe , line) =>{
+        let relativePay = 0;
+        relativePay = bet *coe;
+        return relativePay;
+    },
+
+
 }
 
-layout.searchMatches(3 , dbPlayersMock , 3);
+layout.searchMatches(3 , dbPlayersMock , 4);

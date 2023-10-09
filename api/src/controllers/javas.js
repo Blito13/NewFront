@@ -252,6 +252,21 @@ const getMoves= async function(req , res)  {
     console.log(constr ,"lala")
     res.status(200).send(constr)
 };
+const percentajeOfNumbers = async() => {
+    let current = [];
+    let ionts = 4; //indexOfNumberToSearch
+    let ntf = 0 ; //numberToSearch
+    if (ntf > 9) return current;
+    if(ionts < 0) ionts = 4 && ntf ++;
+    let currentArray =  searchMatches(ionts , arrayOfPlayers , ntf);
+    let suma = getSumOfNumbers(currentArray);
+    let result = getCoe(amount_figure , suma);
+    ionts -- ;
+    current = [...current , result];
+    return result;
+
+};
+
 
 module.exports = {
     padstart,
