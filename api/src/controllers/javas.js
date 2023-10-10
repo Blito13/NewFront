@@ -286,20 +286,22 @@ const getMoves= async function(req , res)  {
 const percentajeOfNumbers = async( req , res) => {
     const arrayOfPlayers =dbPlayersMock;
     var amount_figure = await getAmountByDigits();
+    let inf = 4;
     let current = [];
+
     for(let i = 0 ; i < 9 ; i ++){
-   
-    let currentArray =  layout.searchMatches(ionts , arrayOfPlayers , i);
-    let suma =  layout.getSumOfBets(currentArray);
-    let result = layout.getCoes(amount_figure , suma , null , 4 , i);
-   
-    current = [...current , result];
-}
-    console.log(current)
-    return current;
+        for(let j = 4 ; j > -1  ; j -- ){
+         let currentArray =  layout.searchMatches(j , arrayOfPlayers , i);
+         let suma =  layout.getSumOfBets(currentArray);
+         let result = layout.getCoes(amount_figure , suma , null , 4 , i);
+         current = [...current , result];
+            console.log( j , "j" , i ,"i")
+            }
 
-
-
+};
+console.log(current);
+res.status(200).send(current);
+/* return current; */
 };
 
 
