@@ -3,8 +3,8 @@ const {players ,dbPlayersMock} = require('../src/mock/playeres');
 const layout = {
 currentCoe : 0,
     searchMatches : searchFunc = ( indexOfNumber , arra , numberToFind) => {
-         if (indexOfNumber > 4 || indexOfNumber < 0) return console.log("error in index of number");
-         if (numberToFind > 9 || numberToFind < 0) return console.log(" error in  number to find");
+    /*      if (indexOfNumber > 4 || indexOfNumber < 0) return console.log("error in index of number");
+         if (numberToFind > 9 || numberToFind < 0) return console.log(" error in  number to find"); */
 
         let reslt = arra.filter(e     => 
            
@@ -29,6 +29,7 @@ currentCoe : 0,
     },
     getCoes : funcCoe = (amountFingure , sum , prevSum , figure , number)=>{
         //tengo q ver donde almacenar los coe de cada lista
+        
         let currentFigure = figure===4? "unit" : figure === 3 ? "ten" : figure === 2 ?  "hundred" : figure === 1 ? "unit of a thousand" : "ten thousand";
         let coedsd = (amountFingure/sum) ;
         return coedsd
