@@ -280,30 +280,29 @@ res.status(200).send(newArr)
 }; */
 const getMoves= async function(req , res)  {
     var constr = await padstart();
-    console.log(constr ,"lala")
     res.status(200).send(constr)
 };
 const percentajeOfNumbers = async( req , res) => {
     const arrayOfPlayers =dbPlayersMock;
     var amount_figure = await getAmountByDigits();
-    let inf = 4;
     let current = [];
 
-    for(let i = 0 ; i < 9 ; i ++){
+    for(let i = 0 ; i < 10 ; i ++){
         for(let j = 4 ; j > -1  ; j -- ){
          let currentArray =  layout.searchMatches(j , arrayOfPlayers , i);
          let suma =  layout.getSumOfBets(currentArray);
-         let result = layout.getCoes(amount_figure , suma , null , 4 , i);
-         current = [...current , result];
-            console.log( j , "j" , i ,"i")
+         let result = layout.getCoes(amount_figure , suma , j , i);
+         current = [...current ,{index :`coe in column ${j} of number ${i}` , total : result } ];
+        
             }
-
 };
-console.log(current);
 res.status(200).send(current);
-/* return current; */
 };
-
+const percentajeOfPlayerGamble = async (req , res) =>{
+//acumular sumas 
+//acumular ganancias por culumna y total
+//
+};
 
 module.exports = {
     percentajeOfNumbers,
