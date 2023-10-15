@@ -3,8 +3,8 @@ const {players ,dbPlayersMock} = require('../src/mock/playeres');
 const layout = {
 currentCoe : 0,
     searchMatches : searchFunc = ( indexOfNumber , arra , numberToFind) => {
-    /*      if (indexOfNumber > 4 || indexOfNumber < 0) return console.log("error in index of number");
-         if (numberToFind > 9 || numberToFind < 0) return console.log(" error in  number to find"); */
+         if (indexOfNumber > 4 || indexOfNumber < 0) return console.log("error in index of number");
+         if (numberToFind > 9 || numberToFind < 0) return console.log(" error in  number to find");
 
         let reslt = arra.filter(e     => 
            
@@ -12,7 +12,10 @@ currentCoe : 0,
         );
        
     
-        return reslt;
+       reslt['indexDeCifra'] = indexOfNumber;
+       reslt['numeroBuscado'] = numberToFind;
+            console.log(reslt)
+       return reslt
     },
     padStart : funcPad = (arra) =>{
         const  numbersArray = arra.map((e,i) => {

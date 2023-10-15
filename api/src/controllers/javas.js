@@ -289,9 +289,10 @@ const percentajeOfNumbers = async( req , res) => {
     let inf = 4;
     let current = [];
 
-    for(let i = 0 ; i < 9 ; i ++){
+    for(let i = 0 ; i < 10 ; i ++){
         for(let j = 4 ; j > -1  ; j -- ){
          let currentArray =  layout.searchMatches(j , arrayOfPlayers , i);
+        /*  console.log(currentArray , "script") */
          let suma =  layout.getSumOfBets(currentArray);
          let result = layout.getCoes(amount_figure , suma , null , 4 , i);
          current = [...current , result];
