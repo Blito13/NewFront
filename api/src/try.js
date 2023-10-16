@@ -1,21 +1,27 @@
 const {players ,dbPlayersMock} = require('../src/mock/playeres');
 
 const layout = {
-currentCoe : 0,
     searchMatches : searchFunc = ( indexOfNumber , arra , numberToFind) => {
+<<<<<<< HEAD
          if (indexOfNumber > 4 || indexOfNumber < 0) return console.log("error in index of number");
          if (numberToFind > 9 || numberToFind < 0) return console.log(" error in  number to find");
 
+=======
+>>>>>>> a5942165952369a9d2b0ea882210a4f1b0dd4cab
         let reslt = arra.filter(e     => 
            
             e.numbers[indexOfNumber] === numberToFind
         );
+<<<<<<< HEAD
        
     
        reslt['indexDeCifra'] = indexOfNumber;
        reslt['numeroBuscado'] = numberToFind;
             console.log(reslt)
        return reslt
+=======
+        return reslt;
+>>>>>>> a5942165952369a9d2b0ea882210a4f1b0dd4cab
     },
     padStart : funcPad = (arra) =>{
         const  numbersArray = arra.map((e,i) => {
@@ -30,18 +36,14 @@ currentCoe : 0,
          })
          return console.log(numbersArray);
     },
-    getCoes : funcCoe = (amountFingure , sum , prevSum , figure , number)=>{
-        //tengo q ver donde almacenar los coe de cada lista
-        
-        let currentFigure = figure===4? "unit" : figure === 3 ? "ten" : figure === 2 ?  "hundred" : figure === 1 ? "unit of a thousand" : "ten thousand";
-        let coedsd = (amountFingure/sum) ;
-        return coedsd
+    getCoes : funcCoe = (amountFingure , sum , cifra , ntf)=>{
+        let coe = (amountFingure/sum) ;
+        return coe
     },
     getSumOfBets : funcSum = (arra) =>{
         let sum = 0 ; 
         arra.map(e => sum += e.bet);
         return sum;
-
     },
     getRelativePay : funcRelativePay = (bet, coe , line) =>{
         let relativePay = 0;
