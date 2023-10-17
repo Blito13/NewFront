@@ -1,7 +1,7 @@
-const {players ,dbPlayersMock} = require('../src/mock/playeres');
-
 const layout = {
+    variables :["decenaDeMil" , "unidadDeMil" , "centena" , "decena" , "unidad"],
     searchMatches : searchFunc = ( indexOfNumber , arra , numberToFind) => {
+        console.log(arra , " jshdajkhh");
         let reslt = arra.filter(e     => 
            
             e.numbers[indexOfNumber] === numberToFind
@@ -30,7 +30,7 @@ const layout = {
         arra.map(e => sum += e.bet);
         return sum;
     },
-    getRelativePay : funcRelativePay = (bet, coe , line) =>{
+    getPayPay : funcRelativePay = (bet, coe , line) =>{
         let relativePay = 0;
         relativePay = bet *coe;
         return relativePay;
