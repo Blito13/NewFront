@@ -19,7 +19,7 @@ const players =[
     { apuesta: 59, numero: '73191', nombre: 'Player17' },
     { apuesta: 72, numero: '94955', nombre: 'Player18' },
     { apuesta: 80, numero: '11129', nombre: 'Player19' }
-  ]
+  ];
   const dbPlayersMock= [
     {
       bet: 50,

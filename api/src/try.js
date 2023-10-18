@@ -1,27 +1,27 @@
-const {players ,dbPlayersMock} = require('../src/mock/playeres');
-
 const layout = {
-    variables : ["decena de mil" , "unidad de mil", "centena", "decena" , "unidad"],
+    variables :["decenaDeMil" , "unidadDeMil" , "centena" , "decena" , "unidad"],
     searchMatches : searchFunc = ( indexOfNumber , arra , numberToFind) => {
-    
+        console.log(arra , " jshdajkhh");
         let reslt = arra.filter(e     => 
            
-            e.numbers[indexOfNumber] === numberToFind
+            e.numero[indexOfNumber] === numberToFind
         );
         return reslt;
     },
-    padStart : funcPad = (arra) =>{
+    padStart : funcPad =  (arra) =>{
+        console.log(arra , "le")
         const  numbersArray = arra.map((e,i) => {
-            let numStart = Array.from(e.numero.padStart(5, "*"))
+            let numStart = Array.from(e.numeros.padStart(5, "*"))
             let toInt = numStart.map(e => e = Number(e))
           return{
             bet : e.apuesta,
-            numbers : toInt,
+            numero : toInt,
             name : e.name,
-            id : e.id
+            id : e.id,
+            createdInDb : e.createdINBd
           } 
          })
-         return console.log(numbersArray);
+         return numbersArray;
     },
     getCoes : funcCoe = (amountFingure , sum , cifra , ntf)=>{
         let coe = (amountFingure/sum) ;
@@ -32,7 +32,7 @@ const layout = {
         arra.map(e => sum += e.bet);
         return sum;
     },
-    getRelativePay : funcRelativePay = (bet, coe , line) =>{
+    getPayPay : funcRelativePay = (bet, coe , line) =>{
         let relativePay = 0;
         relativePay = bet *coe;
         return relativePay;
