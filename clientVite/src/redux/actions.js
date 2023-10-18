@@ -7,7 +7,7 @@ export const GET_USER_STATE = "GET_USER_STATE";
 export const getPlayers  = () => {
     return async function (dispatch){
         try{
-            await  axios.get("/players").then ((json )=> 
+            await  axios.get("/average").then ((json )=> 
             {
                 dispatch({
                     type : "GET_PLAYERS",

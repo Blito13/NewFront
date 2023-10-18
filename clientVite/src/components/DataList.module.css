@@ -1,0 +1,19 @@
+.container {
+  width: 650px;
+  height: 650px;
+  display: grid;
+  overflow: hidden;
+  margin: 0;
+  list-style: none;
+  grid-template-columns: repeat(5, 6fr);
+  grid-template-rows: repeat(5, 6fr);
+  gap: 15px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+}
+
+.item {
+  background: white;
+  border-radius: 100%;
+}

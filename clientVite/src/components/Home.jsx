@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import CarouselComponent from "./CarouselComponent";
+import DataListComponent from "./DataListComponent";
 import styles from './Home.module.css';
 import { useEffect} from "react";
 import { useSelector , useDispatch} from "react-redux";
@@ -10,19 +11,20 @@ import flyMoney from "../img/moneda.jpg";
 import moneda from "../img/numbers.jpg";
 function Home () {
     const dispatch = useDispatch();
-    const token =  useSelector(state => state.token);
-    
+/*     const token =  useSelector(state => state.token);
+    const playersProm = useSelector(state => state.players) */
+    /* console.log(playersProm) */
     const images = [dados , fichas , flyMoney ,moneda ];
    
     const [item ,setItem] = useState(null);
     
-
+/* 
     useEffect(()=>{
         return () =>{
 
             dispatch(getPlayers());
         }
-    },[dispatch])
+    },[dispatch]) */
 
     return( 
         
@@ -52,6 +54,9 @@ function Home () {
             <span>BSV<b>74.29</b></span>
             <span>ADA<b>0.04</b></span>
           </div>
+      </div>
+      <div className={styles.datalist}>
+     <DataListComponent/>
       </div>
       <div className={styles.swip}>
      <CarouselComponent/>
