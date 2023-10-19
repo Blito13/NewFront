@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CarouselComponent from "./CarouselComponent";
-import DataListComponent from "./DataListComponent";
+import DataTableComponent from "./DataTableComponent";
 import styles from './Home.module.css';
 import { useEffect} from "react";
 import { useSelector , useDispatch} from "react-redux";
@@ -15,7 +15,12 @@ function Home () {
     const playersProm = useSelector(state => state.players) */
     /* console.log(playersProm) */
     const images = [dados , fichas , flyMoney ,moneda ];
-   
+    
+        const data = [
+          { name: "John", age: 30, email: "john@example.com" },
+          { name: "Jane", age: 25, email: "jane@example.com" },
+          // Agrega más datos aquí
+        ];
     const [item ,setItem] = useState(null);
     
 /* 
@@ -56,7 +61,7 @@ function Home () {
           </div>
       </div>
       <div className={styles.datalist}>
-     <DataListComponent/>
+     <DataTableComponent data ={data}/>
       </div>
       <div className={styles.swip}>
      <CarouselComponent/>

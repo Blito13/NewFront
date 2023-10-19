@@ -1,6 +1,6 @@
 import * as React from "react";
 import { motion } from "framer-motion";
-import styles from "./DataList.module.css";
+import styles from "./DataTable.module.css";
 import { useEffect} from "react";
 import { useSelector , useDispatch} from "react-redux";
 import { getLoged, getLogedStatus ,  getPlayers} from "../redux/actions";
@@ -16,7 +16,7 @@ const container = {
   }
 };
 
-const item = {
+const dataItems = {
   hidden: { y: 20, opacity: 0 },
   visible: {
     y: 0,
@@ -24,7 +24,7 @@ const item = {
   }
 };
 
-export const DataListComponent = () => {
+export const DataTableComponent = ({data}) => {
     const dispatch = useDispatch();
     const token =  useSelector(state => state.token);
     const playersProm = useSelector(state => state.players)
@@ -35,8 +35,34 @@ export const DataListComponent = () => {
         }
     },[dispatch])
     return (
-
-  <motion.ul
+      <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <motion.tbody
+      layout
+      variants = {container}
+      initial= "hidden"
+      animate="visible"
+      >
+        {data.map((item, index) => (
+          <motion.tr
+            key={index}
+            layout
+            variants = {dataItems}
+          >
+            <td layout >{item.name}</td>
+            <td layout >{item.age}</td>
+            <td layout >{item.email}</td>
+          </motion.tr>
+        ))}
+      </motion.tbody>
+    </table>
+  /* <motion.ul
     className={styles.container}
     variants={container}
     initial="hidden"
@@ -45,7 +71,7 @@ export const DataListComponent = () => {
     {[0, 1, 2, 3, 5, 6, 7, 8].map((index) => (
       <motion.li key={index} className={styles.item} variants={item} />
     ))}
-  </motion.ul>
+  </motion.ul> }*/
     )
     };
-export default DataListComponent;
+export default DataTableComponent;
