@@ -70,20 +70,22 @@ const percentajeOfNumbers = async( req , res) => {
     var amount_figure = await getAmountByDigits();
     let current = [];
     let final = [];
+    let obj = {};
     for(let i = 0 ; i < 10 ; i ++){
-
         for(let j = 4 ; j > -1  ; j -- ){
-         let currentArray =  layout.searchMatches(j , arrayOfPlayers , i);
-         let suma =  layout.getSumOfBets(currentArray);
-         let result = layout.getCoes(amount_figure , suma , j , i);
-         let idx = layout.variables[j];
-         let obj = {};
-         let c = [i];
-         obj[idx] = result;
-         current = [...current ,  c, obj  ];
-        
+            let currentArray =  layout.searchMatches(j , arrayOfPlayers , i);
+            let suma =  layout.getSumOfBets(currentArray);
+            let result = layout.getCoes(amount_figure , suma , j , i);
+            //coleccionar los results
+            let idx = layout.variables[j];
+            let c = [i]
+            obj[c] = {[idx] : result};
+            final =[...final , obj]
+           
+            
+            
         };
-        final = current
+       /*  return final =[...final , obj] */
             
 };
 res.status(200).send(final);
