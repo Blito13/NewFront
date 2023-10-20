@@ -69,17 +69,24 @@ const percentajeOfNumbers = async( req , res) => {
     const arrayOfPlayers =(await getTotal()).database;
     var amount_figure = await getAmountByDigits();
     let current = [];
-
+    let final = [];
     for(let i = 0 ; i < 10 ; i ++){
+
         for(let j = 4 ; j > -1  ; j -- ){
          let currentArray =  layout.searchMatches(j , arrayOfPlayers , i);
          let suma =  layout.getSumOfBets(currentArray);
          let result = layout.getCoes(amount_figure , suma , j , i);
-         current = [...current ,{index :`coe in column ${j} of number ${i}` , total : result } ];
+         let idx = layout.variables[j];
+         let obj = {};
+         let c = [i];
+         obj[idx] = result;
+         current = [...current ,  c, obj  ];
         
-            }
+        };
+        final = current
+            
 };
-res.status(200).send(current);
+res.status(200).send(final);
 };
 const percentajeOfPlayerGamble = async (req , res) =>{
     const numero = req.body;
