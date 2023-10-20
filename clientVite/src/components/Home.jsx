@@ -13,23 +13,22 @@ function Home () {
     const data = [
         { name: "John", age: 30, email: "john@example.com" },
         { name: "Jane", age: 25, email: "jane@example.com" },
+        { name: "Jane", age: 25, email: "jane@example.com" },
+        { name: "Jane", age: 25, email: "jane@example.com" },
+        { name: "Jane", age: 25, email: "jane@example.com" },
+        { name: "Jane", age: 25, email: "jane@example.com" },
+        { name: "Jane", age: 25, email: "jane@example.com" },
+        { name: "Jane", age: 25, email: "jane@example.com" },
+        { name: "Jane", age: 25, email: "jane@example.com" },
+        
+        
         // Agrega más datos aquí
       ];
     const dispatch = useDispatch();
-/*     const token =  useSelector(state => state.token);
-    const playersProm = useSelector(state => state.players) */
-    /* console.log(playersProm) */
     const images = [dados , fichas , flyMoney ,moneda ];
-   
-    const [item ,setItem] = useState(null);
-    
-/* 
-    useEffect(()=>{
-        return () =>{
 
-            dispatch(getPlayers());
-        }
-    },[dispatch]) */
+    const [item ,setItem] = useState(null);
+
 
     return( 
         
@@ -60,12 +59,12 @@ function Home () {
             <span>ADA<b>0.04</b></span>
           </div>
       </div>
-   
-     <DataTableComponent data={data}/>
-    
-      <div className={styles.swip}>
-     <CarouselComponent/>
+      <div className={styles.datalist}>
+     <DataTableComponent data ={data} />
       </div>
+      {/* <div className={styles.swip}>
+     <CarouselComponent/>
+      </div> */}
       <div className = {styles.footer}></div>
     </div>
     )

@@ -12,6 +12,12 @@
   background: rgba(255, 255, 255, 0.2);
   border-radius: 50px;
 }
+.table {
+  display: table;
+  border-collapse: separate;
+  border-spacing: 2px;
+  border-color: gray;
+}
 
 .item {
   background: white;
