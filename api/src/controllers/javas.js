@@ -68,34 +68,30 @@ var getAmountByDigits = async () =>  {
 const percentajeOfNumbers = async( req , res) => {
     const arrayOfPlayers =(await getTotal()).database;
     var amount_figure = await getAmountByDigits();
-    let current = [];
     let final = [];
-    let obj = {};
     for(let i = 0 ; i < 10 ; i ++){
+        let obj = {};
         for(let j = 4 ; j > -1  ; j -- ){
             let currentArray =  layout.searchMatches(j , arrayOfPlayers , i);
             let suma =  layout.getSumOfBets(currentArray);
             let result = layout.getCoes(amount_figure , suma , j , i);
-            //coleccionar los results
             let idx = layout.variables[j];
-            let c = [i]
-            obj[c] = {[idx] : result};
-            final =[...final , obj]
-           
-            
-            
+            obj[idx] = result;
         };
-       /*  return final =[...final , obj] */
+        final = [...final ,obj]
+       
+     
             
 };
 res.status(200).send(final);
 };
 const percentajeOfPlayerGamble = async (req , res) =>{
     const numero = req.body;
-    const arrayOfPlayers =dbPlayersMock;
+    const arrayOfPlayers =(await getTotal()).database;
     let current = [];
     let currentCoe = 0;
     let amount_figure = await getAmountByDigits();
+
     console.log(currentCoe !== 0)
     for (let j = 4 ; j > -1 ; j-- ){
         let currentArray =  layout.searchMatches(j , arrayOfPlayers , numero.numeros[j]);
@@ -114,10 +110,10 @@ const percentajeOfPlayerGamble = async (req , res) =>{
 const searchWinners = async (req , res ) => {
     const numberWinner = req.body; 
     let currentPlayers = [];
-    let playersMock =  dbPlayersMock;
+    const arrayOfPlayers =(await getTotal()).database;
     let amount_figure = await getAmountByDigits();
     let current =[];
-    let relativeArray =playersMock;
+    let relativeArray =arrayOfPlayers;
     let currentCoe = 0;
 
     for (let i = 4 ; i > -1 ; i -- ){

@@ -1,7 +1,7 @@
 const layout = {
     variables :["decenaDeMil" , "unidadDeMil" , "centena" , "decena" , "unidad"],
     searchMatches : searchFunc = ( indexOfNumber , arra , numberToFind) => {
-        console.log(arra , " jshdajkhh");
+    
         let reslt = arra.filter(e     => 
            
             e.numero[indexOfNumber] === numberToFind
@@ -9,7 +9,7 @@ const layout = {
         return reslt;
     },
     padStart : funcPad =  (arra) =>{
-        console.log(arra , "le")
+        
         const  numbersArray = arra.map((e,i) => {
             let numStart = Array.from(e.numeros.padStart(5, "*"))
             let toInt = numStart.map(e => e = Number(e))
