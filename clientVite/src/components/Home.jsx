@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import CarouselComponent from "./CarouselComponent";
+import { motion ,AnimateSharedLayout  } from "framer-motion";
 import DataTableComponent from "./DataTableComponent";
 import styles from './Home.module.css';
 import { useEffect} from "react";
@@ -10,25 +11,18 @@ import fichas from "../img/fichas.jpg";
 import flyMoney from "../img/moneda.jpg";
 import moneda from "../img/numbers.jpg";
 function Home () {
-    const data = [
-        { name: "John", age: 30, email: "john@example.com" },
-        { name: "Jane", age: 25, email: "jane@example.com" },
-        { name: "Jane", age: 25, email: "jane@example.com" },
-        { name: "Jane", age: 25, email: "jane@example.com" },
-        { name: "Jane", age: 25, email: "jane@example.com" },
-        { name: "Jane", age: 25, email: "jane@example.com" },
-        { name: "Jane", age: 25, email: "jane@example.com" },
-        { name: "Jane", age: 25, email: "jane@example.com" },
-        { name: "Jane", age: 25, email: "jane@example.com" },
-        
-        
-        // Agrega más datos aquí
-      ];
+   
     const dispatch = useDispatch();
     const images = [dados , fichas , flyMoney ,moneda ];
-
     const [item ,setItem] = useState(null);
+    const beData = useSelector(state => state.players)
 
+    useEffect(()=>{
+       
+
+      dispatch(getPlayers());
+          
+      },[dispatch])
 
     return( 
         
@@ -60,7 +54,9 @@ function Home () {
           </div>
       </div>
       <div className={styles.datalist}>
-     <DataTableComponent data ={data} />
+
+     <DataTableComponent beData ={beData} />
+  
       </div>
       {/* <div className={styles.swip}>
      <CarouselComponent/>
