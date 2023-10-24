@@ -99,8 +99,10 @@ const percentajeOfPlayerGamble = async (req , res) =>{
         let suma =  layout.getSumOfBets(currentArray);
         let result = layout.getCoes(amount_figure , suma);
         currentCoe = currentCoe+ result; 
+        let idx = layout.variables[j];
         current = [...current ,{
-            j:`coe in column ${j} of number ${numero[j]}`, 
+            number : numero[j],
+            figure: idx, 
             total : currentCoe , 
             individual : result  
         }];

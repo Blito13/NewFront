@@ -30,20 +30,19 @@ export const DataNumbersComponent = () => {
       <table className={styles.table}>
       <thead>
         <tr>
-          <th>Numero</th>
-          <th>Decena de Mil</th>
-          <th>Unidad de Mil</th>
-          <th>Centena</th>
-          <th>Decena</th>
-          <th>Unidad</th>
+          <th>Coeficent of number :</th>
+          <th>Cifra</th>
+          <th>Total</th>
+          <th>Parcial</th>
+       
         </tr>
       </thead>
       <tbody>
         {results.length > 0?
         results.map((item, index) => (
           <tr> 
-            <td>{numeros[index]}</td> 
-            <td  className  = {styles.item}>{item.j}</td>
+            <td  className  = {styles.item}>{item.number}</td>
+            <td  className  = {styles.item}>{item.figure}</td>
             <td  className  = {styles.item} >{item.total}</td>
             <td  className  = {styles.item}>{item.individual}</td>
 
