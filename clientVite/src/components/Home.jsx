@@ -17,7 +17,7 @@ function Home () {
 
     useEffect(()=>{
        
-      dispatch(getUserNumbers());
+      /* dispatch(getUserNumbers()); */
       dispatch(getCoeNumbers());
           
       },[dispatch])

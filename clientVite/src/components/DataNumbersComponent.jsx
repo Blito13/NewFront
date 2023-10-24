@@ -18,8 +18,9 @@ export const DataNumbersComponent = () => {
     };
 
     const handleSubmit = () =>{
-        console.log(Array.from(number))
-        dispatch(getUserNumbers(number))
+      const piece = Array.from(number);
+      let ref = piece.map(e => parseFloat(e));
+        dispatch(getUserNumbers({numero:ref}));
     };
 
     return (
