@@ -42,7 +42,7 @@ const getTotal = async () => {
  })
 
  var database = layout.padStart(totalDb); 
- console.log(database,"expires");
+
  /* totalDb.map(e => {
             return {
                 name : e.name,
@@ -68,42 +68,39 @@ var getAmountByDigits = async () =>  {
 const percentajeOfNumbers = async( req , res) => {
     const arrayOfPlayers =(await getTotal()).database;
     var amount_figure = await getAmountByDigits();
-    let current = [];
     let final = [];
     for(let i = 0 ; i < 10 ; i ++){
         let obj = {};
-         let index = i;
-         for(let j = 4 ; j > -1  ; j -- ){
-             let currentArray =  layout.searchMatches(j , arrayOfPlayers , i);
-             let suma =  layout.getSumOfBets(currentArray);
-             let result = layout.getCoes(amount_figure , suma , j , i);
-             
-             let idx = layout.variables[j];
-         obj[idx]  = result;
+        for(let j = 4 ; j > -1  ; j -- ){
+            let currentArray =  layout.searchMatches(j , arrayOfPlayers , i);
+            let suma =  layout.getSumOfBets(currentArray);
+            let result = layout.getCoes(amount_figure , suma , j , i);
+            let idx = layout.variables[j];
+            obj[idx] = result;
         };
-        /* final = current */
-        
-      /*    obj[index] = obj; */
-        
-        current = [...current ,  ob];
+        final = [...final ,obj]
+       
+     
             
 };
 res.status(200).send(current);
 };
 const percentajeOfPlayerGamble = async (req , res) =>{
-    const numero = req.body;
-    const arrayOfPlayers =dbPlayersMock;
+    const {numero} = req.body;
+    console.log(numero, "ksdkdksdk")
+    const arrayOfPlayers =(await getTotal()).database;
     let current = [];
-    let currentCoe = 0;
+    let currentCoe = 0; 
     let amount_figure = await getAmountByDigits();
+
     console.log(currentCoe !== 0)
     for (let j = 4 ; j > -1 ; j-- ){
-        let currentArray =  layout.searchMatches(j , arrayOfPlayers , numero.numeros[j]);
+        let currentArray =  layout.searchMatches(j , arrayOfPlayers , numero[j]);
         let suma =  layout.getSumOfBets(currentArray);
         let result = layout.getCoes(amount_figure , suma);
         currentCoe = currentCoe+ result; 
         current = [...current ,{
-            j:`coe in column ${j} of number ${numero.numeros[j]}`, 
+            j:`coe in column ${j} of number ${numero[j]}`, 
             total : currentCoe , 
             individual : result  
         }];
@@ -114,10 +111,10 @@ const percentajeOfPlayerGamble = async (req , res) =>{
 const searchWinners = async (req , res ) => {
     const numberWinner = req.body; 
     let currentPlayers = [];
-    let playersMock =  dbPlayersMock;
+    const arrayOfPlayers =(await getTotal()).database;
     let amount_figure = await getAmountByDigits();
     let current =[];
-    let relativeArray =playersMock;
+    let relativeArray =arrayOfPlayers;
     let currentCoe = 0;
 
     for (let i = 4 ; i > -1 ; i -- ){

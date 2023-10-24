@@ -3,7 +3,7 @@ import { useState ,Fragment , useEffect }from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import NavBarMenu from "./NavBarMenu";
 import { useDispatch,useSelector } from "react-redux";
-import { getLoged , getLogedStatus, getUserState, logUser} from "../redux/actions";
+
 import LogIn from "./LogIn";
 
 export default function NavBar ({handleLog , handleHand}){
@@ -76,7 +76,7 @@ export default function NavBar ({handleLog , handleHand}){
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/start">About</Link>
+            <Link to="/numbers">About</Link>
           </li>
           <li>
             <Link to="/create">Create</Link>

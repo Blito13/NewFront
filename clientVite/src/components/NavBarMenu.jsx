@@ -1,12 +1,12 @@
 import React from "react";
 import styles from './NavBarMenu.module.css';
 import { useDispatch , useSelector } from "react-redux";
-import { getLoged } from "../redux/actions";
+
 
 
 const NavMenu = ({func}) => {
     const dispatch =  useDispatch();
-    const status =  useSelector(state => state.loged);
+    /* const status =  useSelector(state => state.loged); */
 
     const setLogOut = () => {
       console.log(status , "ksadjlkasjdlaskdj");

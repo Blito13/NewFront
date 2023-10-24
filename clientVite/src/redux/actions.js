@@ -1,16 +1,14 @@
 import axios from "axios";
-import data from "../components/data2.js"
-export const GET_PLAYERS = "GET_PLAYERS";
-export const GET_LOGED = "GET_LOGED";
-export const LOG_USER = "LOG_USER";
-export const GET_USER_STATE = "GET_USER_STATE";
-export const getPlayers  = () => {
+export const GET_COE_NUMBERS = "GET_COE_NUMBERS";
+export const GET_NUMBERS_PLAYER = "GET_NUMBERS_PLAYER";
+
+export const getCoeNumbers  = () => {
     return async function (dispatch){
         try{
             await  axios.get("/average").then ((json )=> 
             {
                 dispatch({
-                    type : "GET_PLAYERS",
+                    type : "GET_COE_NUMBERS",
                     payload : json.data
                 })
                 console.log(json.data)
@@ -21,14 +19,24 @@ export const getPlayers  = () => {
         }
     }
 }
-export const getUserState = () => {
-    console.log( "aca chango")
-    return{
-        type : GET_USER_STATE,
-        
+export const getUserNumbers = (number) => {
+    return async function (dispatch){
+        try{
+            await  axios.post("/expected",number).then ((json )=> 
+            {
+                dispatch({
+                    type : "GET_NUMBERS_PLAYER",
+                    payload : json.data
+                })
+                console.log(json.data);
+            })
+        }
+        catch(error){
+            console.log(error)
+        }
     }
 }
-export function postGame (payload){
+/* export function postGame (payload){
     return async function(dispatch){
         try{
 
@@ -81,4 +89,4 @@ export function logUser (payload){
             console.log(error)
         }
     } 
-}
+} */
