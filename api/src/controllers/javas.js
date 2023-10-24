@@ -42,7 +42,7 @@ const getTotal = async () => {
  })
 
  var database = layout.padStart(totalDb); 
- console.log(database,"expires");
+
  /* totalDb.map(e => {
             return {
                 name : e.name,
@@ -86,20 +86,21 @@ const percentajeOfNumbers = async( req , res) => {
 res.status(200).send(final);
 };
 const percentajeOfPlayerGamble = async (req , res) =>{
-    const numero = req.body;
+    const {numero} = req.body;
+    console.log(numero, "ksdkdksdk")
     const arrayOfPlayers =(await getTotal()).database;
     let current = [];
-    let currentCoe = 0;
+    let currentCoe = 0; 
     let amount_figure = await getAmountByDigits();
 
     console.log(currentCoe !== 0)
     for (let j = 4 ; j > -1 ; j-- ){
-        let currentArray =  layout.searchMatches(j , arrayOfPlayers , numero.numeros[j]);
+        let currentArray =  layout.searchMatches(j , arrayOfPlayers , numero[j]);
         let suma =  layout.getSumOfBets(currentArray);
         let result = layout.getCoes(amount_figure , suma);
         currentCoe = currentCoe+ result; 
         current = [...current ,{
-            j:`coe in column ${j} of number ${numero.numeros[j]}`, 
+            j:`coe in column ${j} of number ${numero[j]}`, 
             total : currentCoe , 
             individual : result  
         }];
