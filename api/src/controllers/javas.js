@@ -83,7 +83,7 @@ const percentajeOfNumbers = async( req , res) => {
      
             
 };
-res.status(200).send(current);
+res.status(200).send(final);
 };
 const percentajeOfPlayerGamble = async (req , res) =>{
     const {numero} = req.body;
