@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import CarouselComponent from "./CarouselComponent";
-import { motion ,AnimateSharedLayout  } from "framer-motion";
 import DataTableComponent from "./DataTableComponent";
 import styles from './Home.module.css';
 import { useEffect} from "react";
 import { useSelector , useDispatch} from "react-redux";
-import { getLoged, getLogedStatus ,  getPlayers} from "../redux/actions";
+import { getCoeNumbers , getUserNumbers} from "../redux/actions";
 import dados from "../img/dados.jpg";
 import fichas from "../img/fichas.jpg";
 import flyMoney from "../img/moneda.jpg";
@@ -15,12 +13,12 @@ function Home () {
     const dispatch = useDispatch();
     const images = [dados , fichas , flyMoney ,moneda ];
     const [item ,setItem] = useState(null);
-    const beData = useSelector(state => state.players)
+    const beData = useSelector(state => state.coeNumbers);
 
     useEffect(()=>{
        
-
-      dispatch(getPlayers());
+      dispatch(getUserNumbers());
+      dispatch(getCoeNumbers());
           
       },[dispatch])
 
@@ -54,13 +52,8 @@ function Home () {
           </div>
       </div>
       <div className={styles.datalist}>
-
      <DataTableComponent beData ={beData} />
-  
       </div>
-      {/* <div className={styles.swip}>
-     <CarouselComponent/>
-      </div> */}
       <div className = {styles.footer}></div>
     </div>
     )

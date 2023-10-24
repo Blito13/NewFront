@@ -4,19 +4,15 @@
   display: table;
   overflow: hidden;
   margin: 0;
-
- /*  grid-template-columns: repeat(5, 6fr);
-  grid-template-rows: repeat(5, 6fr); */
-  /* gap: 15px; */
   padding: 15px;
-  background: rgba(97, 4, 4, 0.2);
+  background-color: rgb(41, 89, 31);
   border-radius: 10px;
 }
 .table {
   display: table;
   border-collapse: separate;
   border-spacing: 2px;
-  border-color: rgb(73, 72, 72);
+  border-color: rgb(211, 0, 0);
 }
 
 .item {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from "./LogIn.module.css";
 import { useDispatch, useSelector } from 'react-redux';
-import { getLoged ,getUserState } from '../redux/actions';
+
 
 const LogIn = ({handle , close}) => {
   const dispatch = useDispatch();

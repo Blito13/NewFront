@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Create.module.css";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {postGame} from "../redux/actions";
+/* import {postGame} from "../redux/actions"; */
 import {validate} from "../Utils"
 
 const Create = () => {
@@ -36,7 +36,7 @@ const Create = () => {
     }
     const handleSubmit =(e) =>{
     
-        dispatch(postGame(input));
+ /*        dispatch(postGame(input)); */
         setInput({
             name : "",
             apuesta : 0,
