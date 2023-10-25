@@ -32,28 +32,17 @@ const finded = await Playerxs.findAll({
         }
     },
 });
-       res.json(finded);
+let database = layout.padStart(finded); 
+       res.json(database);
 };
 const getTotal = async () => {
     var totalDb =  await Playerxs.findAll({});
      var total = 0 
      totalDb.forEach(element => {
      total += element.apuesta
- })
-
- var database = layout.padStart(totalDb); 
-
- /* totalDb.map(e => {
-            return {
-                name : e.name,
-                id : e.id,
-                apuesta : e.apuesta,
-                numero : Array.from(e.numeros.map(e => e = Number(e))),
-                createdInDb : e.createdINBd
-            }
-        }) */
-console.log(total)
-return {total , database}
+    });
+    var database = layout.padStart(totalDb); 
+    return {total , database}
 };
 
 var getAmountByDigits = async () =>  {
@@ -137,6 +126,7 @@ res.status(200).send(current);
 
 
 module.exports = {
+    getTotal,
     searchWinners,
     percentajeOfPlayerGamble,
     percentajeOfNumbers,
