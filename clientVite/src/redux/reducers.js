@@ -1,13 +1,14 @@
 import {GET_COE_NUMBERS ,
    GET_NUMBERS_PLAYER , 
+   GET_PLAYERS_DB,
   } from "./actions";  
 
 
 const initialState = {
 numberPlayer : [] ,
 coeNumbers : [],
+players : []
 
-//hay que usar useffect para darl las dependencias correspondientes para que consuman de la copia del estado
 }
 
 
@@ -19,12 +20,16 @@ coeNumbers : [],
         return {...state , 
          numberPlayer: data
          }; 
-
       case GET_COE_NUMBERS :
          const dats =  payload;
          return {
             ...state ,  coeNumbers : dats
-         }
+         };
+      case GET_PLAYERS_DB :
+         const players =  payload;
+         return {
+            ...state ,  players : players
+         };
 
                default:
             return state;
