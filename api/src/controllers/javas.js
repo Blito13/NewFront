@@ -1,6 +1,7 @@
 const {players ,thsPlayers, dbPlayersMock} = require('../mock/playeres.js');
 const {Playerxs} = require ('../db');
 const {Roles} = require ('../db');
+const {Numbers} = require ('../db');
 const layout = require('../try.js')
 
 const postPlayers =  async (req, res) =>{
@@ -12,7 +13,8 @@ const postPlayers =  async (req, res) =>{
     })
     res.json(create)
 };
-const setDemoPlayers =(req , res)=> {
+const setDemoPlayers = async (req , res)=> {
+    let numb =  await setFinalNumber();
     const injectedPlayers =  players.map((e)=>{
        Playerxs.create({
             name : e.nombre,
@@ -53,6 +55,27 @@ var getAmountByDigits = async () =>  {
    console.log(amount_figure , "amount_figure")
    return amount_figure
 };
+const setFinalNumber = async () => {
+            var numberSelected = [];
+            var max = 9;
+            var min = 0; 
+            for(let i = 0 ; i< 5 ; i++){
+                let random = parseInt(Math.random() * (max - min) + min);
+               numberSelected = [...numberSelected , random]
+            };
+
+  Numbers.create({
+    decenaDeMil : numberSelected[0],
+    unidadDeMil : numberSelected[1],
+    centena : numberSelected[2],
+    decena : numberSelected[3],
+    unidad : numberSelected[4]
+  })
+         
+    
+    
+        return numberSelected;
+    };
 
 const percentajeOfNumbers = async( req , res) => {
     const arrayOfPlayers =(await getTotal()).database;
@@ -110,7 +133,7 @@ const searchWinners = async (req , res ) => {
 
     for (let i = 4 ; i > -1 ; i -- ){
         
-        let currentArray =  layout.searchMatches(i, relativeArray , numberWinner.numeros[i]);
+        let currentArray =  layout.searchMatches(i, relativeArray , numberWinner.numero[i]);
         let suma =  layout.getSumOfBets(currentArray);
         let result = layout.getCoes(amount_figure , suma);
         currentCoe = currentCoe+ result; 
