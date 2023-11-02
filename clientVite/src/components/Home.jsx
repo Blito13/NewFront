@@ -14,7 +14,18 @@ function Home () {
     const images = [dados , fichas , flyMoney ,moneda ];
     const [item ,setItem] = useState(null);
     const beData = useSelector(state => state.coeNumbers);
+    const th = ["Decena de mil" , "Unidad de mil" , "Centena" , "Decena" , "Unidad"];
+    const jj =  beData.map((e ) => {
 
+      return [
+        e.decenaDeMil?e.decenaDeMil:"no gamble",
+        e.unidadDeMil?e.unidadDeMil :"no gamble",
+        e.centena? e.centena : "no gamble",
+        e.decena? e.decena : "no gamble",
+        e.unidad? e.unidad : "no gamble"
+      ];
+    });
+    console.log(jj)
     useEffect(()=>{
        
       /* dispatch(getUserNumbers()); */
@@ -52,7 +63,8 @@ function Home () {
           </div>
       </div>
       <div className={styles.datalist}>
-     <DataTableComponent beData ={beData} />
+        
+     <DataTableComponent tableHead ={th} tableData={jj}/>
       </div>
       <div className = {styles.footer}></div>
     </div>
