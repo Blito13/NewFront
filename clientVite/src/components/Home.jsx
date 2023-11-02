@@ -2,18 +2,17 @@ import React, { useState } from "react";
 import DataTableComponent from "./DataTableComponent";
 import DataNumbersComponent from "./DataNumbersComponent";
 import DataPlayersComponent from "./DataPlayersComponent";
+import DataWinnersComponent from "./DataWinnersComponent";
 import styles from './Home.module.css';
 import { useEffect} from "react";
 import { useSelector , useDispatch} from "react-redux";
 import { getCoeNumbers , getUserNumbers , getPlayersDb} from "../redux/actions";
-import dados from "../img/dados.jpg";
-import fichas from "../img/fichas.jpg";
-import flyMoney from "../img/moneda.jpg";
-import moneda from "../img/numbers.jpg";
+
 function Home () {
    
     const dispatch = useDispatch();
-    const images = [dados , fichas , flyMoney ,moneda ];
+   const rows =  [0,1,2,3,4,5,6,7,8,9];
+   const columns = ["Decena de mil" , "Unindad de mil" , "centena" , "decena" , "unidad"]
     const [item ,setItem] = useState(null);
     const beData = useSelector(state => state.coeNumbers);
     const bePlayers = useSelector(state => state.players);
@@ -60,10 +59,13 @@ function Home () {
      <DataNumbersComponent />
       </div>
       <div className={styles.datalist}>
-     <DataTableComponent beData ={beData} />
+     <DataTableComponent  rows = {rows}  columns ={columns} data = {beData}/>
       </div>
       <div className={styles.datalist}>
      <DataPlayersComponent beData ={bePlayers} />
+      </div>
+      <div className={styles.datalist}>
+     <DataWinnersComponent beData ={bePlayers} />
       </div>
     </div>
     )

@@ -43,7 +43,6 @@ export const DataNumbersComponent = () => {
             <td  className  = {styles.item}>{item.figure}</td>
             <td  className  = {styles.item} >{item.total}</td>
             <td  className  = {styles.item}>{item.individual}</td>
-
           </tr>
         )
         )
