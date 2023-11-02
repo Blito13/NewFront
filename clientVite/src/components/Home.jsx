@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import DataTableComponent from "./DataTableComponent";
+import DataNumbersComponent from "./DataNumbersComponent";
+import DataPlayersComponent from "./DataPlayersComponent";
 import styles from './Home.module.css';
 import { useEffect} from "react";
 import { useSelector , useDispatch} from "react-redux";
-import { getCoeNumbers , getUserNumbers} from "../redux/actions";
+import { getCoeNumbers , getUserNumbers , getPlayersDb} from "../redux/actions";
 import dados from "../img/dados.jpg";
 import fichas from "../img/fichas.jpg";
 import flyMoney from "../img/moneda.jpg";
@@ -28,7 +30,8 @@ function Home () {
     console.log(jj)
     useEffect(()=>{
        
-      /* dispatch(getUserNumbers()); */
+      
+      dispatch(getPlayersDb());
       dispatch(getCoeNumbers());
           
       },[dispatch])
@@ -66,7 +69,9 @@ function Home () {
         
      <DataTableComponent tableHead ={th} tableData={jj}/>
       </div>
-      <div className = {styles.footer}></div>
+      <div className={styles.datalist}>
+     <DataPlayersComponent beData ={bePlayers} />
+      </div>
     </div>
     )
 } 

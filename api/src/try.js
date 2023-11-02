@@ -11,9 +11,10 @@ const layout = {
     padStart : funcPad =  (arra) =>{
         
         const  numbersArray = arra.map((e,i) => {
-            let numStart = Array.from(e.numeros.padStart(5, "*"))
+            let numStart = Array.from(e.numeros.padStart(5, "s"))
             let toInt = numStart.map(e => e = Number(e))
           return{
+            name : e.name,
             bet : e.apuesta,
             numero : toInt,
             name : e.name,
