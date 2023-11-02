@@ -99,13 +99,12 @@ res.status(200).send(final);
 };
 const percentajeOfPlayerGamble = async (req , res) =>{
     const {numero} = req.body;
-    console.log(numero, "ksdkdksdk")
+    console.log(numero, "ksdkdksdk");
     const arrayOfPlayers =(await getTotal()).database;
     let current = [];
     let currentCoe = 0; 
     let amount_figure = await getAmountByDigits();
 
-    console.log(currentCoe !== 0)
     for (let j = 4 ; j > -1 ; j-- ){
         let currentArray =  layout.searchMatches(j , arrayOfPlayers , numero[j]);
         let suma =  layout.getSumOfBets(currentArray);
@@ -123,8 +122,15 @@ const percentajeOfPlayerGamble = async (req , res) =>{
         res.status(200).send(current);
 };
 const searchWinners = async (req , res ) => {
-    const numberWinner = req.body; 
-    let currentPlayers = [];
+    let numberFinal =  await Numbers.findAll();
+    let currentNumber = [
+        numberFinal[0].decenaDeMil , 
+        numberFinal[0].unidadDeMil , 
+        numberFinal[0].centena ,
+        numberFinal[0].decena ,
+        numberFinal[0].unidad
+];
+    let numberLast = currentNumber.map(e => parseFloat(e));
     const arrayOfPlayers =(await getTotal()).database;
     let amount_figure = await getAmountByDigits();
     let current =[];
@@ -133,7 +139,7 @@ const searchWinners = async (req , res ) => {
 
     for (let i = 4 ; i > -1 ; i -- ){
         
-        let currentArray =  layout.searchMatches(i, relativeArray , numberWinner.numero[i]);
+        let currentArray =  layout.searchMatches(i, relativeArray , numberLast[i]);
         let suma =  layout.getSumOfBets(currentArray);
         let result = layout.getCoes(amount_figure , suma);
         currentCoe = currentCoe+ result; 

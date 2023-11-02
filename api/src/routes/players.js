@@ -11,7 +11,7 @@ router.post('/create' , postPlayers);
 router.get('/setPlayers', setDemoPlayers);
 router.get('/average' , percentajeOfNumbers);
 router.post('/expected' , percentajeOfPlayerGamble);
-router.post('/finalResults' , searchWinners);
+router.get('/finalResults' , searchWinners);
 router.post('/login' , signIn);
 router.get('/getplayers' ,getPlayersDb);
 module.exports = router;    
