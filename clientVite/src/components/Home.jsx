@@ -1,76 +1,41 @@
 import React, { useState } from "react";
-
 import DataTable from 'react-data-table-component';
-import DataTableComponent from "./DataTableComponent";
-import DataNumbersComponent from "./DataNumbersComponent";
-import DataPlayersComponent from "./DataPlayersComponent";
-import DataWinnersComponent from "./DataWinnersComponent";
 import styles from './Home.module.css';
 import { useEffect} from "react";
 import { useSelector , useDispatch} from "react-redux";
 import { getCoeNumbers , getUserNumbers , getPlayersDb} from "../redux/actions";
-
+import columnsCoeTable from "./tables";
 function Home () {
-   const nmb = [0,1,2,3,4,5,6,7,8,9];
-  const nmbr =  () => {
-    return nmb.map(e => e);
-  }
-   
-
+  const customStyles = {
+    rows: {
+        style: {
+            minHeight: '22px',
+            backgroundColor : 'lightblue' // override the row height
+        },
+      },
+    headCells: {
+        style: {
+          paddingLeft: '1px', // override the cell padding for head cells
+          paddingRight: '1px',
+          backgroundColor : 'grey',
+          marginLeft : '15px',
+        },
+      },
+      cells: {
+        style: {
+          paddingLeft: '1px', // override the cell padding for data cells
+          paddingRight: '1px',
+          marginLeft : '15px',
+        },
+      },
 };
-  const columns = [
-    {
-        name: 'Numeros',
-        cell : nmb,
-        sortable: true,
-    },
-    {
-        name: 'Decena de mil',
-        selector: row => row.decenaDeMil,
-        sortable: true,
-    },
-    {
-        name: 'Unidad de mil',
-        selector: row => row.unidadDeMil,
-        sortable: true,
-    },
-    {
-        name: 'Centena',
-        selector: row => row.centena,
-        sortable: true,
-    },
-    {
-        name: 'Decena',
-        selector: row => row.decena,
-        sortable: true,
-    },
-    {
-        name: 'Unidad',
-        selector: row => row.unidad,
-        sortable: true,
-    },
-];
+  const coeData = useSelector(state => state.coeNumbers);
+   const nmb = [0,1,2,3,4,5,6,7,8,9];
 
-const data = [
-   
-]
     const dispatch = useDispatch();
 
-  /*  const columns = ["Decena de mil" , "Unindad de mil" , "centena" , "decena" , "unidad"] */
     const [item ,setItem] = useState(null);
-    const beData = useSelector(state => state.coeNumbers);
-    const th = ["Decena de mil" , "Unidad de mil" , "Centena" , "Decena" , "Unidad"];
-    const jj =  beData.map((e ) => {
-
-      return [
-        e.decenaDeMil?e.decenaDeMil:"no gamble",
-        e.unidadDeMil?e.unidadDeMil :"no gamble",
-        e.centena? e.centena : "no gamble",
-        e.decena? e.decena : "no gamble",
-        e.unidad? e.unidad : "no gamble"
-      ];
-    });
-    console.log(jj)
+  
     useEffect(()=>{
        
       
@@ -110,9 +75,16 @@ const data = [
       </div>
       
       <DataTable
-            columns={columns}
-            data={beData}
+           customStyles={customStyles}
+            columns={columnsCoeTable}
+            data={coeData}
             />
+   {/*    <DataTable
+            className={styles.datalist}
+            columns={columnsCoeTable}
+            data={coeData}
+            /> */}
+      
       
     </div>
     )
