@@ -5,27 +5,32 @@ import { useEffect} from "react";
 import { useSelector , useDispatch} from "react-redux";
 import { getCoeNumbers , getUserNumbers , getPlayersDb} from "../redux/actions";
 import columnsCoeTable from "./tables";
+import styled from "styled-components";
 function Home () {
+
   const customStyles = {
+ 
     rows: {
         style: {
-            minHeight: '22px',
-            backgroundColor : 'lightblue' // override the row height
+            minHeight: '12px',
+            backgroundColor : 'lightblue', // override the row height
+            width : '900px',
         },
       },
     headCells: {
         style: {
-          paddingLeft: '1px', // override the cell padding for head cells
-          paddingRight: '1px',
+        
           backgroundColor : 'grey',
-          marginLeft : '15px',
+          justifyContent : "center",
+         
         },
       },
       cells: {
         style: {
           paddingLeft: '1px', // override the cell padding for data cells
           paddingRight: '1px',
-          marginLeft : '15px',
+          justifyContent : "center",
+          width : '10px',
         },
       },
 };
@@ -73,18 +78,13 @@ function Home () {
             <span>ADA<b>0.04</b></span>
           </div>
       </div>
-      
+      <div className = {styles.datalist}>
       <DataTable
-           customStyles={customStyles}
             columns={columnsCoeTable}
             data={coeData}
+            customStyles = {customStyles}
             />
-   {/*    <DataTable
-            className={styles.datalist}
-            columns={columnsCoeTable}
-            data={coeData}
-            /> */}
-      
+      </div>
       
     </div>
     )
