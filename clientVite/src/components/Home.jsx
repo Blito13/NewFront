@@ -3,38 +3,25 @@ import DataTable from 'react-data-table-component';
 import styles from './Home.module.css';
 import { useEffect} from "react";
 import { useSelector , useDispatch} from "react-redux";
-import { getCoeNumbers , getUserNumbers , getPlayersDb} from "../redux/actions";
-import columnsCoeTable from "./tables";
-import styled from "styled-components";
+import { getCoeNumbers , getUserNumbers , getPlayersDb , getResults} from "../redux/actions";
+import {columnsCoeTable , customStyles , allDataPlayersTable , dataNumbersPlayerCoeTable, dataWinners} from "./tables";
 function Home () {
-
-  const customStyles = {
- 
-    rows: {
-        style: {
-            minHeight: '12px',
-            backgroundColor : 'lightblue', // override the row height
-            width : '900px',
-        },
-      },
-    headCells: {
-        style: {
-        
-          backgroundColor : 'grey',
-          justifyContent : "center",
-         
-        },
-      },
-      cells: {
-        style: {
-          paddingLeft: '1px', // override the cell padding for data cells
-          paddingRight: '1px',
-          justifyContent : "center",
-          width : '10px',
-        },
-      },
-};
+  const results = useSelector(state => state.numberPlayer);
   const coeData = useSelector(state => state.coeNumbers);
+  const allDataPlayers = useSelector(state => state.players);
+  const finalResults = useSelector(state => state.finalResults);
+  const [number ,setNumber] = useState([]);
+  const handleChange =(e) => {
+      const {value , name } = e.target;
+      setNumber(value);
+  };
+
+  const handleSubmit = () =>{
+    const piece = Array.from(number);
+    let ref = piece.map(e => parseFloat(e));
+      dispatch(getUserNumbers({numero:ref}));
+  };
+  console.log(finalResults)
    const nmb = [0,1,2,3,4,5,6,7,8,9];
 
     const dispatch = useDispatch();
@@ -43,7 +30,7 @@ function Home () {
   
     useEffect(()=>{
        
-      
+      dispatch(getResults());
       dispatch(getPlayersDb());
       dispatch(getCoeNumbers());
           
@@ -78,14 +65,32 @@ function Home () {
             <span>ADA<b>0.04</b></span>
           </div>
       </div>
-      <div className = {styles.datalist}>
+     <div >
       <DataTable
             columns={columnsCoeTable}
             data={coeData}
             customStyles = {customStyles}
             />
-      </div>
-      
+      <DataTable
+            columns={allDataPlayersTable}
+            data={allDataPlayers}
+            customStyles = {customStyles}
+            />
+      <DataTable
+            columns={dataWinners}
+            data={finalResults}
+            customStyles = {customStyles}
+            />
+            </div>
+            <div>
+            <input  placeholder="type here" type="number" onChange={(e)=>handleChange(e)}/>
+            <button onClick={handleSubmit}>calcular</button>
+            <DataTable
+            columns={dataNumbersPlayerCoeTable}
+            data={results}
+            customStyles = {customStyles}
+            />
+            </div>
     </div>
     )
 } 

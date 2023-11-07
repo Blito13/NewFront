@@ -1,13 +1,16 @@
-import {GET_COE_NUMBERS ,
+import {
+   GET_COE_NUMBERS ,
    GET_NUMBERS_PLAYER , 
    GET_PLAYERS_DB,
+   GET_FINAL_RESULTS
   } from "./actions";  
 
 
 const initialState = {
 numberPlayer : [] ,
 coeNumbers : [],
-players : []
+players : [],
+finalResults : []
 
 }
 
@@ -29,6 +32,11 @@ players : []
          const players =  payload;
          return {
             ...state ,  players : players
+         };
+      case GET_FINAL_RESULTS :
+         const results =  payload;
+         return {
+            ...state ,  finalResults : results
          };
 
                default:
