@@ -1,34 +1,12 @@
 import React, { useState } from "react";
-import DataTable from 'react-data-table-component';
+/* import DataTable from 'react-data-table-component'; */
 import styles from './Home.module.css';
 import { useEffect} from "react";
 import { useSelector , useDispatch} from "react-redux";
 import { getCoeNumbers , getUserNumbers , getPlayersDb} from "../redux/actions";
 import columnsCoeTable from "./tables";
 function Home () {
-  const customStyles = {
-    rows: {
-        style: {
-            minHeight: '22px',
-            backgroundColor : 'lightblue' // override the row height
-        },
-      },
-    headCells: {
-        style: {
-          paddingLeft: '1px', // override the cell padding for head cells
-          paddingRight: '1px',
-          backgroundColor : 'grey',
-          marginLeft : '15px',
-        },
-      },
-      cells: {
-        style: {
-          paddingLeft: '1px', // override the cell padding for data cells
-          paddingRight: '1px',
-          marginLeft : '15px',
-        },
-      },
-};
+  
   const coeData = useSelector(state => state.coeNumbers);
    const nmb = [0,1,2,3,4,5,6,7,8,9];
 
@@ -74,11 +52,11 @@ function Home () {
           </div>
       </div>
       
-      <DataTable
+     {/*  <DataTable
            customStyles={customStyles}
             columns={columnsCoeTable}
             data={coeData}
-            />
+            /> */}
    {/*    <DataTable
             className={styles.datalist}
             columns={columnsCoeTable}
