@@ -55,26 +55,30 @@ var getAmountByDigits = async () =>  {
    console.log(amount_figure , "amount_figure")
    return amount_figure
 };
-const setFinalNumber = async () => {
-            var numberSelected = [];
-            var max = 9;
-            var min = 0; 
-            for(let i = 0 ; i< 5 ; i++){
-                let random = parseInt(Math.random() * (max - min) + min);
-               numberSelected = [...numberSelected , random]
-            };
+const setFinalNumber = async (req , res) => {
+    let numberFinal =  await Numbers.findAll();
+     if(numberFinal.length < 1)    {
 
-  Numbers.create({
-    decenaDeMil : numberSelected[0],
-    unidadDeMil : numberSelected[1],
-    centena : numberSelected[2],
-    decena : numberSelected[3],
-    unidad : numberSelected[4]
-  })
-         
-    
-    
-        return numberSelected;
+         var numberSelected = [];
+         var max = 9;
+         var min = 0; 
+         for(let i = 0 ; i< 5 ; i++){
+             let random = parseInt(Math.random() * (max - min) + min);
+            numberSelected = [...numberSelected , random]
+         };
+
+Numbers.create({
+ decenaDeMil : numberSelected[0],
+ unidadDeMil : numberSelected[1],
+ centena : numberSelected[2],
+ decena : numberSelected[3],
+ unidad : numberSelected[4]
+})
+res.status(200).send("Numero aleatorio creado con exito");
+     }
+     else {
+        res.status(200).send("ya existe un numero");
+     }
     };
 
 const percentajeOfNumbers = async( req , res) => {
@@ -99,7 +103,6 @@ res.status(200).send(final);
 };
 const percentajeOfPlayerGamble = async (req , res) =>{
     const {numero} = req.body;
-    console.log(numero, "ksdkdksdk");
     const arrayOfPlayers =(await getTotal()).database;
     let current = [];
     let currentCoe = 0; 
@@ -150,11 +153,13 @@ const searchWinners = async (req , res ) => {
                                 total : currentCoe  
                              }];
     }
+    current = [...current , numberLast]
 res.status(200).send(current);
 };
 
 
 module.exports = {
+    setFinalNumber,
     getTotal,
     searchWinners,
     percentajeOfPlayerGamble,
