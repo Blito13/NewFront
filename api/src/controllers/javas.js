@@ -68,11 +68,11 @@ const setFinalNumber = async (req , res) => {
          };
 
 Numbers.create({
- decenaDeMil :7 ,
- unidadDeMil : 8,
- centena : 9,
- decena : 3,
- unidad : 0
+ decenaDeMil : numberSelected[0],
+ unidadDeMil : numberSelected[1],
+ centena : numberSelected[2],
+ decena : numberSelected[3],
+ unidad : numberSelected[4]
 })
 res.status(200).send("Numero aleatorio creado con exito");
      }
@@ -103,7 +103,6 @@ res.status(200).send(final);
 };
 const percentajeOfPlayerGamble = async (req , res) =>{
     const {numero} = req.body;
-    console.log(numero, "ksdkdksdk");
     const arrayOfPlayers =(await getTotal()).database;
     let current = [];
     let currentCoe = 0; 
