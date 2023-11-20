@@ -14,7 +14,7 @@ const postPlayers =  async (req, res) =>{
     res.json(create)
 };
 const setDemoPlayers = async (req , res)=> {
-    let numb =  await setFinalNumber();
+    /* let numb =  await setFinalNumber(); */
     const injectedPlayers =  players.map((e)=>{
        Playerxs.create({
             name : e.nombre,
@@ -55,26 +55,30 @@ var getAmountByDigits = async () =>  {
    console.log(amount_figure , "amount_figure")
    return amount_figure
 };
-const setFinalNumber = async () => {
-            var numberSelected = [];
-            var max = 9;
-            var min = 0; 
-            for(let i = 0 ; i< 5 ; i++){
-                let random = parseInt(Math.random() * (max - min) + min);
-               numberSelected = [...numberSelected , random]
-            };
+const setFinalNumber = async (req , res) => {
+    let numberFinal =  await Numbers.findAll();
+     if(numberFinal.length < 1)    {
 
-  Numbers.create({
-    decenaDeMil : numberSelected[0],
-    unidadDeMil : numberSelected[1],
-    centena : numberSelected[2],
-    decena : numberSelected[3],
-    unidad : numberSelected[4]
-  })
-         
-    
-    
-        return numberSelected;
+         var numberSelected = [];
+         var max = 9;
+         var min = 0; 
+         for(let i = 0 ; i< 5 ; i++){
+             let random = parseInt(Math.random() * (max - min) + min);
+            numberSelected = [...numberSelected , random]
+         };
+
+Numbers.create({
+ decenaDeMil :7 ,
+ unidadDeMil : 8,
+ centena : 9,
+ decena : 3,
+ unidad : 0
+})
+res.status(200).send("Numero aleatorio creado con exito");
+     }
+     else {
+        res.status(200).send("ya existe un numero");
+     }
     };
 
 const percentajeOfNumbers = async( req , res) => {
@@ -136,25 +140,34 @@ const searchWinners = async (req , res ) => {
     let current =[];
     let relativeArray =arrayOfPlayers;
     let currentCoe = 0;
-
+    let obj= {
+        unidad:[],
+        decena:[],
+        centena:[],
+        unidadDeMil :[],
+        decenaDeMil :[]
+    }
     for (let i = 4 ; i > -1 ; i -- ){
-        
         let currentArray =  layout.searchMatches(i, relativeArray , numberLast[i]);
         let suma =  layout.getSumOfBets(currentArray);
         let result = layout.getCoes(amount_figure , suma);
         currentCoe = currentCoe+ result; 
         relativeArray=currentArray;
-        current=[...current, {
-                                [layout.variables[i]] : currentArray,
-                                individual : result,
-                                total : currentCoe  
-                             }];
-    }
-res.status(200).send(current);
+        let [...rest] = currentArray;
+      
+      
+        obj[layout.variables[i]] = rest;
+       
+    };
+
+
+
+res.status(200).send(obj);
 };
 
 
 module.exports = {
+    setFinalNumber,
     getTotal,
     searchWinners,
     percentajeOfPlayerGamble,

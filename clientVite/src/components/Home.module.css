@@ -1,9 +1,12 @@
 .container{
   width: 100%;
   height: 100%;
-/*   overflow: hidden; */
-  position: relative;
-
+  overflow: hidden;
+  /* position: relative; */
+  justify-content : space-between;
+  align-items: center;
+  
+  
 }
 .swip{
   display: flex;
@@ -37,10 +40,12 @@
   /* top : 10%; */
 }
 
-.datalist{
-  width: 80vw;
-  height: 30vh;
+.rigthTables {
   display: flex;
+  flex-direction: row;
+
+  position : relative;
+  
 }
 
 /* .carusel{
