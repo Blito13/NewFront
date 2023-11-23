@@ -21,7 +21,9 @@ function Home () {
     let ref = piece.map(e => parseFloat(e));
       dispatch(getUserNumbers({numero:ref}));
   };
-  console.log(finalResults)
+let [unidad , decena , centena , unidadDeMil , decenaDemil] =  finalResults;
+
+
    const nmb = [0,1,2,3,4,5,6,7,8,9];
 
     const dispatch = useDispatch();
@@ -78,7 +80,7 @@ function Home () {
             />
       <DataTable
             columns={dataWinners}
-            data={finalResults}
+            data={{unidad}}
             customStyles = {customStyles}
             />
             </div>
