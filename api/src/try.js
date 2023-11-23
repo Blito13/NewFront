@@ -1,6 +1,29 @@
 const layout = {
     variables :["decenaDeMil" , "unidadDeMil" , "centena" , "decena" , "unidad"],
-    searchMatches : searchFunc = ( indexOfNumber , arra , numberToFind) => {
+    flatterFunc : flater = async (array) => {
+        var objetoX = {};
+        var unidad = {};
+        
+        array.unidad.forEach((e) => {
+      
+          let com = {
+            [e.id]: {  // Utiliza el ID como clave única para los objetos dentro de com si le pasamos una clave fija , la vuelve a sobreescribir en cada iteracion y eso produce que solo devuelva el ultimo elemento
+              nombre: e.name,
+              apuesta: e.bet,
+              numero: e.numero,
+              id: e.id,
+              createdInDb: e.createdInDb
+            }
+          };
+        
+          objetoX = { ...objetoX, ...com };
+        });
+        
+        unidad.objetoX = objetoX;
+        return unidad
+      },
+    
+    searchMatches : searchFunc = async ( indexOfNumber , arra , numberToFind) => {
     
         let reslt = arra.filter(e     => 
            

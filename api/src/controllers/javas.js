@@ -139,24 +139,20 @@ const searchWinners = async (req , res ) => {
     let current =[];
     let relativeArray =arrayOfPlayers;
     let currentCoe = 0;
-
+    let col= [];
+    let obj = {};
     for (let i = 4 ; i > -1 ; i -- ){
-        
-        let currentArray =  layout.searchMatches(i, relativeArray , numberLast[i]);
+        const currentArray =  await layout.searchMatches(i, relativeArray , numberLast[i]);
         let suma =  layout.getSumOfBets(currentArray);
         let result = layout.getCoes(amount_figure , suma);
         currentCoe = currentCoe+ result; 
         relativeArray=currentArray;
-        current=[...current, {
-                                [layout.variables[i]] : currentArray,
-                                individual : result,
-                                total : currentCoe  
-                             }];
-    }
-    current = [...current , numberLast]
-res.status(200).send(current);
+        obj[layout.variables[i]] = currentArray;
+        /* col =[...col , {[layout.variables[i]] :value ={objetoX}} ]; */    
+    };
+    let afil = await layout.flatterFunc(obj);
+res.status(200).send(afil);
 };
-
 
 module.exports = {
     setFinalNumber,
