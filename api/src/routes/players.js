@@ -15,4 +15,4 @@ router.post('/expected' , percentajeOfPlayerGamble);
 router.get('/finalResults' , searchWinners);
 router.post('/login' , signIn);
 router.get('/getplayers' ,getPlayersDb);
-module.exports = router;    
+module.exports = router;

@@ -10,14 +10,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tanstack/react-table": "^8.10.7",
     "axios": "^0.27.2",
     "framer-motion": "^10.16.4",
     "popmotion": "^11.0.5",
     "react": "^18.2.0",
-    "react-data-table-component": "^7.5.2",
+    "react-data-table-component": "^7.5.4",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.1",
     "react-router-dom": "^6.3.0",
+    "react-table": "^7.8.0",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1",
     "styled-components": "^5.3.5"

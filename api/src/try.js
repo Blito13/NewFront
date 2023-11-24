@@ -1,29 +1,34 @@
 const layout = {
     variables :["decenaDeMil" , "unidadDeMil" , "centena" , "decena" , "unidad"],
-    flatterFunc : flater = async (array) => {
-        var objetoX = {};
-        var unidad = {};
-        
-        array.unidad.forEach((e) => {
-      
-          let com = {
-            [e.id]: {  // Utiliza el ID como clave única para los objetos dentro de com si le pasamos una clave fija , la vuelve a sobreescribir en cada iteracion y eso produce que solo devuelva el ultimo elemento
-              nombre: e.name,
-              apuesta: e.bet,
-              numero: e.numero,
-              id: e.id,
-              createdInDb: e.createdInDb
+    fixResponse : utilFunc = (toFix)=>{
+        let flated =toFix.reduce((acc, category) => {
+            const key = Object.keys(category)[0];
+            if (category[key].length > 0) {
+              acc = [...acc, ...category[key]];
             }
-          };
-        
-          objetoX = { ...objetoX, ...com };
-        });
-        
-        unidad.objetoX = objetoX;
-        return unidad
-      },
-    
-    searchMatches : searchFunc = async ( indexOfNumber , arra , numberToFind) => {
+            return acc;
+          }, []);
+          
+
+          let uniqueArray = [];    
+       
+       flated.map((elm , i)=>{
+             
+           if( !uniqueArray.includes(elm)) {
+                elm.aciertos = 1
+                uniqueArray= [...uniqueArray , elm ]
+           }else {
+          let pacola = uniqueArray.indexOf(elm)
+           uniqueArray[pacola].aciertos +=1
+           }
+            
+
+
+          })
+       return uniqueArray
+
+    },
+    searchMatches : searchFunc = ( indexOfNumber , arra , numberToFind) => {
     
         let reslt = arra.filter(e     => 
            
@@ -34,7 +39,7 @@ const layout = {
     padStart : funcPad =  (arra) =>{
         
         const  numbersArray = arra.map((e,i) => {
-            let numStart = Array.from(e.numeros.padStart(5, "s"))
+            let numStart = Array.from(e.numeros.padStart(5, "no-bets"))
             let toInt = numStart.map(e => e = Number(e))
           return{
             name : e.name,

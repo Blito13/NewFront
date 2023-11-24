@@ -14,7 +14,7 @@ const postPlayers =  async (req, res) =>{
     res.json(create)
 };
 const setDemoPlayers = async (req , res)=> {
-    let numb =  await setFinalNumber();
+    /* let numb =  await setFinalNumber(); */
     const injectedPlayers =  players.map((e)=>{
        Playerxs.create({
             name : e.nombre,
@@ -126,12 +126,12 @@ const percentajeOfPlayerGamble = async (req , res) =>{
 };
 const searchWinners = async (req , res ) => {
     let numberFinal =  await Numbers.findAll();
-    let currentNumber = [
-        numberFinal[0].decenaDeMil , 
+    let currentNumber = [4,6,9,3,0
+        /* numberFinal[0].decenaDeMil , 
         numberFinal[0].unidadDeMil , 
         numberFinal[0].centena ,
         numberFinal[0].decena ,
-        numberFinal[0].unidad
+        numberFinal[0].unidad */
 ];
     let numberLast = currentNumber.map(e => parseFloat(e));
     const arrayOfPlayers =(await getTotal()).database;
@@ -139,19 +139,20 @@ const searchWinners = async (req , res ) => {
     let current =[];
     let relativeArray =arrayOfPlayers;
     let currentCoe = 0;
-    let col= [];
-    let obj = {};
+    
     for (let i = 4 ; i > -1 ; i -- ){
-        const currentArray =  await layout.searchMatches(i, relativeArray , numberLast[i]);
+        let currentArray =  layout.searchMatches(i, relativeArray , numberLast[i]);
         let suma =  layout.getSumOfBets(currentArray);
         let result = layout.getCoes(amount_figure , suma);
         currentCoe = currentCoe+ result; 
         relativeArray=currentArray;
-        obj[layout.variables[i]] = currentArray;
-        /* col =[...col , {[layout.variables[i]] :value ={objetoX}} ]; */    
+        let [...rest] = currentArray;
+     current = [...current , {[layout.variables[i]]:rest}]
+       
     };
-    let afil = await layout.flatterFunc(obj);
-res.status(200).send(afil);
+let acerts = layout.fixResponse(current)
+
+res.status(200).send(acerts);
 };
 
 module.exports = {

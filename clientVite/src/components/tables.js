@@ -1,5 +1,5 @@
 const nmb = [0,1,2,3,4,5,6,7,8,9];
-const selector = ["Ganadores 1 cifra","Ganadores 2 cifra","Ganadores 3 cifra","Ganadores 4 cifra","Ganadores 5 cifras",]
+import DataWinnersComponent from "./DataWinnersComponent.jsx";
 export const allDataPlayersTable = [
   {
       name: 'Nombre',
@@ -37,47 +37,36 @@ export const allDataPlayersTable = [
       sortable: true,
   },
 ];
-export const dataWinners = [
-/*   {
-      name: 'Winners',
-      selector : (row , index) => selector[index],
-      sortable: true,
-  }, */
+export const dataWinners= [
   {
-      name: 'Nombre',
-      selector : row => row.name,
+      name: 'Ganadores 1 acierto',
+      selector :  row =>  row.unidad.map((e)=>{ return e.name}),
+      sortable: true,
+      cell : (row, index, column, id) => {console.log(row.unidad)}
+      
+  },
+  
+ /*  {
+      name: 'Ganadores 2 aciertos',
+      selector : row => row.decena.map((e)=>{return e.name}),
       sortable: true,
   },
-  /* {
-      name: 'Apuesta',
-      selector : (row , index) => nmb[index],
+  {
+      name: 'Ganadores 3 aciertos',
+      selector : row => row.centena.map((e)=>{return e.name}),
+      sortable: true,
+  },
+  {
+      name: 'Ganadores 3 aciertos',
+      selector : row => row.unidadDeMil.map((e)=>{return e.name}),
+      sortable: true,
+  },
+  {
+      name: 'Ganadores 4 aciertos',
+      selector : row => row.decenaDeMil.map((e)=>{return e.name}),
       sortable: true,
   }, */
- /*  {
-    name: 'Decena de mil',
-    selector: row => row[4].numero[0],
-    sortable: true,
-},
-{
-    name: 'Unidad de mil',
-    selector: row => row[3].numero[1],
-    sortable: true,
-},
-{
-    name: 'Centena',
-    selector: row => row[2].numero[2],
-    sortable: true,
-},
-{
-    name: 'Decena',
-    selector: row => row.decena[1].numero[3],
-    sortable: true,
-},
-{
-    name: 'Unidad',
-    selector: row => row[0].numero[4],
-    sortable: true,
-}, */
+ 
 ];
 export const columnsCoeTable = [
   {
