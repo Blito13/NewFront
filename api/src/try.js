@@ -1,12 +1,6 @@
 const layout = {
     variables :["decenaDeMil" , "unidadDeMil" , "centena" , "decena" , "unidad"],
-    fixResponse : utilFunc = (toFix)=>{
-     /* for(let c in toFix){
-        console.log(Object.e(toFix[c]))
-     } */
-     console.log(toFix)
-       return toFix
-    },
+ 
     searchMatches : searchFunc = ( indexOfNumber , arra , numberToFind) => {
     
         let reslt = arra.filter(e     => 

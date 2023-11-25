@@ -126,26 +126,19 @@ const percentajeOfPlayerGamble = async (req , res) =>{
 };
 const searchWinners = async (req , res ) => {
     let numberFinal =  await Numbers.findAll();
+    const arrayOfPlayers =(await getTotal()).database;
+    let amount_figure = await getAmountByDigits();
+    let relativeArray =arrayOfPlayers;
+    let currentCoe = 0;
     let currentNumber = [
         numberFinal[0].decenaDeMil , 
         numberFinal[0].unidadDeMil , 
         numberFinal[0].centena ,
         numberFinal[0].decena ,
         numberFinal[0].unidad
-];
+    ];
     let numberLast = currentNumber.map(e => parseFloat(e));
-    const arrayOfPlayers =(await getTotal()).database;
-    let amount_figure = await getAmountByDigits();
-    let current =[];
-    let relativeArray =arrayOfPlayers;
-    let currentCoe = 0;
-    let obj= {
-        unidad:[],
-        decena:[],
-        centena:[],
-        unidadDeMil :[],
-        decenaDeMil :[]
-    }
+    let current = []
     for (let i = 4 ; i > -1 ; i -- ){
         let currentArray =  layout.searchMatches(i, relativeArray , numberLast[i]);
         let suma =  layout.getSumOfBets(currentArray);
@@ -153,15 +146,10 @@ const searchWinners = async (req , res ) => {
         currentCoe = currentCoe+ result; 
         relativeArray=currentArray;
         let [...rest] = currentArray;
-      
-      
-        obj[layout.variables[i]] = rest;
-       
+       current = [...current , {[layout.variables[i]] : rest}]
     };
-
-
-
-res.status(200).send(obj);
+  
+res.status(200).json(current);
 };
 
 
