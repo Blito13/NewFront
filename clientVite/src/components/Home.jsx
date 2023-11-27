@@ -5,15 +5,15 @@ import { useEffect} from "react";
 import { useSelector , useDispatch} from "react-redux";
 import { getCoeNumbers , getUserNumbers , getPlayersDb , getResults} from "../redux/actions";
 import {columnsCoeTable , customStyles , allDataPlayersTable , dataNumbersPlayerCoeTable, dataWinners} from "./tables";
-import MyTable from "./DataTableComponent";
+import MyTable from "./MyTable";
 function Home () {
   const results = useSelector(state => state.numberPlayer);
   const coeData = useSelector(state => state.coeNumbers);
   const allDataPlayers = useSelector(state => state.players);
-  const finalResults = useSelector(state => state.finalResults);
+  /* const finalResults = useSelector(state => state.finalResults) */;
   const [number ,setNumber] = useState([]);
 /* let [unidad , decena , centena , unidadDeMil , decenaDeMil] =finalResults; */
-console.log(finalResults.unidad)
+/* console.log(finalResults.unidad) */
   const handleChange =(e) => {
       const {value , name } = e.target;
       setNumber(value);
@@ -32,7 +32,7 @@ console.log(finalResults.unidad)
   
     useEffect(()=>{
        
-      dispatch(getResults());
+     /*  dispatch(getResults()); */
       dispatch(getPlayersDb());
       dispatch(getCoeNumbers());
           

@@ -128,6 +128,7 @@ export const customStyles = {
         backgroundColor :"red",
         width : "40rem" ,
         marginTop : "3rem",   
+        marginBottom : "3rem",   
         }
     },
     rows: {

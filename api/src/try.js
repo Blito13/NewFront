@@ -1,6 +1,33 @@
 const layout = {
     variables :["decenaDeMil" , "unidadDeMil" , "centena" , "decena" , "unidad"],
- 
+    fixResponse : utilFunc = (toFix)=>{
+        let flated =toFix.reduce((acc, category) => {
+            const key = Object.keys(category)[0];
+            if (category[key].length > 0) {
+              acc = [...acc, ...category[key]];
+            }
+            return acc;
+          }, []);
+          
+
+          let uniqueArray = [];    
+       
+       flated.map((elm , i)=>{
+             
+           if( !uniqueArray.includes(elm)) {
+                elm.aciertos = 1
+                uniqueArray= [...uniqueArray , elm ]
+           }else {
+          let pacola = uniqueArray.indexOf(elm)
+           uniqueArray[pacola].aciertos +=1
+           }
+            
+
+
+          })
+       return uniqueArray
+
+    },
     searchMatches : searchFunc = ( indexOfNumber , arra , numberToFind) => {
     
         let reslt = arra.filter(e     => 
@@ -12,7 +39,7 @@ const layout = {
     padStart : funcPad =  (arra) =>{
         
         const  numbersArray = arra.map((e,i) => {
-            let numStart = Array.from(e.numeros.padStart(5, "s"))
+            let numStart = Array.from(e.numeros.padStart(5, "no-bets"))
             let toInt = numStart.map(e => e = Number(e))
           return{
             name : e.name,
