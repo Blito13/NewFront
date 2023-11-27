@@ -2,7 +2,7 @@ import React, { useEffect, useMemo } from 'react';
 import { useTable } from 'react-table';
 import { useSelector, useDispatch } from 'react-redux';
 import { getResults } from '../redux/actions';
-
+import styles from './MyTable.module.css'; 
 const MyTable = ({ data }) => {
   const dispatch = useDispatch();
   const finalResults = useSelector((state) => state.finalResults);
@@ -55,7 +55,7 @@ console.log(columns ,"new scratch")
           return (
             <tr {...row.getRowProps()}>
               {row.cells.map((cell) => (
-                <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                <td className={cell.value === 4 ? styles.ganador : ''} {...cell.getCellProps()}>{cell.render('Cell')}</td>
               ))}
             </tr>
           );
