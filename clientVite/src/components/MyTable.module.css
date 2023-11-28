@@ -1,3 +1,19 @@
-.ganador {
-    background-color: green;
-  }
+.container {
+    display: table;
+    justify-content:center;
+    align-items: center;
+    min-width:800px;
+    background-color: #3a3434;
+}
+.tableHead{
+    background-color: #000000;
+    color: rgb(235, 204, 198);
+    
+}
+.tableRows{
+    background-color:rgb(50, 155, 62) ;
+}
+.tableData{
+   margin: auto;
+   text-align: center;
+}

@@ -2,7 +2,8 @@ import React, { useEffect, useMemo } from 'react';
 import { useTable } from 'react-table';
 import { useSelector, useDispatch } from 'react-redux';
 import { getResults } from '../redux/actions';
-import styles from './MyTable.module.css'; 
+import styles from "./MyTable.module.css";
+import { animate, motion } from "framer-motion";
 const MyTable = ({ data }) => {
   const dispatch = useDispatch();
   const finalResults = useSelector((state) => state.finalResults);
@@ -10,10 +11,10 @@ const MyTable = ({ data }) => {
 
   const columns = useMemo(() => {
     const extraColumns = [
-      { Header: 'aciertos', accessor: `aciertos` },
-      { Header: 'bet', accessor: `bet` },
-      { Header: 'name', accessor: `name` },
-      { Header: 'Decena de Mil', accessor: `numero[${0}]`||"no bet" },
+      { Header: 'Aciertos', accessor: `aciertos` },
+      { Header: 'Bet', accessor: `bet` },
+      { Header: 'Name', accessor: `name` },
+      { Header: 'Decena de Mil', accessor: `numero[${0}]` },
       { Header: 'Unidad de Mil', accessor: `numero[${1}]` },
       { Header: 'Centena', accessor: `numero[${2}]`},
       { Header: 'Decena', accessor: `numero[${3}]`},
@@ -38,9 +39,22 @@ console.log(columns ,"new scratch")
     dispatch(getResults());
   }, [dispatch]);
 
+  const item = {
+    hidden: { opacity: 0 , y : 20},
+    visible:({delay}) =>( {
+      y:0,
+      opacity: 1,
+      transition: {
+        delay ,
+        duration: 1
+      }
+    }),
+  }
+
   return (
-    <table {...getTableProps()} className="mi-tabla">
-      <thead>
+    <motion.table
+    className={styles.container}  {...getTableProps()} >
+      <thead className = {styles.tableHead}>
         {headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((column) => (
@@ -49,19 +63,30 @@ console.log(columns ,"new scratch")
           </tr>
         ))}
       </thead>
-      <tbody {...getTableBodyProps()}>
-        {rows.map((row) => {
+      <motion.tbody
+       {...getTableBodyProps()}>
+        {rows.map((row  ,index) => {
           prepareRow(row);
           return (
-            <tr {...row.getRowProps()}>
+             <motion.tr
+               initial = "hidden"
+               custom = {{delay  : (index + 1) * 0.4}}
+               animate = "visible"
+                variants={item}
+                className={styles.tableRows} 
+                {...row.getRowProps()}>
               {row.cells.map((cell) => (
-                <td className={cell.value === 4 ? styles.ganador : ''} {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                <motion.td
+                 className={styles.tableData}
+                 {...cell.getCellProps()}>
+                  {cell.render('Cell')}
+                  </motion.td>
               ))}
-            </tr>
+            </motion.tr>
           );
         })}
-      </tbody>
-    </table>
+      </motion.tbody>
+    </motion.table>
   );
 };
 
