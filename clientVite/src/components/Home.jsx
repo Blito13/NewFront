@@ -4,16 +4,16 @@ import styles from './Home.module.css';
 import { useEffect} from "react";
 import { useSelector , useDispatch} from "react-redux";
 import { getCoeNumbers , getUserNumbers , getPlayersDb , getResults} from "../redux/actions";
-import {columnsCoeTable , customStyles , allDataPlayersTable , dataNumbersPlayerCoeTable, dataWinners} from "./tables";
+import { coeColumns , coePlayerColumns} from "./tables";
 import MyTable from "./MyTable";
 function Home () {
   const results = useSelector(state => state.numberPlayer);
   const coeData = useSelector(state => state.coeNumbers);
   const allDataPlayers = useSelector(state => state.players);
-  /* const finalResults = useSelector(state => state.finalResults) */;
+  const finalResults = useSelector((state) => state.finalResults);
+  const numberMock = useSelector((state) => state.number )
+  console.log(coeData, "here at the fR" , numberMock , "adelaida")
   const [number ,setNumber] = useState([]);
-/* let [unidad , decena , centena , unidadDeMil , decenaDeMil] =finalResults; */
-/* console.log(finalResults.unidad) */
   const handleChange =(e) => {
       const {value , name } = e.target;
       setNumber(value);
@@ -22,17 +22,16 @@ function Home () {
   const handleSubmit = () =>{
     const piece = Array.from(number);
     let ref = piece.map(e => parseFloat(e));
+   
       dispatch(getUserNumbers({numero:ref}));
   };
-   const nmb = [0,1,2,3,4,5,6,7,8,9];
-
     const dispatch = useDispatch();
 
-    const [item ,setItem] = useState(null);
+ 
   
     useEffect(()=>{
-       
-     /*  dispatch(getResults()); */
+      dispatch(getUserNumbers(numberMock));
+      dispatch(getResults());
       dispatch(getPlayersDb());
       dispatch(getCoeNumbers());
           
@@ -72,13 +71,15 @@ function Home () {
             columns={columnsCoeTable}
             data={coeData}
             customStyles = {customStyles}
-            />
-      <DataTable
-            columns={allDataPlayersTable}
-            data={allDataPlayers}
-            customStyles = {customStyles}
             /> */}
-          <MyTable ></MyTable>
+         { finalResults.length > 0 ? ( <MyTable 
+          columns = {coePlayerColumns} 
+          data={results} 
+          ></MyTable>)
+        :(<h1>
+          "carnalillos"
+        </h1>)
+        }
             </div>
             <div>
             <input  placeholder="type here" type="number" onChange={(e)=>handleChange(e)}/>

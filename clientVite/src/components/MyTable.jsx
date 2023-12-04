@@ -4,26 +4,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getResults } from '../redux/actions';
 import styles from "./MyTable.module.css";
 import { animate, motion } from "framer-motion";
-const MyTable = ({ data }) => {
-  const dispatch = useDispatch();
-  const finalResults = useSelector((state) => state.finalResults);
-  console.log(finalResults , "ciias")
+const MyTable = (columns) => {
+  const colu = useMemo(() => {
+    columns.columns
+    return [ ...columns.columns]
+  }, [columns.data]);
 
-  const columns = useMemo(() => {
-    const extraColumns = [
-      { Header: 'Aciertos', accessor: `aciertos` },
-      { Header: 'Bet', accessor: `bet` },
-      { Header: 'Name', accessor: `name` },
-      { Header: 'Decena de Mil', accessor: `numero[${0}]` },
-      { Header: 'Unidad de Mil', accessor: `numero[${1}]` },
-      { Header: 'Centena', accessor: `numero[${2}]`},
-      { Header: 'Decena', accessor: `numero[${3}]`},
-      { Header: 'Unidad', accessor: `numero[${4}]` },
-    ];
-  
-    return [ ...extraColumns]
-  }, [finalResults]);
-console.log(columns ,"new scratch")
   const {
     getTableProps,
     getTableBodyProps,
@@ -31,13 +17,10 @@ console.log(columns ,"new scratch")
     rows,
     prepareRow,
   } = useTable({
-    columns,
-    data: finalResults,
+   columns : columns.columns,
+    data: columns.data,
   });
 
-  useEffect(() => {
-    dispatch(getResults());
-  }, [dispatch]);
 
   const item = {
     hidden: { opacity: 0 , y : 20},
@@ -70,7 +53,7 @@ console.log(columns ,"new scratch")
           return (
              <motion.tr
                initial = "hidden"
-               custom = {{delay  : (index + 1) * 0.4}}
+               custom = {{delay  : (index + 1) * 0.3}}
                animate = "visible"
                 variants={item}
                 className={styles.tableRows} 

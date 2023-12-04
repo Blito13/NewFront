@@ -10,7 +10,8 @@ const initialState = {
 numberPlayer : [] ,
 coeNumbers : [],
 players : [],
-finalResults : []
+finalResults : [],
+number : {numero : [2, 2, 3, 4, 5]}
 
 }
 
