@@ -4,7 +4,7 @@ import styles from './Home.module.css';
 import { useEffect} from "react";
 import { useSelector , useDispatch} from "react-redux";
 import { getCoeNumbers , getUserNumbers , getPlayersDb , getResults} from "../redux/actions";
-import { coeColumns , coePlayerColumns} from "./tables";
+import { coeColumns , coePlayerColumns , allPlayersColumns , winnesColumns} from "./tables";
 import MyTable from "./MyTable";
 function Home () {
   const results = useSelector(state => state.numberPlayer);
@@ -12,13 +12,14 @@ function Home () {
   const allDataPlayers = useSelector(state => state.players);
   const finalResults = useSelector((state) => state.finalResults);
   const numberMock = useSelector((state) => state.number )
-  console.log(coeData, "here at the fR" , numberMock , "adelaida")
   const [number ,setNumber] = useState([]);
   const handleChange =(e) => {
       const {value , name } = e.target;
       setNumber(value);
   };
-
+const allIn = [results , coeData , allDataPlayers];
+const allOn = [coePlayerColumns , coeColumns , allPlayersColumns];
+console.log(coeData)
   const handleSubmit = () =>{
     const piece = Array.from(number);
     let ref = piece.map(e => parseFloat(e));
@@ -67,17 +68,15 @@ function Home () {
           </div>
       </div>
      <div >
-    {/*   <DataTable
-            columns={columnsCoeTable}
-            data={coeData}
-            customStyles = {customStyles}
-            /> */}
-         { finalResults.length > 0 ? ( <MyTable 
-          columns = {coePlayerColumns} 
-          data={results} 
-          ></MyTable>)
+         { finalResults.length > 0 ? ( [0,1,2].map(( elm , ind )=> 
+         <MyTable 
+          columns = {allOn[elm]} 
+          data={allIn[elm]} 
+          />
+         ) 
+          )
         :(<h1>
-          "carnalillos"
+          loading...
         </h1>)
         }
             </div>
