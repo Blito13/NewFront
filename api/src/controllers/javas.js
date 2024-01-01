@@ -84,6 +84,7 @@ res.status(200).send("Numero aleatorio creado con exito");
 const percentajeOfNumbers = async( req , res) => {
     const arrayOfPlayers =(await getTotal()).database;
     var amount_figure = await getAmountByDigits();
+    let numeros ={}
     let final = [];
     for(let i = 0 ; i < 10 ; i ++){
         let obj = {};
@@ -93,12 +94,12 @@ const percentajeOfNumbers = async( req , res) => {
             let result = layout.getCoes(amount_figure , suma , j , i);
             let idx = layout.variables[j];
             obj[idx] = result;
+            obj["numero"] = i;    
         };
-        final = [...final ,obj]
-       
-     
-            
+        final = [...final ,obj];
+
 };
+
 res.status(200).send(final);
 };
 const percentajeOfPlayerGamble = async (req , res) =>{
