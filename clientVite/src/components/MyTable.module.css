@@ -1,8 +1,6 @@
 .container {
     display: table;
-    justify-content:center;
-    align-items: center;
-    min-width:800px;
+    
     background-color: #3a3434;
 }
 .tableHead{
@@ -12,8 +10,9 @@
 }
 .tableRows{
     background-color:rgb(50, 155, 62) ;
+    
 }
 .tableData{
-   margin: auto;
+  /*  margin: auto; */
    text-align: center;
 }

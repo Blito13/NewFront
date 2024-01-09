@@ -5,6 +5,7 @@ import { useEffect} from "react";
 import { useSelector , useDispatch} from "react-redux";
 import { getCoeNumbers , getUserNumbers , getPlayersDb , getResults} from "../redux/actions";
 import { coeColumns , coePlayerColumns , allPlayersColumns , winnesColumns} from "./tables";
+import Dashboard from "./DashboardComponent";
 import MyTable from "./MyTable";
 function Home () {
   const results = useSelector(state => state.numberPlayer);
@@ -68,7 +69,7 @@ console.log(coeData)
           </div>
       </div>
      <div >
-         { finalResults.length > 0 ? ( [0,1,2].map(( elm , ind )=> 
+        {/*  { finalResults.length > 0 ? ( [0,1,2].map(( elm , ind )=> 
          <MyTable 
           columns = {allOn[elm]} 
           data={allIn[elm]} 
@@ -78,16 +79,17 @@ console.log(coeData)
         :(<h1>
           loading...
         </h1>)
-        }
+        } */
+      }
+      <Dashboard
+        columns = {allIn}
+        data = {allOn}
+      />
             </div>
             <div>
             <input  placeholder="type here" type="number" onChange={(e)=>handleChange(e)}/>
             <button onClick={handleSubmit}>calcular</button>
- {/*     <DataTable
-            columns={dataNumbersPlayerCoeTable}
-            data={results}
-            customStyles = {customStyles}
-            /> */}
+
             </div>
     </div>
     )
