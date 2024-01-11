@@ -15,21 +15,21 @@ export default function Dashboard( {columns, data} ) {
       <nav>
         <ul>
           {/* Titulos */}
-          {[0,1,2].map((item , idx) => (
+          {["coeficientes de tus numeros","coeficientes del 0 al 9","tabla de jugadores" , "crear jugada" , "modificar jugada"].map((item , idx) => (
             <li
               key={item}
               className={/* item === selectedTab ? */ styles.selected/*  : "" */}
               onClick={() => setSelectedTable(idx)}
             >
-              {idx}
-              {/* {item === selectedTab ? (
+              {item}
+              {idx=== selectedTable ? (
                 <motion.div className={styles.underline} layoutId="underline" />
-              ) : null} */}
+              ) : null}
             </li>
           ))}
         </ul>
       </nav>
-      <main>
+      <main className={styles.main}>
         <AnimatePresence mode='wait'>
           <motion.div
             key={selectedTable ? selectedTable: "empty"}

@@ -3,7 +3,7 @@
   height: 100%;
   overflow: hidden;
   /* position: relative; */
-  justify-content : space-between;
+  justify-content :center;
   align-items: center;
   
   
@@ -46,6 +46,12 @@
 }
 .marquee :hover {
 background-color: #000;
+}
+.content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px;
 }
 @keyframes marquee {
     0% {

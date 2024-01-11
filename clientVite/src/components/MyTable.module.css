@@ -1,18 +1,39 @@
 .container {
+    /* display: table; */
+/*     width: 200px; */
+    /* height: auto; */
     display: table;
-    
+    justify-content: center;
+    align-items: center;
     background-color: #3a3434;
+   /*  margin-top: auto; */
+   margin: 50px  ;
+   position: relative;
 }
 .tableHead{
     background-color: #000000;
     color: rgb(235, 204, 198);
     
 }
+.tableBody {
+   /*  max-width: 800px;
+    width: 85%;
+    max-height: 300px;
+    height: 85%; */
+}
 .tableRows{
+    max-width: 13px;
+    width: 100%;
+   /*  justify-content: center;
+    align-items: center; */
+    font-size:x-small;
     background-color:rgb(50, 155, 62) ;
-    
+   /*  width: 15px; */
+ 
 }
 .tableData{
-  /*  margin: auto; */
+/*    margin: auto; */
+  /* max-width: 10px; */
    text-align: center;
+ 
 }

@@ -47,6 +47,7 @@ const MyTable = (columns) => {
         ))}
       </thead>
       <motion.tbody
+      className={styles.tableBody}
        {...getTableBodyProps()}>
         {rows.map((row  ,index) => {
           prepareRow(row);

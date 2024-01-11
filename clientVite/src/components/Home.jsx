@@ -68,19 +68,7 @@ console.log(coeData)
             <span>ADA<b>0.04</b></span>
           </div>
       </div>
-     <div >
-        {/*  { finalResults.length > 0 ? ( [0,1,2].map(( elm , ind )=> 
-         <MyTable 
-          columns = {allOn[elm]} 
-          data={allIn[elm]} 
-          />
-         ) 
-          )
-        :(<h1>
-          loading...
-        </h1>)
-        } */
-      }
+     <div className= {styles.content} >
       <Dashboard
         columns = {allIn}
         data = {allOn}
