@@ -35,43 +35,47 @@ const MyTable = (columns) => {
   }
 
   return (
-    <motion.table
-    className={styles.container}  {...getTableProps()} >
-      <thead className = {styles.tableHead}>
-        {headerGroups.map((headerGroup) => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map((column) => (
-              <th {...column.getHeaderProps()}>{column.render('Header')}</th>
-            ))}
-          </tr>
-        ))}
-      </thead>
-      <motion.tbody
-      className={styles.tableBody}
-       {...getTableBodyProps()}>
-        {rows.map((row  ,index) => {
-          prepareRow(row);
-          return (
-             <motion.tr
-               initial = "hidden"
-               custom = {{delay  : (index + 1) * 0.3}}
-               animate = "visible"
-                variants={item}
-                className={styles.tableRows} 
-                {...row.getRowProps()}>
-              {row.cells.map((cell) => (
-                <motion.td
-                 className={styles.tableData}
-                 {...cell.getCellProps()}>
-                  {cell.render('Cell')}
-                  </motion.td>
+    <div className={styles.container}>
+
+      <motion.table
+      className={styles.table}  {...getTableProps()} >
+        <thead className = {styles.tableHead}>
+          {headerGroups.map((headerGroup) => (
+            <tr {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map((column) => (
+                <th {...column.getHeaderProps()}>{column.render('Header')}</th>
               ))}
-            </motion.tr>
-          );
-        })}
-      </motion.tbody>
-    </motion.table>
-  );
+            </tr>
+          ))}
+        </thead>
+        <motion.tbody
+        className={styles.tableBody}
+         {...getTableBodyProps()}>
+          {rows.map((row  ,index) => {
+            prepareRow(row);
+            return (
+               <motion.tr
+                 initial = "hidden"
+                 custom = {{delay  : (index + 1) * 0.3}}
+                 animate = "visible"
+                  variants={item}
+                  className={styles.tableRows} 
+                  {...row.getRowProps()}>
+                {row.cells.map((cell) => (
+                  <motion.td
+                   className={styles.tableData}
+                   {...cell.getCellProps()}>
+                    {cell.render('Cell')}
+                    </motion.td>
+                ))}
+              </motion.tr>
+            );
+          })}
+        </motion.tbody>
+      </motion.table>
+    
+    </div>
+  )
 };
 
 export default MyTable;

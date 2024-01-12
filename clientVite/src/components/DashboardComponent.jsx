@@ -12,13 +12,13 @@ export default function Dashboard( {columns, data} ) {
 
   return (
     <div className={styles.window}>
-      <nav>
-        <ul>
+      <nav className={styles.nav}>
+        <ul className={styles.ul}>
           {/* Titulos */}
           {["coeficientes de tus numeros","coeficientes del 0 al 9","tabla de jugadores" , "crear jugada" , "modificar jugada"].map((item , idx) => (
-            <li
+            <li/*  className = {styles.li} */
               key={item}
-              className={/* item === selectedTab ? */ styles.selected/*  : "" */}
+              className={ styles.list }
               onClick={() => setSelectedTable(idx)}
             >
               {item}

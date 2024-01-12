@@ -1,19 +1,6 @@
-
-.body {
-  --accent: #8855ff;
-  width: 100vw;
-  height: 100vh;
-  background: var(--accent);
- /*  overflow: hidden; */
-  padding: 0;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .window {
   max-width: 880px;
+  width: 100%;
   height: 360px;
   border-radius: 10px;
   background: white;
@@ -24,6 +11,7 @@
   display: flex;
   flex-direction: column;
   background-color:  grey;
+  min-width: 140px;
 }
 
 nav {
