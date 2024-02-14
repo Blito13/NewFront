@@ -3,7 +3,7 @@ import { initialTabs as tabs } from "./helper";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./Dashboard.module.css";
 import MyTable from "./MyTable";
-
+import ResponsiveTable from "./ResponsiveTable";
 
 export default function Dashboard( {columns, data} ) {
   const [selectedTab, setSelectedTab] = useState(tabs[0]);

@@ -1,0 +1,70 @@
+.tableMobile{
+    display: none;
+    width : 100%;
+}
+.tableMobile {
+    .row{
+        .columns {
+            display: flex;
+            background: #dfbcbc;
+          
+        }
+    }
+}
+.tableMobile {
+   .row {
+      .columns {
+       .header,
+       .data {
+            border : 1px solid beige;
+            border-bottom  : none;
+            padding: 10px;
+        }
+      }
+    }
+  }
+  .tableMobile {
+ .row {
+   .columns {
+     .header {
+           width: 40%;
+           background-color: #fff;
+           color : rgb(178, 17, 17);
+           font-weight: bold;
+        }
+      }
+    }
+  }
+  .tableMobile {
+     .row {
+       .columns {
+         .data {
+         width : 60%;
+        }
+      }
+    }
+  }
+  .tableMobile {
+     .row:nth-of-type(even) {
+         .columns {
+          .data {
+            background-color: rgb(147, 147, 38);
+          }
+        }
+    }
+  }
+  .tableMobile {
+    .row :last-of-type {
+        .columns {
+           .data {
+           border-bottom: 1px solid green;
+          }
+        }
+    }
+  }
+  
+  @media (max-width :768px){
+    .tableMobile{
+        display: block;
+    } 
+  }

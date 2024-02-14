@@ -7,12 +7,13 @@ import { getCoeNumbers , getUserNumbers , getPlayersDb , getResults} from "../re
 import { coeColumns , coePlayerColumns , allPlayersColumns , winnesColumns} from "./tables";
 import Dashboard from "./DashboardComponent";
 import MyTable from "./MyTable";
+import ResponsiveTable from "./ResponsiveTable";
 function Home () {
   const results = useSelector(state => state.numberPlayer);
   const coeData = useSelector(state => state.coeNumbers);
   const allDataPlayers = useSelector(state => state.players);
   const finalResults = useSelector((state) => state.finalResults);
-  const numberMock = useSelector((state) => state.number )
+  const numberMock = useSelector((state) => state.number);
   const [number ,setNumber] = useState([]);
   const handleChange =(e) => {
       const {value , name } = e.target;
@@ -20,23 +21,18 @@ function Home () {
   };
 const allIn = [results , coeData , allDataPlayers];
 const allOn = [coePlayerColumns , coeColumns , allPlayersColumns];
-console.log(coeData)
+console.log(allDataPlayers);
   const handleSubmit = () =>{
     const piece = Array.from(number);
     let ref = piece.map(e => parseFloat(e));
-   
       dispatch(getUserNumbers({numero:ref}));
   };
     const dispatch = useDispatch();
-
- 
-  
     useEffect(()=>{
       dispatch(getUserNumbers(numberMock));
       dispatch(getResults());
       dispatch(getPlayersDb());
       dispatch(getCoeNumbers());
-          
       },[dispatch])
 
     return( 

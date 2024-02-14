@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from 'react';
-import { useTable } from 'react-table';
+import { useSortBy, useTable } from 'react-table';
 import { useSelector, useDispatch } from 'react-redux';
 import { getResults } from '../redux/actions';
 import styles from "./MyTable.module.css";
@@ -19,7 +19,7 @@ const MyTable = (columns) => {
   } = useTable({
    columns : columns.columns,
     data: columns.data,
-  });
+  },);
 
 
   const item = {
@@ -37,44 +37,63 @@ const MyTable = (columns) => {
   return (
     <div className={styles.container}>
 
-      <motion.table
-      className={styles.table}  {...getTableProps()} >
-        <thead className = {styles.tableHead}>
-          {headerGroups.map((headerGroup) => (
+    <motion.table
+    className={styles.table}  {...getTableProps()} >
+      <thead className = {styles.tableHead}>
+        {headerGroups.map((headerGroup) => (
+          <tr {...headerGroup.getHeaderGroupProps()}>
+            {headerGroup.headers.map((column) => (
+              <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+            ))}
+          </tr>
+        ))}
+      </thead>
+      <motion.tbody
+      className={styles.tableBody}
+      {...getTableBodyProps()}
+       >
+         <div className={styles.head}>
+         {rows.map((row  ,index) => {
+          prepareRow(row);
+           return (
+          < div className={styles.alter}>
+        {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
                 <th {...column.getHeaderProps()}>{column.render('Header')}</th>
               ))}
             </tr>
           ))}
-        </thead>
-        <motion.tbody
-        className={styles.tableBody}
-         {...getTableBodyProps()}>
-          {rows.map((row  ,index) => {
-            prepareRow(row);
-            return (
-               <motion.tr
-                 initial = "hidden"
-                 custom = {{delay  : (index + 1) * 0.3}}
-                 animate = "visible"
-                  variants={item}
-                  className={styles.tableRows} 
-                  {...row.getRowProps()}>
-                {row.cells.map((cell) => (
-                  <motion.td
-                   className={styles.tableData}
-                   {...cell.getCellProps()}>
-                    {cell.render('Cell')}
-                    </motion.td>
-                ))}
-              </motion.tr>
-            );
-          })}
-        </motion.tbody>
-      </motion.table>
-    
-    </div>
+       </div>
+       )})}
+         </div>
+         <div className={styles.body}>
+        {rows.map((row  ,index) => {
+          prepareRow(row);
+          return (
+             <motion.tr
+               initial = "hidden"
+               custom = {{delay  : (index + 1) * 0.3}}
+               animate = "visible"
+                variants={item}
+                className={styles.tableRows} 
+                {...row.getRowProps()}>
+              {row.cells.map((cell) => (
+                <motion.td
+                 className={styles.tableData}
+                 {...cell.getCellProps()}>
+                  {cell.render('Cell')}
+                  </motion.td>
+              ))}
+            </motion.tr>
+  
+  );
+})}
+         </div>
+      </motion.tbody>
+    </motion.table>
+  
+  </div>
   )
 };
 

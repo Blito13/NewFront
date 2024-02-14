@@ -1,6 +1,6 @@
 .window {
   max-width: 880px;
-  width: 100%;
+  width: 80%;
   height: 360px;
   border-radius: 10px;
   background: white;
@@ -11,7 +11,7 @@
   display: flex;
   flex-direction: column;
   background-color:  grey;
-  min-width: 140px;
+ /*  min-width: 140px; */
 }
 
 nav {
@@ -36,23 +36,15 @@ nav {
 
 .main {
   display: flex;
- /*  align-items: center;
-  justify-content: center; */
-/*   max-height: 300px;
-  height: 100%; */
- /*  font-size: 128px; */
-  /* flex-grow: 1;
-  user-select: none; */
   max-width: 880px;
   width: 100%;
   max-height: 300px;
   height: 100%;
-  background-color: black;
-  /* flex-wrap: wrap; */
+  background-color: rgb(0, 0, 0);
+  flex-wrap: wrap;
   overflow:scroll;
  justify-content: center;
- 
-
+ align-items: center;
 }
 
 ul,
@@ -71,13 +63,12 @@ ul {
   width: 100%;
 }
 
-li {
+.list {
   border-radius: 5px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   width: 100%;
   padding: 10px 15px;
-  position: relative;
   background: white;
   cursor: pointer;
   height: 24px;

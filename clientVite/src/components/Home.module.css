@@ -6,7 +6,7 @@
   /* position: relative; */
   justify-content :center;
   align-items: center;
-  min-width: 880px;
+ /*  min-width: 880px; */
   
 }
 .swip{
@@ -52,7 +52,7 @@ background-color: #000;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 50px;
+  /* margin: 50px; */
 }
 @keyframes marquee {
     0% {
