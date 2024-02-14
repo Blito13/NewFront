@@ -84,17 +84,25 @@ res.status(200).send("Numero aleatorio creado con exito");
 const percentajeOfNumbers = async( req , res) => {
     const arrayOfPlayers =(await getTotal()).database;
     var amount_figure = await getAmountByDigits();
-    let numeros ={}
     let final = [];
     for(let i = 0 ; i < 10 ; i ++){
         let obj = {};
         for(let j = 4 ; j > -1  ; j -- ){
+            let boole = false;
             let currentArray =  layout.searchMatches(j , arrayOfPlayers , i);
-            let suma =  layout.getSumOfBets(currentArray);
-            let result = layout.getCoes(amount_figure , suma , j , i);
-            let idx = layout.variables[j];
-            obj[idx] = result;
-            obj["numero"] = i;    
+            if(currentArray.length > 0 && boole === false){
+                let suma =  layout.getSumOfBets(currentArray);
+                let result = layout.getCoes(amount_figure , suma , j , i);
+                let idx = layout.variables[j];
+                obj[idx] = result;
+                obj["numero"] = i;    
+            }
+            else {
+                let idx = layout.variables[j];
+                obj[idx] = "noBet";
+                obj["numero"] = i; 
+                boole = true;
+            }
         };
         final = [...final ,obj];
 
@@ -106,22 +114,32 @@ const percentajeOfPlayerGamble = async (req , res) =>{
     const {numero} = req.body;
     const arrayOfPlayers =(await getTotal()).database;
     let current = [];
-    let currentCoe = 0; 
+    let currentCoe = 0;
+    let currentTotal  = 0; 
     let amount_figure = await getAmountByDigits();
-
+    let boole = false;
     for (let j = 4 ; j > -1 ; j-- ){
         let currentArray =  layout.searchMatches(j , arrayOfPlayers , numero[j]);
         let suma =  layout.getSumOfBets(currentArray);
         let result = layout.getCoes(amount_figure , suma);
-        currentCoe = currentCoe+ result; 
         let idx = layout.variables[j];
+        if(  currentArray.length > 0 && boole === false) {
+          currentCoe = currentCoe+result; 
         current = [...current ,{
             number : numero[j],
             figure: idx, 
-            total : currentCoe , 
-            individual : result  
+            total : currentCoe, 
+            individual : result
         }];
-   
+    }else {
+        current = [...current ,{
+            number : numero[j],
+            figure: idx, 
+            total : currentCoe, 
+            individual : "noMatch"
+        }];
+        boole = true;
+    }
 };       
         res.status(200).send(current);
 };

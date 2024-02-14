@@ -18,8 +18,8 @@ const layout = {
                 elm.aciertos = 1
                 uniqueArray= [...uniqueArray , elm ]
            }else {
-          let pacola = uniqueArray.indexOf(elm)
-           uniqueArray[pacola].aciertos +=1
+          let resp = uniqueArray.indexOf(elm)
+           uniqueArray[resp].aciertos +=1
            }
             
 
@@ -59,6 +59,7 @@ const layout = {
     getSumOfBets : funcSum = (arra) =>{
         let sum = 0 ; 
         arra.map(e => sum += e.bet);
+        if (sum === 0) console.log(arra , "here arra")
         return sum;
     },
     getPayPay : funcRelativePay = (bet, coe , line) =>{
