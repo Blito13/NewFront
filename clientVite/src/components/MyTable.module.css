@@ -49,9 +49,8 @@
  
   .tableBody   {
    display:flex;
-   align-items: center;
-   justify-content: center;
-    background-color: dodgerblue;
+   flex-direction: row;
+    background-color: rgb(100, 128, 157);
     width: 100%;
   }
   .tableHead {
@@ -62,32 +61,25 @@
   flex-direction: column;
   width: 100%;
   font-size:x-small;
-  justify-content: center;
-  /* align-items: center; */
  }
- .body{
-   width: 100%;
-  }
-  .tableBody .body tr td{
-    
+ .tableBody .body  td{
     display: flex;
-    justify-content:space-around;
-    align-items: center;
    font-size:x-small;
+   height: 15px;
+  
   }
- .tableBody .alter   th{
+ .tableBody .alter th{
   display:flex;
-  /* color: aliceblue; */
   font-size:x-small;
-  justify-content: center;/* 
-  align-items: center; */
+  height: 15px;
  }
- .body {
+ .alter  {
+  min-height: 152px;
+ }
+.body tr {
+  height: 150px;
+}
 
- }
- .alter th{
-  max-height: 14px;
- }
 
  
  
