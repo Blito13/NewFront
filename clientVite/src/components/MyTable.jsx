@@ -86,9 +86,8 @@ const MyTable = (columns) => {
                   </motion.td>
               ))}
             </motion.tr>
-  
-  );
-})}
+            );
+      })}
          </div>
       </motion.tbody>
     </motion.table>

@@ -47,28 +47,48 @@
 
 @media screen and (max-width: 760px) {
  
-  .tableBody{
+  .tableBody   {
    display:flex;
-    justify-content: center;
+   align-items: center;
+   justify-content: center;
+    background-color: dodgerblue;
+    width: 100%;
   }
- .tableHead {
-  display: none;
- }
- .head{
-  display: block;
-  height: 200px;
+  .tableHead {
+    display: none;
+  }
+  .head{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   font-size:x-small;
+  justify-content: center;
+  /* align-items: center; */
  }
- .tableBody .alter   tr th{
-  display:block;
-  color: aliceblue;
+ .body{
+   width: 100%;
+  }
+  .tableBody .body tr td{
+    
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+   font-size:x-small;
+  }
+ .tableBody .alter   th{
+  display:flex;
+  /* color: aliceblue; */
   font-size:x-small;
+  justify-content: center;/* 
+  align-items: center; */
+ }
+ .body {
 
  }
- 
- .tableBody tr td {
-  display: block;
+ .alter th{
+  max-height: 14px;
  }
+
  
  
 }
