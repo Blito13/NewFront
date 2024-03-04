@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import styles from "./Dashboard.module.css";
 import MyTable from "./MyTable";
 import ResponsiveTable from "./ResponsiveTable";
-
+import Create from "./Create";
 export default function Dashboard( {columns, data} ) {
   const [selectedTab, setSelectedTab] = useState(tabs[0]);
   const [selectedTable , setSelectedTable] = useState(0);
@@ -24,7 +24,7 @@ export default function Dashboard( {columns, data} ) {
               {item}
               {idx=== selectedTable ? (
                 <motion.div className={styles.underline} layoutId="underline" />
-              ) : null}
+              ) :null}
             </li>
           ))}
         </ul>
@@ -38,11 +38,15 @@ export default function Dashboard( {columns, data} ) {
             exit={{ y: -10, opacity: 0 }}
             transition={{ duration: 0.2 }}
           >
-            {  
+            {  selectedTable < 3?
             <MyTable
              data = {columns[selectedTable]} 
              columns = {data[selectedTable]} 
-            ></MyTable>}
+            ></MyTable>
+          :<Create>
+            
+          </Create>
+          }
           </motion.div>
         </AnimatePresence>
       </main>
