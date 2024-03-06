@@ -56,7 +56,7 @@ const MyTable = (columns) => {
          {rows.map((row  ,index) => {
           prepareRow(row);
            return (
-          < div className={styles.alter}>
+          < div className={styles.alterHead}>
         {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
