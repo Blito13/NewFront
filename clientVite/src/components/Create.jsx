@@ -22,6 +22,8 @@ const Create = () => {
         console.log(isLoggedIn, "motumbo");
        
       }, []);
+    let cards = [,,,,];
+
     const handleChange = (e) => {
         e.preventDefault();
         const {name , value} =  e.target;
@@ -46,32 +48,17 @@ const Create = () => {
 return (
     <div className={styles.contenedor}>
      <div className={styles.head}>
-            <li>
-                <ul>
-                    estadisticas
-                </ul>
-                <ul>
-                    estadisticas
-                </ul>
-                <ul>
-                    estadisticas
-                </ul>
-                <ul>
-                    estadisticas
-                </ul>
-                <ul>
-                    estadisticas
-                </ul>
-                <ul>
-                    estadisticas
-                </ul>
-                <ul>
-                    total
-                </ul>
-            </li>
+         <form onSubmit={(e) => handleSubmit(e)}>
+        {        
+            [0,1,2,3,4].map(e=>
+                
+                <input className={styles.cards} type='number' min="0" max="9"  placeholder = "apuesta" name='apuesta' /* onChange={(e) =>handleChange(e)}  *//>
+            )
+
+        }
+        </form>
      </div>
   <div className={styles.form}>
-
         <form onSubmit={(e) => handleSubmit(e)}>
             <input type='text'  placeholder = "nombre" name='name' onChange={(e) =>handleChange(e)} />
             <input type='number'  placeholder = "apuesta" name='apuesta' onChange={(e) =>handleChange(e)} />
@@ -82,29 +69,7 @@ return (
             </form> 
   </div>
             <div className={styles.footer}>
-            <li>
-                <ul>
-                user Status
-                </ul>
-                <ul>
-                    user Status
-                </ul>
-                <ul>
-                    user Status
-                </ul>
-                <ul>
-                    user Status
-                </ul>
-                <ul>
-                    user Status
-                </ul>
-                <ul>
-                    user Status
-                </ul>
-                <ul>
-                    total
-                </ul>
-            </li>
+            <h1>Footer</h1>
                 </div>      
         
     </div>

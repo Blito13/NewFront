@@ -5,10 +5,10 @@ import { getResults } from '../redux/actions';
 import styles from "./MyTable.module.css";
 import { animate, motion } from "framer-motion";
 const MyTable = (columns) => {
-  const colu = useMemo(() => {
+/*   const colu = useMemo(() => {
     columns.columns
     return [ ...columns.columns]
-  }, [columns.data]);
+  }, [columns.data]); */
 
   const {
     getTableProps,
