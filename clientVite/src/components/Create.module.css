@@ -2,10 +2,11 @@
 .contenedor{
   background-color: #fff;
   width: 50vh;
-  height: 100vh;
-  display: flex;/* 
-  align-items: center; */
+  height: 50vh;
+  display: flex;
+  align-items: center;
   justify-content: center;
+  background-color: blue;
 }  
 .head{
   display: flex;
@@ -19,6 +20,17 @@
   flex-direction: row;
   justify-content: center;
 
+}
+.box{
+  width: 120px;
+  height: 120px;
+  border-radius: 4px;
+  background: #fff;
+}
+.button{
+  background: #fff;
+  border: none;
+  border-radius: 25px;
 }
 .form{
   display: none;
