@@ -52,7 +52,7 @@ return (
         {        
             [0,1,2,3,4].map(e=>
                 
-                <input className={styles.cards} type='number' min="0" max="9"  placeholder = "apuesta" name='apuesta' /* onChange={(e) =>handleChange(e)}  *//>
+                <input className={styles.cards} key={e+2} type='number' min="0" max="9"  placeholder = "apuesta" name='apuesta' /* onChange={(e) =>handleChange(e)}  *//>
             )
 
         }
