@@ -11,7 +11,7 @@ const Create = () => {
     const [user , setUser] = useState(''); 
     const [estimado , setEstimado]= useState('');
     const [error, setError] = useState({});
-    const [numeros, setNumeros] = useState([0, 0, 0, 0, 0]);
+    const [numeros, setNumeros] = useState([0, 0, 0, 0, 0]); /* aca cambia */
     const [input, setInput] = useState({
         name : "",
    apuesta : 0,
@@ -24,18 +24,14 @@ const Create = () => {
         console.log(isLoggedIn, "motumbo");
        
       }, []);
-  const handleChange = (index, operation) => {
-    const newNumeros = [...numeros];
-    if (operation === 'sumar') {
-      if (newNumeros[index] < 9) {
-        newNumeros[index]++;
-      }
-    } else if (operation === 'restar') {
-      if (newNumeros[index] > 0) {
-        newNumeros[index]--;
-      }
+  const handleChange = (index, value) => {
+   // Validar que el valor esté entre 0 y 9
+    if (value < 0 || value > 9 || isNaN(value)) {
+      return; // No hacer nada si el valor no está en el rango permitido
     }
-    setNumeros(newNumeros);
+    const newNumeros = [...numeros];
+    newNumeros[index] = parseInt(value, 10); // Convertir a número entero
+    setNumeros(newNumeros)  
   };
 
   const handleSubmit = (e) => {
@@ -57,9 +53,9 @@ return (
     <div className={styles.contenedor}>
      <div className={styles.head}>
         <form onSubmit={handleSubmit}>
-      {numeros.map((numero, index) => (
+      {numeros.map((numero, index) => ( /* aca cambia */
         <div key={index}>
-          <button onClick={() => handleChange(index, 'restar')}>-</button>
+          <button onClick={() => handleChange(index, numero -1)}>-</button>
           <input
             type="number"
             value={numero}
@@ -67,7 +63,7 @@ return (
             min={0}
             max={9}
           />
-          <button onClick={() => handleChange(index, 'sumar')}>+</button>
+          <button onClick={() => handleChange(index, numero +1)}>+</button>
         </div>
       ))}
       <button type="submit">Guardar</button>
