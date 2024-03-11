@@ -13,9 +13,9 @@ const Create = () => {
     const [error, setError] = useState({});
     const [numeros, setNumeros] = useState([0, 0, 0, 0, 0]); /* aca cambia */
     const [input, setInput] = useState({
-        name : "",
-   apuesta : 0,
-   numeros :[],
+        nombre : "",
+        apuesta : 0,
+        numero :[0,0,0,0,0],
     });
  
     useEffect(() => {
@@ -24,14 +24,29 @@ const Create = () => {
         console.log(isLoggedIn, "motumbo");
        
       }, []);
-  const handleChange = (index, value) => {
+  const handleChange = (index, valor) => {
    // Validar que el valor esté entre 0 y 9
-    if (value < 0 || value > 9 || isNaN(value)) {
-      return; // No hacer nada si el valor no está en el rango permitido
-    }
-    const newNumeros = [...numeros];
-    newNumeros[index] = parseInt(value, 10); // Convertir a número entero
-    setNumeros(newNumeros)  
+   if(index) {
+     const {nombre , apuesta , numero} =  input;
+     if (valor < 0 || valor > 9 || isNaN(valor)) {
+       return; 
+      }
+      
+      
+      numero[index] = parseInt(valor, 10); 
+      setInput({
+        ...input,
+        numero : numero
+      }); 
+      console.log(input);
+      
+    }else {
+    const {name , value} =  value.target;
+    setInput({
+      ...input,
+      [name] : value
+    })
+   }
   };
 
   const handleSubmit = (e) => {
@@ -53,29 +68,25 @@ return (
     <div className={styles.contenedor}>
      <div className={styles.head}>
         <form onSubmit={handleSubmit}>
-      {numeros.map((numero, index) => ( /* aca cambia */
+      {input.numero.map((numero, index) => ( /* aca cambia */
         <div key={index}>
           <button onClick={() => handleChange(index, numero -1)}>-</button>
           <input
             type="number"
+            name = "numero"
             value={numero}
-            onChange={(e) => handleChange(index, e.target.value)}
+            onChange={(e) => handleChange(index, e)}
             min={0}
             max={9}
           />
           <button onClick={() => handleChange(index, numero +1)}>+</button>
         </div>
       ))}
+            <input type='text'  placeholder = "nombre" name='name' onChange={(e) =>handleChange(e)} />
+            <input type='number'  placeholder = "apuesta" name='apuesta' onChange={(e) =>handleChange(e)} />
       <button type="submit">Guardar</button>
    </form>
      </div>
-  <div className={styles.form}>
-        <form onSubmit={(e) => handleSubmit(e)}>
-            <input type='text'  placeholder = "nombre" name='name' onChange={(e) =>handleChange(e)} />
-            <input type='number'  placeholder = "apuesta" name='apuesta' onChange={(e) =>handleChange(e)} />
-            <input type='text'  placeholder = "tus numeros" name='numeros' onChange={(e) =>handleChange(e)} />
-            </form> 
-  </div>
             <div className={styles.footer}>
             <h1>Footer</h1>
                 </div>      
