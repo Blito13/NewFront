@@ -1,5 +1,5 @@
 const axios = require ('axios');
-const {getPlayersDb, postPlayers, setDemoPlayers,percentajeOfNumbers, percentajeOfPlayerGamble, searchWinners, setFinalNumber  }  = require('../controllers/javas.js');
+const {getPlayersDb, postPlayer, setDemoPlayers,percentajeOfNumbers, percentajeOfPlayerGamble, searchWinners, setFinalNumber, editPlay, deletePlay  }  = require('../controllers/javas.js');
 const {signUp ,signIn} = require ('../controllers/authController.js');
 const {validation , isModerator} =  require ('../controllers/validation.js');
 const {setUpPlayers} =  require ('../controllers/setUpPlayers.js');
@@ -7,7 +7,9 @@ const {setUpPlayers} =  require ('../controllers/setUpPlayers.js');
 
 var express = require('express');
 var router = express.Router();
-router.post('/create' , postPlayers);
+router.post('/create' , postPlayer);
+router.put('/search/edit/:id', editPlay);
+router.delete('/onDelete/:id',deletePlay);
 router.get('/setPlayers', setDemoPlayers);
 router.get('/setFinalNumber', setFinalNumber);
 router.get('/average' , percentajeOfNumbers);

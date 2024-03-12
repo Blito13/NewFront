@@ -4,7 +4,31 @@ const {Roles} = require ('../db');
 const {Numbers} = require ('../db');
 const layout = require('../try.js')
 
-const postPlayers =  async (req, res) =>{
+const setDemoPlayers = async (req , res)=> {
+    /* let numb =  await setFinalNumber(); */
+    const injectedPlayers =  players.map((e)=>{
+        Playerxs.create({
+            name : e.nombre,
+            apuesta : e.apuesta,
+            numeros : e.numero
+        })
+    })
+    res.json("jugadores creados con exito")
+};
+const getPlayersDb = async (req , res) =>{
+    const finded = await Playerxs.findAll({
+        include: { 
+            model: Roles, 
+            attributes: ['id'],
+            through: {
+                attributes: [],   
+            }
+        },
+    });
+    let database = layout.padStart(finded); 
+    res.json(database);
+};
+const postPlayer =  async (req, res) =>{
     const  {nombre , apuesta , numero} =req.body;   
     const create =  await Playerxs.create({
       name :nombre,
@@ -13,35 +37,11 @@ const postPlayers =  async (req, res) =>{
     })
     res.json("Jugada creada con exito")
 };
-const setDemoPlayers = async (req , res)=> {
-    /* let numb =  await setFinalNumber(); */
-    const injectedPlayers =  players.map((e)=>{
-       Playerxs.create({
-            name : e.nombre,
-            apuesta : e.apuesta,
-            numeros : e.numero
-         })
-        })
-        res.json("jugadores creados con exito")
-};
-const getPlayersDb = async (req , res) =>{
-const finded = await Playerxs.findAll({
-    include: { 
-        model: Roles, 
-        attributes: ['id'],
-        through: {
-            attributes: [],   
-        }
-    },
-});
-let database = layout.padStart(finded); 
-       res.json(database);
-};
 const editPlay = async (req, res) => {
-  const playerId = req.params.id;
-  const { name, score } = req.body; // Suponiendo que quieres actualizar el nombre y la puntuación del jugador
-
-  try {
+    const playerId = req.params.id;
+    const { name, apuesta, numero } = req.body; // Suponiendo que quieres actualizar el nombre y la puntuación del jugador
+    
+    try {
     const player = await Playerxs.findByPk(playerId);
 
     if (!player) {
@@ -50,17 +50,37 @@ const editPlay = async (req, res) => {
 
     // Actualiza los datos del jugador
     player.name = name;
-    player.score = score;
+    player.apuesta = apuesta;
+    player.numeros = numero;
 
     // Guarda los cambios en la base de datos
-    await Playerxs.save();
+   let resp =  await player.save();
 
-    return res.status(200).json(player);
+    return res.status(200).json(resp);
   } catch (error) {
     console.error('Error al actualizar el jugador:', error);
     return res.status(500).json({ error: 'Error interno del servidor' });
   }
 };
+const deletePlay = async (req , res) =>{
+    const  id =  req.params.id;
+    console.log(id)
+    try {
+         // Busca el jugador en la base de datos por su ID
+         const player = await Playerxs.findByPk(id); 
+        if (!player) {
+          return res.status(404).json({ error: 'Jugador no encontrado' });
+        }
+    
+        let deleted =await player.destroy(); // Elimina el jugador de la base de datos
+    
+        return res.status(204).send(deleted); // Respuesta exitosa sin contenido
+      } catch (error) {
+        console.error('Error al eliminar el jugador:', error);
+        return res.status(500).json({ error: 'Error interno del servidor' });
+      }
+
+}
 const getTotal = async () => {
     var totalDb =  await Playerxs.findAll({});
      var total = 0 
@@ -200,12 +220,14 @@ res.status(200).send(acerts);
 
 module.exports = {
     setFinalNumber,
+    editPlay,
+    deletePlay,
     getTotal,
     searchWinners,
     percentajeOfPlayerGamble,
     percentajeOfNumbers,
     setDemoPlayers,
-    postPlayers,
+    postPlayer,
     getPlayersDb
 } 
 

@@ -39,10 +39,6 @@ let sequelize =
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
-/* const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
-  logging: false, // set to console.log to see the raw SQL queries
-  native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-}); */
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
@@ -63,21 +59,11 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-/* const { Recipe , Diet , Instructions} = sequelize.models; */
 
 const {Playerxs , Roles} = sequelize.models;
 
 // Aca vendrian las relaciones
-// Product.hasMany(Reviews);
-/* Recipe.belongsToMany(Diet , {through : "Recipe-Diet"})
-Diet.belongsToMany(Recipe , {through : "Recipe-Diet"}) */
-/* Product.hasMany(Review, { foreignKey: "productId", sourceKey: "id" });
-Review.belongsTo(Product, { foreignKey: "productId", targetId: "id" });
- */
-/* Recipe.hasMany(Instructions)
-Instructions.belongsTo(Recipe) */
-/* Recipe.belongsToMany(Instructions ,  { foreignKey: "RecipeId", sourceKey: "id" })
-Instructions.belongsToMany(Recipe , {foreignKey: "RecipeId", targetId: "id" }) */
+
 Playerxs.belongsToMany(Roles , {through : "PlayerxsRoles"});
 Roles.belongsToMany(Playerxs , {through : "PlayerxsRoles"});
 

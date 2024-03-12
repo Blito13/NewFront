@@ -92,16 +92,16 @@ export const postGame = (input) => {
         }
     }
 };
-export const editPayerGame = (id) => {
+export const editPayerGame = (id , body) => {
     return async function (dispatch){
         try{
-            await  axios.put("/edit",id).then ((json )=> 
+         let edited =   await  axios.put(`/search/edit/${id}`, body).then ((json )=> 
             {
                 dispatch({
                     type : "EDIT_PLAYER_GAME",
-                    payload : json.data
+                    payload :edited
                 })
-                console.log(json.data , "SKIBIRI");
+                console.log(json.data);
             })
         }
         catch(error){
@@ -112,11 +112,11 @@ export const editPayerGame = (id) => {
 export const deletePlayerGame = (id) => {
     return async function (dispatch){
         try{
-            await  axios.delete("/delete",id).then ((json )=> 
+           let deleted =  await  axios.delete(`/onDelete/${id}`).then ((json )=> 
             {
                 dispatch({
                     type : "DELETE_PLAYER_GAME",
-                    payload : json.data
+                    payload : deleted
                 })
                 console.log(json.data , "SKIBIRI");
             })
