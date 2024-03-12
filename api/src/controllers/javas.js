@@ -5,13 +5,13 @@ const {Numbers} = require ('../db');
 const layout = require('../try.js')
 
 const postPlayers =  async (req, res) =>{
-    const  {name , apuesta , numeros} =req.body;   
+    const  {nombre , apuesta , numero} =req.body;   
     const create =  await Playerxs.create({
-        name: name,
-        apuesta : apuesta,
-        numeros:numeros
+      name :nombre,
+      apuesta,
+      numeros :numero
     })
-    res.json(create)
+    res.json("Jugada creada con exito")
 };
 const setDemoPlayers = async (req , res)=> {
     /* let numb =  await setFinalNumber(); */
@@ -36,6 +36,30 @@ const finded = await Playerxs.findAll({
 });
 let database = layout.padStart(finded); 
        res.json(database);
+};
+const editPlay = async (req, res) => {
+  const playerId = req.params.id;
+  const { name, score } = req.body; // Suponiendo que quieres actualizar el nombre y la puntuación del jugador
+
+  try {
+    const player = await Playerxs.findByPk(playerId);
+
+    if (!player) {
+      return res.status(404).json({ error: 'Jugador no encontrado' });
+    }
+
+    // Actualiza los datos del jugador
+    player.name = name;
+    player.score = score;
+
+    // Guarda los cambios en la base de datos
+    await Playerxs.save();
+
+    return res.status(200).json(player);
+  } catch (error) {
+    console.error('Error al actualizar el jugador:', error);
+    return res.status(500).json({ error: 'Error interno del servidor' });
+  }
 };
 const getTotal = async () => {
     var totalDb =  await Playerxs.findAll({});

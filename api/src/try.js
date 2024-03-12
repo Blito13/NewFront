@@ -39,8 +39,8 @@ const layout = {
     padStart : funcPad =  (arra) =>{
         
         const  numbersArray = arra.map((e,i) => {
-            let numStart = Array.from(e.numeros.padStart(5, "no-bets"))
-            let toInt = numStart.map(e => e = Number(e))
+            /* let numStart = Array.from(e.numeros.padStart(5, "no-bets")) */
+            let toInt = e.numeros.map(e => e = Number(e))
           return{
             name : e.name,
             bet : e.apuesta,
@@ -67,8 +67,6 @@ const layout = {
         relativePay = bet *coe;
         return relativePay;
     },
-
-
 }
 
 module.exports = layout;

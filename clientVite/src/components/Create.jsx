@@ -1,97 +1,97 @@
-import React from "react";
+import React, { useState ,useEffect } from "react";
 import styles from "./Create.module.css";
-import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-/* import {postGame} from "../redux/actions"; */
+import {postGame} from "../redux/actions";
 import {validate} from "../Utils"
 import {motion}  from 'framer-motion';
+
 const Create = () => {
-    const dispatch = useDispatch();
- 
-    const [user , setUser] = useState(''); 
-    const [estimado , setEstimado]= useState('');
-    const [error, setError] = useState({});
-    const [numeros, setNumeros] = useState([0, 0, 0, 0, 0]); /* aca cambia */
-    const [input, setInput] = useState({
-        nombre : "",
-        apuesta : 0,
-        numero :[0,0,0,0,0],
-    });
- 
-    useEffect(() => {
-        // Verificar si el usuario está autenticado al cargar el componente
-        const isLoggedIn = localStorage.getItem('isLoggedIn');
-        console.log(isLoggedIn, "motumbo");
-       
-      }, []);
-  const handleChange = (index, valor) => {
-   // Validar que el valor esté entre 0 y 9
-   if(index) {
-     const {nombre , apuesta , numero} =  input;
-     if (valor < 0 || valor > 9 || isNaN(valor)) {
-       return; 
-      }
-      
-      
-      numero[index] = parseInt(valor, 10); 
+  const dispatch = useDispatch();
+  const [input, setInput] = useState({
+    name: "",
+    apuesta: "",
+    numeros: [0, 0, 0, 0, 0],
+  });
+
+  const handleChange = (index, e) => {
+    const { name, value } = e.target;
+    if (name === "name" || name === "apuesta") {
       setInput({
         ...input,
-        numero : numero
-      }); 
-      console.log(input);
-      
-    }else {
-    const {name , value} =  value.target;
-    setInput({
-      ...input,
-      [name] : value
-    })
-   }
+        [name]: value,
+      });
+    } else {
+      const newNumeros = [...input.numeros];
+      if (name === "sumar") {
+        newNumeros[index] = newNumeros[index] < 9 ? newNumeros[index] + 1 : 9;
+      } else if (name === "restar") {
+        newNumeros[index] = newNumeros[index] > 0 ? newNumeros[index] - 1 : 0;
+      } else {
+        newNumeros[index] =
+          value >= 0 && value <= 9 ? parseInt(value) : input.numeros[index];
+      }
+      setInput({
+        ...input,
+        numeros: newNumeros,
+      });
+    }
+    console.log(input)
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí puedes hacer lo que quieras con el array de números
-    console.log(numeros);
+    dispatch(postGame(input))
+    console.log(input);
   };
-    const variants = {
-        odd : {
-            backgroundColor :'#333',
-            color: '#fff'
-        },
-        even:{
-            backgroundColor : '#fff',
-            color :'#000'
-        }
-    }
-return (
+
+  return (
     <div className={styles.contenedor}>
-     <div className={styles.head}>
+      <div className={styles.head}>
         <form onSubmit={handleSubmit}>
-      {input.numero.map((numero, index) => ( /* aca cambia */
-        <div key={index}>
-          <button onClick={() => handleChange(index, numero -1)}>-</button>
+          {input.numeros.map((numero, index) => (
+            <div key={index}>
+              <button
+                name="restar"
+                onClick={(e) => handleChange(index, e)}
+                disabled={numero === 0}
+              >
+              </button>
+              <input
+                type="number"
+                name={index.toString()}
+                value={numero}
+                onChange={(e) => handleChange(index, e)}
+                min={0}
+                max={9}
+              />
+              <button
+                name="sumar"
+                onClick={(e) => handleChange(index, e)}
+                disabled={numero === 9}
+              >
+                +
+              </button>
+            </div>
+          ))}
+          <input
+            type="text"
+            placeholder="nombre"
+            name="name"
+            value={input.name}
+            onChange={(e) => handleChange(null, e)}
+          />
           <input
             type="number"
-            name = "numero"
-            value={numero}
-            onChange={(e) => handleChange(index, e)}
-            min={0}
-            max={9}
+            placeholder="apuesta"
+            name="apuesta"
+            value={input.apuesta}
+            onChange={(e) => handleChange(null, e)}
           />
-          <button onClick={() => handleChange(index, numero +1)}>+</button>
-        </div>
-      ))}
-            <input type='text'  placeholder = "nombre" name='name' onChange={(e) =>handleChange(e)} />
-            <input type='number'  placeholder = "apuesta" name='apuesta' onChange={(e) =>handleChange(e)} />
-      <button type="submit">Guardar</button>
-   </form>
-     </div>
-            <div className={styles.footer}>
-            <h1>Footer</h1>
-                </div>      
-        
+          <button type="submit">Guardar</button>
+        </form>
+      </div>
     </div>
-)
-}
+  );
+};
+
 export default Create;

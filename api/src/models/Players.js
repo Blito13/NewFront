@@ -31,7 +31,7 @@ module.exports = (sequelize) => {
       allowNull : true
     },
     numeros : {
-      type:DataTypes.STRING, //para agregarlos como arrays usar terminacion JSON
+      type:DataTypes.JSON, //para agregarlos como arrays usar terminacion JSON
       allowNull : true
     },
     createdINBd: {                  
