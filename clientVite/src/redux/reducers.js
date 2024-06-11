@@ -26,6 +26,7 @@ stateDelete :[]
       
       case GET_NUMBERS_PLAYER: 
       const data = payload;
+      console.log(data , "testing");
         return {...state , 
          numberPlayer: data
          }; 
