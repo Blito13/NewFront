@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const PredictionTable = () => {
   const results = useSelector(state => state.numberPlayer);
-  let arr = [];
-  arr.push(results)
-  console.log(typeof arr)
+  let cypre = [...results];
+ /*  arr.push(results) */
+  console.log(cypre.reverse())
   const [number , setNumber] = useState([]);
   const [apuesta , setApuesta] = useState(0)
   const dispatch = useDispatch();
@@ -43,7 +43,7 @@ const PredictionTable = () => {
         <tbody>
           <tr>
             <td style={{ border: '1px solid black', padding: '8px' }}>Tus numeros</td>
-            {[results].reverse().map((e) => 
+            {cypre.map((e) => 
               <td  style={{ border: '1px solid black', padding: '8px' }}>{e.number}</td>
 
             )}
