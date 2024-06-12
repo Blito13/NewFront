@@ -20,8 +20,8 @@ function Home () {
       const {value , name } = e.target;
       setNumber(value);
   };
-const allIn = [results , coeData , allDataPlayers];
-const allOn = [coePlayerColumns , coeColumns , allPlayersColumns];
+const allIn = [results , coeData , allDataPlayers]; // columns
+const allOn = [coePlayerColumns , coeColumns , allPlayersColumns]; // data
 console.log(allDataPlayers);
   const handleSubmit = () =>{
     const piece = Array.from(number);

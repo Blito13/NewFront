@@ -38,7 +38,7 @@ export default function Dashboard( {columns, data} ) {
             exit={{ y: -10, opacity: 0 }}
             transition={{ duration: 0.2 }}
           >
-            {  selectedTable < 3?
+            {selectedTable < 3?
             <MyTable
              data = {columns[selectedTable]} 
              columns = {data[selectedTable]} 
