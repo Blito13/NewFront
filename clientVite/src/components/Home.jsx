@@ -8,7 +8,7 @@ import { coeColumns , coePlayerColumns , allPlayersColumns , winnesColumns} from
 import Dashboard from "./DashboardComponent";
 import MyTable from "./MyTable";
 import ResponsiveTable from "./ResponsiveTable";
-import PredictionTable from "./PridictionTable";
+import PredictionTable from "./PredictionTable";
 function Home () {
   const results = useSelector(state => state.numberPlayer);
   const coeData = useSelector(state => state.coeNumbers);
@@ -66,8 +66,7 @@ console.log(allDataPlayers);
           </div>
       </div>
      <div className= {styles.content} >
-      <PredictionTable
-      />
+      <PredictionTable/>
             </div>
             <div>
             <input  placeholder="type here" type="number" onChange={(e)=>handleChange(e)}/>
