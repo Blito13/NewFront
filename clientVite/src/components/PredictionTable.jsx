@@ -8,7 +8,7 @@ const PredictionTable = () => {
  /*  arr.push(results) */
   console.log(cypre.reverse())
   const [number , setNumber] = useState([]);
-  const [apuesta , setApuesta] = useState(0)
+  const [apuesta , setApuesta] = useState(0);
   const dispatch = useDispatch();
   const handleChange = (e) => {
     e.preventDefault();
@@ -54,19 +54,25 @@ const PredictionTable = () => {
           </tr>
           <tr>
             <td style={{ border: '1px solid black', padding: '8px' }}>Prediccion parcial por cifra</td>
+            {cypre.map((e) => 
+              <td  style={{ border: '1px solid black', padding: '8px' }}>{e.individual}</td>
+            )}
+            {/* <td style={{ border: '1px solid black', padding: '8px' }}>y</td>
             <td style={{ border: '1px solid black', padding: '8px' }}>y</td>
             <td style={{ border: '1px solid black', padding: '8px' }}>y</td>
             <td style={{ border: '1px solid black', padding: '8px' }}>y</td>
-            <td style={{ border: '1px solid black', padding: '8px' }}>y</td>
-            <td style={{ border: '1px solid black', padding: '8px' }}>y</td>
+            <td style={{ border: '1px solid black', padding: '8px' }}>y</td> */}
           </tr>
           <tr>
             <td style={{ border: '1px solid black', padding: '8px' }}>Predicción total por cifra</td>
+            {cypre.map((e) => 
+              <td  style={{ border: '1px solid black', padding: '8px' }}>{e.total}</td>
+            )}
+            {/* <td style={{ border: '1px solid black', padding: '8px' }}>z</td>
             <td style={{ border: '1px solid black', padding: '8px' }}>z</td>
             <td style={{ border: '1px solid black', padding: '8px' }}>z</td>
             <td style={{ border: '1px solid black', padding: '8px' }}>z</td>
-            <td style={{ border: '1px solid black', padding: '8px' }}>z</td>
-            <td style={{ border: '1px solid black', padding: '8px' }}>z</td>
+            <td style={{ border: '1px solid black', padding: '8px' }}>z</td> */}
           </tr>
           <tr>
             <td style={{ border: '1px solid black', padding: '8px' }}>Prediccion total de ganancias</td>
@@ -74,7 +80,7 @@ const PredictionTable = () => {
             <td></td>
             <td></td>
             <td></td>
-            <td style={{ border: '1px solid black', padding: '8px' }}>Valor 2</td>
+            <td style={{ border: '1px solid black', padding: '8px' }}>{apuesta>0?apuesta * cypre[0].total : 0}</td>
           </tr>
         </tbody>
       </table>
