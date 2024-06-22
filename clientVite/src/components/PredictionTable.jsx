@@ -1,15 +1,20 @@
-import React , { useState } from 'react';
-import { getUserNumbers } from '../redux/actions';
+import React , { useEffect, useState } from 'react';
+import { getUserNumbers , getCoeNumbers } from '../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 
 const PredictionTable = () => {
   const results = useSelector(state => state.numberPlayer);
+  const coeNumbers = useSelector(state => state.coeNumbers);
   let cypre = [...results];
  /*  arr.push(results) */
   console.log(cypre.reverse())
+  console.log(coeNumbers)
   const [number , setNumber] = useState([]);
   const [apuesta , setApuesta] = useState(0);
   const dispatch = useDispatch();
+  useEffect(() => {
+  dispatch(getCoeNumbers);
+  } , [])
   const handleChange = (e) => {
     e.preventDefault();
     const {name , value} = e.target ;
