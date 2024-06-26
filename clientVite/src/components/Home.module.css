@@ -50,9 +50,10 @@ background-color: #000;
 }
 .content{
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between ;
   align-items: center;
-  /* margin: 50px; */
+  padding: 100px;
 }
 @keyframes marquee {
     0% {

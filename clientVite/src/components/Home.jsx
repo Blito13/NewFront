@@ -9,6 +9,7 @@ import Dashboard from "./DashboardComponent";
 import MyTable from "./MyTable";
 import ResponsiveTable from "./ResponsiveTable";
 import PredictionTable from "./PredictionTable";
+import NumbersComponent from "./NumbersComponent";
 function Home () {
   const results = useSelector(state => state.numberPlayer);
   const coeData = useSelector(state => state.coeNumbers);
@@ -66,12 +67,7 @@ console.log(allDataPlayers);
           </div>
       </div>
      <div className= {styles.content} >
-      <PredictionTable/>
-            </div>
-            <div>
-            <input  placeholder="type here" type="number" onChange={(e)=>handleChange(e)}/>
-            <button onClick={handleSubmit}>calcular</button>
-
+      <NumbersComponent></NumbersComponent>
             </div>
     </div>
     )
