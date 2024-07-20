@@ -37,7 +37,7 @@ const layout = {
         return reslt;
     },
     padStart : funcPad =  (arra) =>{
-        
+        console.log(arra)
         const  numbersArray = arra.map((e,i) => {
             /* let numStart = Array.from(e.numeros.padStart(5, "no-bets")) */
             let toInt = e.numeros.map(e => e = Number(e))

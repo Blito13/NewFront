@@ -4,6 +4,22 @@ const {Roles} = require ('../db');
 const {Numbers} = require ('../db');
 const layout = require('../try.js')
 
+const singlePlayDemo = async (req , res) => {
+ const {playerNumber , numberWinner , playerGamble} =  req.body;
+ const newNumbers = Array.from({ length: 5 }, () => Math.floor(Math.random() * 10));
+
+//aca empezamos con el reduce;
+//Queremos devolver : 
+//total de aciertos 
+//ganancias
+const  responseCall = newNumbers.reduce((acc ,num ) => {
+    
+});
+
+
+ console.log( newNumbers ,playerGamble , playerNumber , numberWinner);
+ res.status(200).json({newNumbers})
+};
 const setDemoPlayers = async (req , res)=> {
     /* let numb =  await setFinalNumber(); */
     const injectedPlayers =  players.map((e)=>{
@@ -180,12 +196,12 @@ const percentajeOfPlayerGamble = async (req , res) =>{
             number : numero[j],
             figure: idx, 
             total : currentCoe, 
-            individual : "noMatch"
+            individual : "si sos el unico que apostaste este numero en esta fila, te llevas 1 quinto del pozo total"
         }];
         boole = true;
     }
 };       
-        res.status(200).send(current);
+        res.status(200).json(current);
 };
 const searchWinners = async (req , res ) => {
     let numberFinal =  await Numbers.findAll();
@@ -228,6 +244,7 @@ module.exports = {
     percentajeOfNumbers,
     setDemoPlayers,
     postPlayer,
-    getPlayersDb
+    getPlayersDb,
+    singlePlayDemo
 } 
 
