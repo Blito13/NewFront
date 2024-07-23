@@ -4,32 +4,44 @@ const {Roles} = require ('../db');
 const {Numbers} = require ('../db');
 const layout = require('../try.js')
 
-const singlePlayDemo = async (req , res) => {
- const {playerNumber , playerGamble} =  req.body;
-//Queremos devolver : 
-//total de aciertos 
-//ganancias
-const arr1 = Array.from({ length: 3 }, () => Math.floor(Math.random() * 10));;
-const arr2 = playerNumber;
-
-var response = [];
- for (let ind = 2 ; ind>-1 ; ind --){
-    if(ind === 2 && arr1[ind] !== arr2[ind]) {
-        
-        response.push(["no hay coincidencias/ no matches at all"])
-        break
+const singlePlayDemo = async (req, res) => {
+    const { playerNumber, playerGamble } = req.body;
+    console.log(playerNumber , playerGamble)
+    // Queremos devolver :
+    // total de aciertos
+    // ganancias
+    //esta funcion rompe cuando hay coincidencias al principio y al final//CORREGIR
+    const arr1 = Array.from({ length: 3 }, () => Math.floor(Math.random() * 10));
+    const arr2 = playerNumber;
+  
+    var response = {
+      noCoinciden: 0,
+      coinciden: 0,
+      message: "",
+      numberWinner:[],
+      numberPlayed : []
+    };
+  
+    for (let ind = 2; ind > -1; ind--) {
+      if (ind === 2 && arr1[ind] !== arr2[ind]) {
+        response.message = "no hay coincidencias/ no matches at all";
+        break;
+      }
+      if (arr1[ind] !== arr2[ind]) {
+        response.noCoinciden += 1;
+      } else {
+        response.coinciden += 1;
+      }
     }
-    if(arr1[ind] !== arr2[ind]){
-      response.noCoinciden? response.noCoinciden +=1 :  response["noCoinciden"] = 1;
-    }else {
-        response.coinciden ? response.coinciden +=1 : response["coinciden"] = 1;
+    if (response.coinciden > 0) {
+      response.message = `${response.coinciden} coincidencias/ matches`;
     }
-
-};
-console.log(response)
-
- res.status(200).json({response})
-};
+  
+   response.numberPlayed = arr2;
+   response.numberWinner = arr1;
+  
+    res.status(200).send({ response });
+  };
 const setDemoPlayers = async (req , res)=> {
     /* let numb =  await setFinalNumber(); */
     const injectedPlayers =  players.map((e)=>{
