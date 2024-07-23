@@ -5,20 +5,30 @@ const {Numbers} = require ('../db');
 const layout = require('../try.js')
 
 const singlePlayDemo = async (req , res) => {
- const {playerNumber , numberWinner , playerGamble} =  req.body;
- const newNumbers = Array.from({ length: 5 }, () => Math.floor(Math.random() * 10));
-
-//aca empezamos con el reduce;
+ const {playerNumber , playerGamble} =  req.body;
 //Queremos devolver : 
 //total de aciertos 
 //ganancias
-const  responseCall = newNumbers.reduce((acc ,num ) => {
-    
-});
+const arr1 = Array.from({ length: 3 }, () => Math.floor(Math.random() * 10));;
+const arr2 = playerNumber;
 
+var response = [];
+ for (let ind = 2 ; ind>-1 ; ind --){
+    if(ind === 2 && arr1[ind] !== arr2[ind]) {
+        
+        response.push(["no hay coincidencias/ no matches at all"])
+        break
+    }
+    if(arr1[ind] !== arr2[ind]){
+      response.noCoinciden? response.noCoinciden +=1 :  response["noCoinciden"] = 1;
+    }else {
+        response.coinciden ? response.coinciden +=1 : response["coinciden"] = 1;
+    }
 
- console.log( newNumbers ,playerGamble , playerNumber , numberWinner);
- res.status(200).json({newNumbers})
+};
+console.log(response)
+
+ res.status(200).json({response})
 };
 const setDemoPlayers = async (req , res)=> {
     /* let numb =  await setFinalNumber(); */
