@@ -5,7 +5,8 @@ import {
    GET_FINAL_RESULTS,
    POST_PLAYER_GAME,
    EDIT_PLAYER_GAME,
-   DELETE_PLAYER_GAME
+   DELETE_PLAYER_GAME,
+   SINGLE_PLAY
   } from "./actions";  
 
 
@@ -17,7 +18,8 @@ finalResults : [],
 number : {numero : [2, 2, 3, 4, 5]},
 statePost: [],
 stateEdit : [],
-stateDelete :[]
+stateDelete :[],
+singlePlay : []
 }
 
 
@@ -59,6 +61,12 @@ stateDelete :[]
          const response =  payload;
          return {
             ...state , stateDelete : response
+         };
+      case SINGLE_PLAY :
+         const singleResults =  payload;
+         console.log(singleResults)
+         return {
+            ...state , singlePlay : singleResults
          };
 
                default:

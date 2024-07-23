@@ -10,6 +10,7 @@ import MyTable from "./MyTable";
 import ResponsiveTable from "./ResponsiveTable";
 import PredictionTable from "./PredictionTable";
 import NumbersComponent from "./NumbersComponent";
+import InstantPlayComponent from './InstantPlayComponent';
 function Home () {
   const results = useSelector(state => state.numberPlayer);
   const coeData = useSelector(state => state.coeNumbers);
@@ -30,12 +31,12 @@ console.log(allDataPlayers);
       dispatch(getUserNumbers({numero:ref}));
   };
     const dispatch = useDispatch();
-    useEffect(()=>{
+    /* useEffect(()=>{
       dispatch(getUserNumbers(numberMock));
       dispatch(getResults());
       dispatch(getPlayersDb());
       dispatch(getCoeNumbers());
-      },[dispatch])
+      },[dispatch]) */
 
     return( 
         
@@ -67,7 +68,7 @@ console.log(allDataPlayers);
           </div>
       </div>
      <div className= {styles.content} >
-      <NumbersComponent></NumbersComponent>
+      <InstantPlayComponent></InstantPlayComponent>
             </div>
     </div>
     )

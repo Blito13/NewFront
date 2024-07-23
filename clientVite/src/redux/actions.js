@@ -6,7 +6,7 @@ export const GET_FINAL_RESULTS = "GET_FINAL_RESULTS";
 export const POST_PLAYER_GAME = "POST_PLAYER_GAME";
 export const EDIT_PLAYER_GAME = "EDIT_PLAYER_GAME";
 export const DELETE_PLAYER_GAME = "DELETE_PLAYER_GAME";
-
+export const SINGLE_PLAY = "SINGLE_PLAY";
 export const getPlayersDb = () => {
     return async function (dispatch){
         try{
@@ -48,6 +48,23 @@ export const getUserNumbers = (number) => {
             {
                 dispatch({
                     type : "GET_NUMBERS_PLAYER",
+                    payload : json.data
+                })
+                console.log(json.data);
+            })
+        }
+        catch(error){
+            console.log(error)
+        }
+    }
+};
+export const singlePlayerPlay = (form) => {
+    return async function (dispatch){
+        try{
+            await  axios.post("/singlePlay",form).then ((json )=> 
+            {
+                dispatch({
+                    type : "SINGLE_PLAY",
                     payload : json.data
                 })
                 console.log(json.data);
