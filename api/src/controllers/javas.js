@@ -10,7 +10,7 @@ const singlePlayDemo = async (req, res) => {
     // Queremos devolver :
     // total de aciertos
     // ganancias
-    //esta funcion rompe cuando hay coincidencias al principio y al final//CORREGIR
+
     const arr1 = Array.from({ length: 3 }, () => Math.floor(Math.random() * 10));
     const arr2 = playerNumber;
   
