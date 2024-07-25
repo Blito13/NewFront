@@ -23,7 +23,7 @@ const singlePlayDemo = async (req, res) => {
     };
   
     for (let ind = 2; ind > -1; ind--) {
-      if (ind === 2 && arr1[ind] !== arr2[ind]) {
+      if (/* ind === 2 && */ arr1[ind] !== arr2[ind]) {
         response.message = "no hay coincidencias/ no matches at all";
         break;
       }
