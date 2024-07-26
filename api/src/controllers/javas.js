@@ -10,8 +10,7 @@ const singlePlayDemo = async (req, res) => {
     // Queremos devolver :
     // total de aciertos
     // ganancias
-
-    const arr1 = Array.from({ length: 3 }, () => Math.floor(Math.random() * 10));
+    const arr1 = Array.from({ length: 5 }, () => Math.floor(Math.random() * 10));
     const arr2 = playerNumber;
   
     var response = {
@@ -22,7 +21,7 @@ const singlePlayDemo = async (req, res) => {
       numberPlayed : []
     };
   
-    for (let ind = 2; ind > -1; ind--) {
+    for (let ind = 4; ind > -1; ind--) {
       if (/* ind === 2 && */ arr1[ind] !== arr2[ind]) {
         response.message = `${response.coinciden} coincidencias`;
         break;
@@ -42,6 +41,71 @@ const singlePlayDemo = async (req, res) => {
   
     res.status(200).send({ response });
   };
+/*   const singlePlayDemo = async (req, res) => {
+    const { playerNumber1, playerNumber2, playerNumber3 } = req.body;
+    console.log(playerNumber1, playerNumber2, playerNumber3);
+    
+    // Generar un único array de números aleatorios
+    const randomArray = Array.from({ length: 5 }, () => Math.floor(Math.random() * 10));
+
+    const initialResponse = {
+        noCoinciden: 0,
+        coinciden: 0,
+        message: "",
+        numberWinner: randomArray,
+        numberPlayed1: playerNumber1,
+        numberPlayed2: playerNumber2,
+        numberPlayed3: playerNumber3
+    };
+
+    // Función para comparar arrays
+    const compareArrays = (arr, playerNumber) => {
+        return [0, 1, 2, 3, 4].reduce((acc, ind) => {
+            if (arr[ind] !== playerNumber[ind]) {
+                acc.noCoinciden += 1;
+            } else {
+                acc.coinciden += 1;
+            }
+            return acc;
+        }, initialResponse);
+    };
+
+    // Comparar cada array jugado con el array de números aleatorios
+    const response1 = compareArrays(randomArray, playerNumber1);
+    const response2 = compareArrays(randomArray, playerNumber2);
+    const response3 = compareArrays(randomArray, playerNumber3);
+
+    // Acumular resultados
+    const finalResponse = {
+        noCoinciden: response1.noCoinciden + response2.noCoinciden + response3.noCoinciden,
+        coinciden: response1.coinciden + response2.coinciden + response3.coinciden,
+        message: "",
+        numberWinner: randomArray,
+        numberPlayed1: playerNumber1,
+        numberPlayed2: playerNumber2,
+        numberPlayed3: playerNumber3
+    };
+
+    if (finalResponse.coinciden > 0) {
+        finalResponse.message = `${finalResponse.coinciden} coincidencias/ matches`;
+    } else {
+        finalResponse.message = "no hay coincidencias/ no matches at all";
+    }
+
+    res.status(200).send({ response: finalResponse });
+}; */
+/* Se genera un único array de números aleatorios (randomArray).
+Se definen tres arrays de números jugados (playerNumber1, playerNumber2, playerNumber3) a partir de req.body.
+La función compareArrays compara cada índice de un array jugado con el array de números aleatorios.
+Se comparan los tres arrays de números jugados con el array de números aleatorios usando compareArrays.
+Se acumulan los resultados en finalResponse.
+Se envía la respuesta con los resultados acumulados. */
+
+
+
+
+
+
 const setDemoPlayers = async (req , res)=> {
     /* let numb =  await setFinalNumber(); */
     const injectedPlayers =  players.map((e)=>{
