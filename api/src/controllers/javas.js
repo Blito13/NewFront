@@ -13,28 +13,30 @@ const singlePlayDemo = async (req, res) => {
     const arr1 = Array.from({ length: 5 }, () => Math.floor(Math.random() * 10));
     const arr2 = playerNumber;
   
-    var response = {
-      noCoinciden: 0,
-      coinciden: 0,
-      message: "",
-      numberWinner:[],
-      numberPlayed : []
-    };
-  
-    for (let ind = 4; ind > -1; ind--) {
-      if (/* ind === 2 && */ arr1[ind] !== arr2[ind]) {
-        response.message = `${response.coinciden} coincidencias`;
-        break;
+    function compareArrays (){
+      var response = {
+        noCoinciden: 0,
+        coinciden: 0,
+        message: "",
+        numberWinner:[],
+        numberPlayed : []
+      };
+
+      for (let ind = 4; ind > -1; ind--) {
+        if (arr1[ind] !== arrToCompare[ind]) {
+          response.message = "no hay coincidencias/ no matches at all";
+          break;
+        }
+        if (arr1[ind] !== arrToCompare[ind]) {
+          response.noCoinciden += 1;
+        } else {
+          response.coinciden += 1;
+        }
+      };
+      if (response.coinciden > 0) {
+        response.message = `${response.coinciden} coincidencias/ matches`;
       }
-      if (arr1[ind] !== arr2[ind]) {
-        response.noCoinciden += 1;
-      } else {
-        response.coinciden += 1;
-      }
-    }
-    if (response.coinciden > 0) {
-      response.message = `${response.coinciden} coincidencias`;
-    }
+  }
   
    response.numberPlayed = arr2;
    response.numberWinner = arr1;
