@@ -24,7 +24,7 @@ const singlePlayDemo = async (req, res) => {
   
     for (let ind = 2; ind > -1; ind--) {
       if (/* ind === 2 && */ arr1[ind] !== arr2[ind]) {
-        response.message = "no hay coincidencias/ no matches at all";
+        response.message = `${response.coinciden} coincidencias`;
         break;
       }
       if (arr1[ind] !== arr2[ind]) {
@@ -34,7 +34,7 @@ const singlePlayDemo = async (req, res) => {
       }
     }
     if (response.coinciden > 0) {
-      response.message = `${response.coinciden} coincidencias/ matches`;
+      response.message = `${response.coinciden} coincidencias`;
     }
   
    response.numberPlayed = arr2;

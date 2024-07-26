@@ -99,11 +99,11 @@ const InstantPlayComponent = () => {
         </tbody>
       </table>
 
-      <div style={{ display: 'flex', gap: '10px' }}>
+      <div style={{ display: 'flex', width :"25%" ,gap :"56px" }}>
         <form onSubmit={playGame}>
         <input type="text" placeholder="Tu apuesta" style={{ flex: 1, padding: '8px' }} onChange={(e)=>handleChangeApuesta(e)} />
         <input type="text" placeholder="Tus numeros" style={{ flex: 1, padding: '8px' }} onChange={(e)=>handleChange(e)} />
-        <button type="submit">PLAYPICH</button>
+        <button type="submit">PLAY</button>
         </form>
       </div>
 
