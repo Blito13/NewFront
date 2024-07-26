@@ -50,8 +50,8 @@ const InstantPlayComponent = () => {
         <thead>
           <tr>
             <th></th>
-        {/*     <th style={{ border: '1px solid black', padding: '8px' }}>Decena de mil</th>
-            <th style={{ border: '1px solid black', padding: '8px' }}>Unidad de mil</th> */}
+            <th style={{ border: '1px solid black', padding: '8px' }}>Decena de mil</th>
+            <th style={{ border: '1px solid black', padding: '8px' }}>Unidad de mil</th>
             <th style={{ border: '1px solid black', padding: '8px' }}>Centena</th>
             <th style={{ border: '1px solid black', padding: '8px' }}>Decena</th>
             <th style={{ border: '1px solid black', padding: '8px' }}>Unidad</th>
