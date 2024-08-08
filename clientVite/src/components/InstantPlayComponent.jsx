@@ -11,8 +11,10 @@ const InstantPlayComponent = () => {
  /*  arr.push(results) */
   /* console.log(cypre.reverse()) */
  /*  console.log(coeNumbers) */
-  const [number , setNumber] = useState([]);
+  const [number , setNumber] = useState([4,6,9,7,5]);
   const [apuesta , setApuesta] = useState(0);
+  const [colors ,  setColors] = useState("yes");
+  const [numberWi , setnumberWi] =  useState([6,9,8,7,5]);
   const dispatch = useDispatch();
   const handleChange = (e) => {
     e.preventDefault();
@@ -59,7 +61,30 @@ const InstantPlayComponent = () => {
         </thead>
         <tbody>
           <tr>
-            <td style={{ border: '1px solid black', padding: '8px' }}>Tus numeros</td>
+            <td style={{ border: '1px solid black', padding: '8px' }}>1er Numero</td>
+            {number ?number.map((e , i ) => 
+              <td  style={e !== numberWi[i]  ?{ border: '1px solid black', padding: '8px' }: {backgroundColor :"gold" , border : '3px solid orange' , padding : '8px'}}>{e}</td>
+            ) : null}
+           {/*  <td style={{ border: '1px solid black', padding: '8px' }}>x</td>
+            <td style={{ border: '1px solid black', padding: '8px' }}>x</td> */}
+            {/* <td style={{ border: '1px solid black', padding: '8px' }}>x</td>
+            <td style={{ border: '1px solid black', padding: '8px' }}>x</td>
+            <td style={{ border: '1px solid black', padding: '8px' }}>x</td> */}
+          </tr>
+          <tr>
+            <td style={{ border: '1px solid black', padding: '8px' }}>2er Numero</td>
+            {number ?number.map((e) => 
+              <td  style={{ border: '1px solid black', padding: '8px' }}>{e}</td>
+
+            ) : null}
+           {/*  <td style={{ border: '1px solid black', padding: '8px' }}>x</td>
+            <td style={{ border: '1px solid black', padding: '8px' }}>x</td> */}
+            {/* <td style={{ border: '1px solid black', padding: '8px' }}>x</td>
+            <td style={{ border: '1px solid black', padding: '8px' }}>x</td>
+            <td style={{ border: '1px solid black', padding: '8px' }}>x</td> */}
+          </tr>
+          <tr>
+            <td style={{ border: '1px solid black', padding: '8px' }}>3er Numero</td>
             {number ?number.map((e) => 
               <td  style={{ border: '1px solid black', padding: '8px' }}>{e}</td>
 

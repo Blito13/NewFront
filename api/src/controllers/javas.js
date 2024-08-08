@@ -5,43 +5,51 @@ const {Numbers} = require ('../db');
 const layout = require('../try.js')
 
 const singlePlayDemo = async (req, res) => {
-    const { playerNumber, playerGamble } = req.body;
-    console.log(playerNumber , playerGamble)
+    const { playerNumbers, playerGamble } = req.body;
+    console.log(playerNumbers , playerGamble)
     // Queremos devolver :
     // total de aciertos
     // ganancias
     const arr1 = Array.from({ length: 5 }, () => Math.floor(Math.random() * 10));
-    const arr2 = playerNumber;
+    const arr2 = playerNumbers;
   
-    function compareArrays (){
-      var response = {
-        noCoinciden: 0,
-        coinciden: 0,
-        message: "",
-        numberWinner:[],
-        numberPlayed : []
-      };
-
-      for (let ind = 4; ind > -1; ind--) {
-        if (arr1[ind] !== arrToCompare[ind]) {
-          response.message = "no hay coincidencias/ no matches at all";
-          break;
-        }
-        if (arr1[ind] !== arrToCompare[ind]) {
-          response.noCoinciden += 1;
-        } else {
-          response.coinciden += 1;
-        }
-      };
-      if (response.coinciden > 0) {
-        response.message = `${response.coinciden} coincidencias/ matches`;
+    function compareArrays(arrWinner, arraysToCompare) {
+        return arraysToCompare.map((arrToCompare , i) => {
+        let arrX = []; 
+          var response = {
+            noCoinciden: 0,
+            coinciden: 0,
+            message: "",
+            numberWinner: [],
+            numberPlayed: []
+          };
+      
+          for (let ind = 4; ind > -1; ind--) {
+            if (arrWinner[ind] !== arrToCompare[ind]) {
+              response.message = "no hay coincidencias/ no matches at all";
+              break;
+            }
+            if (arrWinner[ind] !== arrToCompare[ind]) {
+              response.noCoinciden += 1;
+            } else {
+              response.coinciden += 1;
+            }
+          }
+      
+          if (response.coinciden > 0) {
+            response.message = `${response.coinciden} coincidencias/ matches`;
+          }
+      
+          response.numberPlayed = arrToCompare;
+          response.numberWinner = arrWinner;
+      
+          return { [`array${i}`] :response};
+        });
       }
-  }
+    
+      let results = compareArrays(arr1, arr2);
   
-   response.numberPlayed = arr2;
-   response.numberWinner = arr1;
-  
-    res.status(200).send({ response });
+    res.status(200).send({results});
   };
 /*   const singlePlayDemo = async (req, res) => {
     const { playerNumber1, playerNumber2, playerNumber3 } = req.body;

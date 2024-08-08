@@ -1,9 +1,8 @@
 const arrWinner = Array.from({ length: 5 }, () => Math.floor(Math.random() * 10));;
 let arraysToCompare = [
-  [1, 2, 3, 4, 3],
-  [1, 2, 0, 4, 9],
-  [0, 2, 3, 4, 2],
-  [1, 2, 3, 0, 6]
+  [1, 2, 3, 4, 7 ],
+  [1, 2, 0, 4, 6],
+  [0, 2, 3, 4, 2]
 ];
 function compareArrays(arrWinner, arraysToCompare) {
     return arraysToCompare.map(arrToCompare => {
