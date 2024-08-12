@@ -8,28 +8,22 @@ const InstantPlayComponent = () => {
 let singlePlayResults = [3,3,4,5,6,7,8,9,9]
 
   const [number , setNumber] = useState({
-     arr1 :[],
-     arr2 :[],
-     arr3 :[]});
+     arx1 :[],
+     arx2 :[],
+     arx3 :[]});
   const [apuesta , setApuesta] = useState(0);
   const [colors ,  setColors] = useState("yes");
   const [numberWi , setnumberWi] =  useState([6,9,8,7,5]);
   console.log(number)
   const handleChange = (e) => {
-    e.preventDefault();
-    const {name , value} = e.target ;
-    const piece = Array.from(value);
-    let ref = piece.map(e => parseFloat(e));
-    setNumber({...number});
-    number[`${name}`] =  value;
-    console.log(number);
   };
   const handleChangeApuesta = (e) => {
       e.preventDefault();
       const { name, value } = e.target;
+      console.log(typeof value)
       const ref = Array.from(value).map((e) => parseFloat(e));
-
-      setNumber((prevNumber) => ({
+    
+      setNumber((prevNumber) => ({ 
         ...prevNumber,
         [name]: ref
       }));
@@ -40,13 +34,14 @@ let singlePlayResults = [3,3,4,5,6,7,8,9,9]
   const playGame = (e) => {
     e.preventDefault();
     const piece = Array.from(number);
-    let ref = piece.map(e => parseFloat(e));
-    console.log(apuesta)
+    console.log(number)
+   /*  let ref = piece.map(e => parseFloat(e));
+    console.log(apuesta) */
     let form = {
-      playerNumber : ref,
+      playerNumbers : number,
       playerGamble : apuesta
     };
-    console.log
+    console.log(form)
     sendForm(form)
   }; 
   return (
@@ -67,35 +62,35 @@ let singlePlayResults = [3,3,4,5,6,7,8,9,9]
           </tr>
         </thead>
         <tbody>
-          {/* <tr>
+          <tr>
             <td style={{ border: '1px solid black', padding: '8px' }}>1er Numero</td>
-            {number ?number.map((e , i ) => 
+            {number ?number.arx1.map((e , i ) => 
               <td  style={e !== numberWi[i]  ?{ border: '1px solid black', padding: '8px' }: {backgroundColor :"gold" , border : '3px solid orange' , padding : '8px'}}>{e}</td>
             ) : null}
           </tr>
           <tr>
             <td style={{ border: '1px solid black', padding: '8px' }}>2er Numero</td>
-            {number ?number.map((e) => 
+            {number ?number.arx2.map((e) => 
               <td  style={{ border: '1px solid black', padding: '8px' }}>{e}</td>
             ) : null}
           </tr>
           <tr>
             <td style={{ border: '1px solid black', padding: '8px' }}>3er Numero</td>
-            {number ?number.map((e) => 
+            {number ?number.arx3.map((e) => 
               <td  style={{ border: '1px solid black', padding: '8px' }}>{e}</td>
             ) : null}
           </tr>
           <tr>
             <td style={{ border: '1px solid black', padding: '8px' }}>Prediccion total de ganancias</td>
             <td></td>
-          </tr> */}
+          </tr>
         </tbody>
       </table>
       <div style={{ display: 'flex', width :"25%" ,gap :"56px" }}>
         <form onSubmit={playGame}>
-        <input type="text" placeholder="1er Numero" name ="arr1" style={{ flex: 1, padding: '8px' }} onChange={(e)=>handleChangeApuesta(e)} />
-        <input type="text" placeholder="2do Numero" name ="arr2" style={{ flex: 1, padding: '8px' }} onChange={(e)=>handleChangeApuesta(e)} />
-        <input type="text" placeholder="3er Numero" name ="arr3" style={{ flex: 1, padding: '8px' }} onChange={(e)=>handleChangeApuesta(e)} />
+        <input type="number" placeholder="1er Numero" name ="arx1" style={{ flex: 1, padding: '8px' }} onChange={(e)=>handleChangeApuesta(e)} />
+        <input type="number" placeholder="2do Numero" name ="arx2" style={{ flex: 1, padding: '8px' }} onChange={(e)=>handleChangeApuesta(e)} />
+        <input type="number" placeholder="3er Numero" name ="arx3" style={{ flex: 1, padding: '8px' }} onChange={(e)=>handleChangeApuesta(e)} />
         <input type="text" placeholder="Apuesta" style={{ flex: 1, padding: '8px' }} onChange={(e)=>handleChange(e)} />
         <button type="submit">PLAY</button>
         </form>

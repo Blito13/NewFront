@@ -6,11 +6,10 @@ const layout = require('../try.js')
 
 const singlePlayDemo = async (req, res) => {
     const { playerNumbers, playerGamble } = req.body;
-    console.log(playerNumbers , playerGamble)
+    const {arx1,arx2,arx3} = playerNumbers;
+
 
     const arr1 = Array.from({ length: 5 }, () => Math.floor(Math.random() * 10));
-    const arr2 = playerNumbers;
-  
     function compareArrays(arrWinner, arraysToCompare) {
         return arraysToCompare.map((arrToCompare , i) => {
         let arrX = []; 
@@ -45,7 +44,7 @@ const singlePlayDemo = async (req, res) => {
         });
       }
     
-      let results = compareArrays(arr1, arr2);
+      let results = await compareArrays(arr1, [arx1,arx2,arx3]);
   
     res.status(200).send({results});
   };
