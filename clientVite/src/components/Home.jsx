@@ -1,42 +1,8 @@
 import React, { useState } from "react";
-import DataTable from 'react-data-table-component';
 import styles from './Home.module.css';
-import { useEffect} from "react";
-import { useSelector , useDispatch} from "react-redux";
-import { getCoeNumbers , getUserNumbers , getPlayersDb , getResults} from "../redux/actions";
-import { coeColumns , coePlayerColumns , allPlayersColumns , winnesColumns} from "./tables";
-import Dashboard from "./DashboardComponent";
-import MyTable from "./MyTable";
-import ResponsiveTable from "./ResponsiveTable";
-import PredictionTable from "./PredictionTable";
-import NumbersComponent from "./NumbersComponent";
+
 import InstantPlayComponent from './InstantPlayComponent';
 function Home () {
-  const results = useSelector(state => state.numberPlayer);
-  const coeData = useSelector(state => state.coeNumbers);
-  const allDataPlayers = useSelector(state => state.players);
-  const finalResults = useSelector((state) => state.finalResults);
-  const numberMock = useSelector((state) => state.number);
-  const [number ,setNumber] = useState([]);
-  const handleChange =(e) => {
-      const {value , name } = e.target;
-      setNumber(value);
-  };
-const allIn = [results , coeData , allDataPlayers]; // columns
-const allOn = [coePlayerColumns , coeColumns , allPlayersColumns]; // data
-console.log(allDataPlayers);
-  const handleSubmit = () =>{
-    const piece = Array.from(number);
-    let ref = piece.map(e => parseFloat(e));
-      dispatch(getUserNumbers({numero:ref}));
-  };
-    const dispatch = useDispatch();
-    /* useEffect(()=>{
-      dispatch(getUserNumbers(numberMock));
-      dispatch(getResults());
-      dispatch(getPlayersDb());
-      dispatch(getCoeNumbers());
-      },[dispatch]) */
 
     return( 
         

@@ -2,7 +2,7 @@ import styles from "./NavBar.module.css";
 import { useState ,Fragment , useEffect }from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import NavBarMenu from "./NavBarMenu";
-import { useDispatch,useSelector } from "react-redux";
+
 
 import LogIn from "./LogIn";
 
@@ -13,7 +13,7 @@ export default function NavBar ({handleLog , handleHand}){
   const [showMenu , setShowmenu] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
 
-  const dispatch =  useDispatch();
+
 
 
   useEffect(() => {

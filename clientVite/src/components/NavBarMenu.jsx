@@ -1,7 +1,5 @@
 import React from "react";
 import styles from './NavBarMenu.module.css';
-import { useDispatch , useSelector } from "react-redux";
-
 
 
 const NavMenu = ({func}) => {

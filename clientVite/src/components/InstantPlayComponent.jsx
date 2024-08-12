@@ -1,21 +1,17 @@
 import React , { useEffect, useState } from 'react';
-import { getUserNumbers , getCoeNumbers , singlePlayerPlay } from '../redux/actions';
-import { useDispatch, useSelector } from 'react-redux';
+
 import NumbersComponent from './NumbersComponent';
+import { usePlay } from '../hooks/usePlay';
 const InstantPlayComponent = () => {
-/*   const results = useSelector(state => state.numberPlayer);
-  const coeNumbers = useSelector(state => state.coeNumbers); */
-  const singlePlayResults =  useSelector(state => state.singlePlay);
- console.log(singlePlayResults.length)
-  /* let cypre = [...results]; */
- /*  arr.push(results) */
-  /* console.log(cypre.reverse()) */
- /*  console.log(coeNumbers) */
+  const { play, clearCart, addToCart, sendCart, getTotal, sendForm } = usePlay();
+  console.log(sendForm);
+let singlePlayResults = [3,3,4,5,6,7,8,9,9]
+
   const [number , setNumber] = useState([4,6,9,7,5]);
   const [apuesta , setApuesta] = useState(0);
   const [colors ,  setColors] = useState("yes");
   const [numberWi , setnumberWi] =  useState([6,9,8,7,5]);
-  const dispatch = useDispatch();
+
   const handleChange = (e) => {
     e.preventDefault();
     const {name , value} = e.target ;
@@ -65,65 +61,25 @@ const InstantPlayComponent = () => {
             {number ?number.map((e , i ) => 
               <td  style={e !== numberWi[i]  ?{ border: '1px solid black', padding: '8px' }: {backgroundColor :"gold" , border : '3px solid orange' , padding : '8px'}}>{e}</td>
             ) : null}
-           {/*  <td style={{ border: '1px solid black', padding: '8px' }}>x</td>
-            <td style={{ border: '1px solid black', padding: '8px' }}>x</td> */}
-            {/* <td style={{ border: '1px solid black', padding: '8px' }}>x</td>
-            <td style={{ border: '1px solid black', padding: '8px' }}>x</td>
-            <td style={{ border: '1px solid black', padding: '8px' }}>x</td> */}
           </tr>
           <tr>
             <td style={{ border: '1px solid black', padding: '8px' }}>2er Numero</td>
             {number ?number.map((e) => 
               <td  style={{ border: '1px solid black', padding: '8px' }}>{e}</td>
-
             ) : null}
-           {/*  <td style={{ border: '1px solid black', padding: '8px' }}>x</td>
-            <td style={{ border: '1px solid black', padding: '8px' }}>x</td> */}
-            {/* <td style={{ border: '1px solid black', padding: '8px' }}>x</td>
-            <td style={{ border: '1px solid black', padding: '8px' }}>x</td>
-            <td style={{ border: '1px solid black', padding: '8px' }}>x</td> */}
           </tr>
           <tr>
             <td style={{ border: '1px solid black', padding: '8px' }}>3er Numero</td>
             {number ?number.map((e) => 
               <td  style={{ border: '1px solid black', padding: '8px' }}>{e}</td>
-
             ) : null}
-           {/*  <td style={{ border: '1px solid black', padding: '8px' }}>x</td>
-            <td style={{ border: '1px solid black', padding: '8px' }}>x</td> */}
-            {/* <td style={{ border: '1px solid black', padding: '8px' }}>x</td>
-            <td style={{ border: '1px solid black', padding: '8px' }}>x</td>
-            <td style={{ border: '1px solid black', padding: '8px' }}>x</td> */}
           </tr>
-          {/* <tr>
-            <td style={{ border: '1px solid black', padding: '8px' }}>Prediccion parcial por cifra</td>
-            {cypre.map((e) => 
-              <td  style={{ border: '1px solid black', padding: '8px' }}>{e.individual}</td>
-            )}
-             <td style={{ border: '1px solid black', padding: '8px' }}>y</td>
-            <td style={{ border: '1px solid black', padding: '8px' }}>y</td>
-            <td style={{ border: '1px solid black', padding: '8px' }}>y</td>
-            <td style={{ border: '1px solid black', padding: '8px' }}>y</td>
-            <td style={{ border: '1px solid black', padding: '8px' }}>y</td> 
-          </tr> */}
-          {/* <tr>
-            <td style={{ border: '1px solid black', padding: '8px' }}>Predicción total por cifra</td>
-           {cypre.map((e) => 
-              <td  style={{ border: '1px solid black', padding: '8px' }}>{e.total}</td>
-            )}
-            <td style={{ border: '1px solid black', padding: '8px' }}>z</td>
-            <td style={{ border: '1px solid black', padding: '8px' }}>z</td>
-            <td style={{ border: '1px solid black', padding: '8px' }}>z</td>
-            <td style={{ border: '1px solid black', padding: '8px' }}>z</td>
-            <td style={{ border: '1px solid black', padding: '8px' }}>z</td> 
-          </tr> */}
           <tr>
             <td style={{ border: '1px solid black', padding: '8px' }}>Prediccion total de ganancias</td>
             <td></td>
           </tr>
         </tbody>
       </table>
-
       <div style={{ display: 'flex', width :"25%" ,gap :"56px" }}>
         <form onSubmit={playGame}>
         <input type="text" placeholder="Tu apuesta" style={{ flex: 1, padding: '8px' }} onChange={(e)=>handleChangeApuesta(e)} />
@@ -131,11 +87,6 @@ const InstantPlayComponent = () => {
         <button type="submit">PLAY</button>
         </form>
       </div>
-
-     {/*  <div style={{ display: 'flex', gap: '10px' }}>
-        <button style={{ padding: '10px 20px' }} onClick={gambleAnalize}>Analizar Numeros</button>
-        <button style={{ padding: '10px 20px' }}>Apostar</button>
-      </div> */}
     </div>
   );
 };

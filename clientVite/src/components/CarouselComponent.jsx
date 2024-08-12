@@ -19,7 +19,7 @@ const variants = {
       opacity: 0
     };
   },
-  center: {
+  center: { 
     zIndex: 1,
     x: 0,
     opacity: 1

@@ -1,23 +1,19 @@
 /* import logo from './logo.svg'; */
 import Home from "./components/Home";
-import DataNumbersComponent from "./components/DataNumbersComponent";
 import NavBar from "./components/NavBar";
-import Create from "./components/Create";
-import { Provider } from "react-redux";
-import configureStore from "./store";
+/* import configureStore from "./store"; */
 import { Route, Routes } from 'react-router-dom';
+import { PlayProvider } from "./context/play.jsx";
+
 
 function App() {
-  const store = configureStore();
+  
 
   return (
-    <Provider store={store}>
-      <NavBar/>
-    <Routes>
-      <Route path = '/' element={<Home/>}/>
-      <Route path = '/create' element={<Create/>}/>
-    </Routes>
-    </Provider>
+    <PlayProvider>
+      
+      <Home/>
+    </PlayProvider>
   );
 }
 
