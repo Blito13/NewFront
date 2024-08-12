@@ -7,9 +7,7 @@ const layout = require('../try.js')
 const singlePlayDemo = async (req, res) => {
     const { playerNumbers, playerGamble } = req.body;
     console.log(playerNumbers , playerGamble)
-    // Queremos devolver :
-    // total de aciertos
-    // ganancias
+
     const arr1 = Array.from({ length: 5 }, () => Math.floor(Math.random() * 10));
     const arr2 = playerNumbers;
   

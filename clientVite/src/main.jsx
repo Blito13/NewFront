@@ -1,14 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.jsx';
+import { createRoot } from 'react-dom/client';
+import {BrowserRouter} from "react-router-dom"
 import './index.css';
-import axios from 'axios';
-
-
-/* axios.defaults.baseURL = import.meta.env.VITE_APP_BE_URL; */
-
-ReactDOM.createRoot(document.getElementById('root')).render(
-
+import App from './App';
+import axios from 'axios'
+const root = ReactDOM.createRoot(document.getElementById('root'));
+axios.defaults.baseURL = "http://localhost:3001"/* process.env.REACT_APP_BE_URL */
+root.render(
+  <React.StrictMode>
+    <BrowserRouter>
     <App />
-
-)
+    </BrowserRouter>
+  </React.StrictMode>
+);

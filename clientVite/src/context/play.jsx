@@ -14,12 +14,16 @@ function useCartReducer (){
         type:'REMOVE_FROM_CART',
         payload : product
     })
-    const sendForm = form => { 
-       console.log(form);
-       /*  const whatsappLink = `whatsapp://send?phone=${import.meta.env.VITE_APP_NMBR}&text=${encodeURIComponent(form)}`;
-        window.location.href = whatsappLink; */
-        /* dispatch({type : 'CLEAR_CART'}) */
-    }
+    const sendForm =async (form) => {
+       await  axios.post("/singlePlay",form).then ((json )=> 
+            {
+                dispatch({
+                    type : "SINGLE_PLAY",
+                    payload : json.data
+                })
+                console.log(json.data);
+            })
+    };
     const getTotal = () => dispatch({
         type: 'TOTAL_PRICE',
     })

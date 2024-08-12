@@ -10,7 +10,7 @@ export const playInitialState = JSON.parse(window.localStorage.getItem('cart')) 
 
 
 export const CART_ACTION_TYPES = {
-  ADD_TO_CART: 'ADD_TO_CART',
+  SINGLE_PLAY: 'SINGLE_PLAY',
   REMOVE_FROM_CART: 'REMOVE_FROM_CART',
   CLEAR_CART: 'CLEAR_CART',
   SEND_FORM: 'SEND_FORM',
@@ -100,7 +100,7 @@ export const playReducer = (state, action) => {
       updateLocalStorage(newFilters);
       return newFilters;
 
-    case CART_ACTION_TYPES.SEND_FORM:
+    case CART_ACTION_TYPES.SINGLE_PLAY:
         console.log("abdulito")
       const cleared  = {
         cart : [],
