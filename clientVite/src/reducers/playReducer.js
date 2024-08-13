@@ -1,6 +1,6 @@
 /* import { calcularResta  } from "../components/utils"; */
 const setObject = {
-  cart : [],
+  play : [],
   total : 0,
   discounts : 0
 }
@@ -103,7 +103,7 @@ export const playReducer = (state, action) => {
     case CART_ACTION_TYPES.SINGLE_PLAY:
         console.log("abdulito")
       const cleared  = {
-        cart : [],
+        play: payload,
         total : 0,
         discounts : 0
       }

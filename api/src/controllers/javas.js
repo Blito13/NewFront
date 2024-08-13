@@ -23,7 +23,7 @@ const singlePlayDemo = async (req, res) => {
       
           for (let ind = 4; ind > -1; ind--) {
             if (arrWinner[ind] !== arrToCompare[ind]) {
-              response.message = "no hay coincidencias/ no matches at all";
+              response.message = "no hay coincidencias";
               break;
             }
             if (arrWinner[ind] !== arrToCompare[ind]) {
@@ -34,13 +34,13 @@ const singlePlayDemo = async (req, res) => {
           }
       
           if (response.coinciden > 0) {
-            response.message = `${response.coinciden} coincidencias/ matches`;
+            response.message = `${response.coinciden} coincidencias`;
           }
       
           response.numberPlayed = arrToCompare;
           response.numberWinner = arrWinner;
       
-          return { [`array${i}`] :response};
+          return response
         });
       }
     

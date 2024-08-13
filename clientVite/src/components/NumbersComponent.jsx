@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 const NumbersComponent = ({numbers , message}) => {
- /*  const [numbers, setNumbers] = useState([]); */
 
-  const generateNumbers = () => {
-    const newNumbers = Array.from({ length:3 }, () => Math.floor(Math.random() * 10));
-    setNumbers(newNumbers);
-  };
+  console.log(message)
+let [one , two , tree] =message; 
 
+
+ 
   return (
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
@@ -18,7 +17,7 @@ const NumbersComponent = ({numbers , message}) => {
       </div>
         <div>
             <h1>
-            {message}
+           {/*  {message} */}
             </h1>
         </div>
     </div>
