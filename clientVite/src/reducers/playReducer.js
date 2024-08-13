@@ -1,10 +1,10 @@
-/* import { calcularResta  } from "../components/utils"; */
+
 const setObject = {
   play : [],
   total : 0,
   discounts : 0
 }
-export const playInitialState = JSON.parse(window.localStorage.getItem('cart')) || setObject
+export const playInitialState = JSON.parse(window.localStorage.getItem('play')) || setObject
 
 
 
@@ -107,7 +107,7 @@ export const playReducer = (state, action) => {
         total : 0,
         discounts : 0
       }
-      localStorage.removeItem("cart")
+      
       updateLocalStorage(cleared);
       return cleared;
 
