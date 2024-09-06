@@ -11,6 +11,7 @@ const singlePlayDemo = async (req, res) => {
 
     const arr1 = Array.from({ length: 5 }, () => Math.floor(Math.random() * 10));
     function compareArrays(arrWinner, arraysToCompare) {
+      console.log(arraysToCompare,"esperite")
         return arraysToCompare.map((arrToCompare , i) => {
         let arrX = []; 
           var response = {

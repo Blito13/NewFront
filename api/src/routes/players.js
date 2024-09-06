@@ -15,6 +15,8 @@ router.get('/setFinalNumber', setFinalNumber);
 router.get('/average' , percentajeOfNumbers);
 router.post('/expected' , percentajeOfPlayerGamble);
 router.get('/finalResults' , searchWinners);
-router.post('/singlePlay' , singlePlayDemo);
+router.post('/singlePlay' ,validation, singlePlayDemo);
 router.get('/getplayers' ,getPlayersDb);
+router.post('/en/sing-up',signUp);
+router.post('/es/toc-toc' ,signIn , setUpPlayers  )
 module.exports = router;

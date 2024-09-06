@@ -1,0 +1,6 @@
+POST = http://localhost:3001/en/gamblers
+Content-Type: application.json
+{
+    "username" :"lestone",
+    "email": "someone@gmail.com"
+}
