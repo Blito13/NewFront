@@ -17,7 +17,8 @@ const validation =  async (req , res , next) =>{
 }
 const isModerator = async (req , res , next) =>{
    const id = req.userId;
-  
+   console.log(req.userId)
+//resolvver aca
    const Uroles = await PlayerxsRoles.findAll({where : {PlayerxId:id }});
    const rol = await Roles.findAll({where :{ id :Uroles.map(e => e.RoleId)}});
    for(let i=0 ; i< rol.length ; i++){

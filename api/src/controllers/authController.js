@@ -21,10 +21,12 @@ if (count > 0 ) return;
 roles.map(e => {Roles.create({name : e})})
 }
 const signUp = async (req , res) =>{
-  const {  userName , passWord  , roles , email} = req.body;
+    //solo el admin puedde crear o deletear users, ellos no se pueden crear x si solos
+  const {  name ,userName , passWord  , roles , email} = req.body;
    //validaciones en ./ss
    createRoll();
-   const playerCreated = await Playerxs.create({                
+   const playerCreated = await Playerxs.create({     
+     name,           
      userName,
      passWord : await encryptPassword(passWord),
      email
