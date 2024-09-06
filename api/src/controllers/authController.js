@@ -29,12 +29,13 @@ const signUp = async (req , res) =>{
      name,           
      userName,
      passWord : await encryptPassword(passWord),
-     email
+     email,
+     roles
      
     }); 
     
    if(roles){
-
+    console.log(roles)
        const typesDb = await Roles.findAll({where: {name: roles}}) ;
    
         playerCreated.addRoles(typesDb);
@@ -53,10 +54,10 @@ const signUp = async (req , res) =>{
 
 const signIn = async (req , res) => {
     const {email , password} = req.body;
-    console.log(req.headers)
+  
     //manejar en caso de querer haer una req con un token  ya otorgado
     //parar evitar multiples sessiones  
-    if(req.headers["x-access-token"]) return res.status(404).json({message : "already-online , check out your browser for more tabs with the same page or if you have been victim of cyberSecuryty call 911"}) 
+   
     console.log(email , password);
     const match =  await Playerxs.findOne({ where: { email : email }});
     if(!match) return res.status(400).json({message : "user not found"});

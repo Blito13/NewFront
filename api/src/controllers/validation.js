@@ -6,7 +6,7 @@ const {PlayerxsRoles} =  require('../db');
 const {Roles} =  require('../db');
 const validation =  async (req , res , next) =>{
     const token =  req.headers["x-access-token"];
-    /* console.log(token); */
+    console.log(token);
     if(!token) return res.status(400).json({message :"no token provided"});
     const decoded = jwt.verify(token , SECRET );
     req.userId = decoded.id;
@@ -17,7 +17,7 @@ const validation =  async (req , res , next) =>{
 }
 const isModerator = async (req , res , next) =>{
    const id = req.userId;
-   console.log(req.userId)
+   console.log(id , "jkshkdjhfksd")
 //resolvver aca
    const Uroles = await PlayerxsRoles.findAll({where : {PlayerxId:id }});
    const rol = await Roles.findAll({where :{ id :Uroles.map(e => e.RoleId)}});
