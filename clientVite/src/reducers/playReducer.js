@@ -1,5 +1,7 @@
 
 const setObject = {
+  userName : "",
+  token : "",
   play : [],
   total : 0,
   discounts : 0
@@ -9,17 +11,16 @@ export const playInitialState = JSON.parse(window.localStorage.getItem('play')) 
 
 
 
-export const CART_ACTION_TYPES = {
-  SINGLE_PLAY: 'SINGLE_PLAY',
-  REMOVE_FROM_CART: 'REMOVE_FROM_CART',
-  CLEAR_CART: 'CLEAR_CART',
-  SEND_FORM: 'SEND_FORM',
-  TOTAL_PRICE: 'TOTAL_PRICE'
+export const PLAY_ACTION_TYPES = {
+  SINGLE_PLAY :'SINGLE_PLAY',
+  CLEAR_STORE :'CLEAR_STORE' ,
+  LOGIN_SESSION :'LOGIN_SESSION',
+  UPDATE_PASS :'UPDATE_PASS' ,
 };
 
 // Función para actualizar el localStorage con el estado del carrito
 export const updateLocalStorage = state => {
-  window.localStorage.setItem('cart', JSON.stringify(state));
+  window.localStorage.setItem('play', JSON.stringify(state));
 };
 
 // Reducer
@@ -27,98 +28,36 @@ export const playReducer = (state, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case CART_ACTION_TYPES.ADD_TO_CART:
-      const { id } = action.payload;
-      const productInCartIndex = state.cart.findIndex(item => item.id === id);
-      
-      if (productInCartIndex >= 0) {
-        const newState = state.cart.map((item, index) => {
-          if (index === productInCartIndex) {
-            let descuentos = calcularResta( item.quantity+ 1, item.brand) 
-            return {
-              ...item, 
-              quantity: item.quantity + 1,
-              descuentos : item.descuentos ? item.descuentos + descuentos : descuentos
-            };
-          }
-          return item;
-        });
-        const totales = newState.reduce((acc, curr) => {
-          return acc + (curr.price * curr.quantity)
-        }, 0);
-        const descuentos =  newState.reduce((acc , curr) => {
-          return acc + curr.descuentos 
-        } ,0) 
-      
-        const newProducts = {
-          cart  : newState,
-          total : totales,
-          discounts : descuentos
-        }
-        
-        updateLocalStorage(newProducts); 
-        return newProducts;
-      }
-      
-      const newState = [
-        ...state.cart,
-        {
-          ...action.payload, // product
-          quantity: 1,
-          descuentos : action.payload.descuentos?action.payload.descuentos : 0
-        }
-      ];
-    
-      
-      const totaly = newState.reduce((acc, curr) => {
-             return acc + (curr.price * curr.quantity)
-    }, 0);
-    const res = newState.reduce((acc, curr) => {
-      return acc + curr.descuentos ;
-    },0)
-      
-      const newProducts = {
-        cart  : newState,
-        total : totaly,
-        discounts : res
-      }
-      
-      updateLocalStorage(newProducts); // Aquí también
-      return newProducts;
+    case PLAY_ACTION_TYPES.LOGIN_SESSION:
+    const tk = action.payload;
+    console.log(tk);
 
-    case CART_ACTION_TYPES.REMOVE_FROM_CART:
-      const { id: removeId } = payload;
-      const filteredState = state.cart.filter(item => item.id !== removeId);
-      const result = filteredState.reduce((acc, curr) => acc + curr.price * curr.quantity, 0);
-      const discounts = filteredState.reduce((acc, curr) => acc + curr.descuentos, 0);
-      console.log(discounts)
-      const newFilters = {
-        cart: filteredState,
-        total : result,
-        discounts : discounts > 0 ? discounts : 0
+      const newPlayState = {
+      ...state, 
+      token:tk
       }
-      updateLocalStorage(newFilters);
-      return newFilters;
+      
+      updateLocalStorage(newPlayState); // Aquí también
+      return newPlayState;
 
-    case CART_ACTION_TYPES.SINGLE_PLAY:
+    case PLAY_ACTION_TYPES.CLEAR_STORE:
+      
+      updateLocalStorage(setObject);
+      return setObject ;
+
+    case PLAY_ACTION_TYPES.SINGLE_PLAY:
         console.log("abdulito")
       const cleared  = {
-        play: payload,
-        total : 0,
-        discounts : 0
-      }
-      
+        ...state,
+        play: payload
+      }  
       updateLocalStorage(cleared);
       return cleared;
 
-    case CART_ACTION_TYPES.CLEAR_CART:
+    case CART_ACTION_TYPES.UPDATE_PASS:
       const clear  = {
-        cart : [],
-        total : 0,
-        discounts : 0
+       ...state
       }
-      updateLocalStorage(clear);
-      
       return clear;
 
     default:

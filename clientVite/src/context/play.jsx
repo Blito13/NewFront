@@ -6,16 +6,23 @@ export const PlayContext = createContext();
 function useCartReducer (){
     const [state , dispatch] = useReducer(playReducer,playInitialState);
 
-    const addToCart  = product => dispatch({
-        type:'ADD_TO_CART',
-        payload : product
-    })
-    const removeFromCart = product => dispatch({
-        type:'REMOVE_FROM_CART',
-        payload : product
-    })
+    const sessionLogIn  = async (credentials) => {      
+       await axios.post("/es/toc-toc" , credentials).then((json)=>
+        {
+           dispatch({
+           type:'LOGIN_SESSION',
+           payload : json
+            })
+        })
+    };   
     const sendForm =async (form) => {
-       await  axios.post("/singlePlay",form).then ((json )=> 
+        let config = {
+            headers: {
+                "x-access-token": state.token
+            }
+        }
+       console.log(state.token , "here bri");
+       await  axios.post("/singlePlay",form, config).then ((json )=> 
             {
                 dispatch({
                     type : "SINGLE_PLAY",
@@ -24,25 +31,34 @@ function useCartReducer (){
                 console.log(json.data);
             })
     };
-    const getTotal = () => dispatch({
-        type: 'TOTAL_PRICE',
-    })
+    const logOut = () => dispatch({type : 'CLEAR_STORE'});
 
-    const clearCart = () => dispatch({type : 'CLEAR_CART'})
-    return {state , addToCart ,removeFromCart , clearCart ,sendForm ,getTotal} 
+    const update = async (id, newObject) => {
+        const config = {
+          headers: {
+            "x-access-token": state.token
+          }
+        };
+        const request =  await axios.put(`${baseUrl}/${id}`, newObject, config).then((resp)=>{
+            dispatch({
+                type:"UPDATE_PASS",
+                payload : resp
+            })
+        })
+      }
+    return {state ,sendForm ,update , logOut ,sessionLogIn} 
 }
 
 export function PlayProvider ({children}) {
-    const {state ,addToCart ,removeFromCart , clearCart , sendForm ,getTotal} = useCartReducer();
+    const {state ,sendForm ,update , logOut ,sessionLogIn} = useCartReducer();
     
     return (
         <PlayContext.Provider value = {{
             play : state,
-            addToCart,
-            removeFromCart,
-            clearCart,
             sendForm,
-            getTotal
+            update,
+            logOut,
+            sessionLogIn
         }}>
             {children}
         </PlayContext.Provider>

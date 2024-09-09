@@ -1,30 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import styles from "./LogIn.module.css";
+import { usePlay } from '../hooks/usePlay';
 
 
+const LogIn = ({open , close}) => {
+const { play, sendForm, update, logOut, sessionLogIn  } = usePlay();
+console.log(sessionLogIn);
+const [userName , setUserName] =  useState("");
+const [password , setPassword] = useState("");
 
-const LogIn = ({handle , close}) => {
 
   const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
+    setUserName(event.target.value);
+    console.log(userName);
   };
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
+    console.log(password);
   };
-  const handleClose = () => {
-   
-    close();
-    }
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    let res = {
+      email: userName,
+      password : password
+    }
+    sessionLogIn(res)
+    console.log(res)
+    console.log("ok")
 
-    dispatch(getLoged({email: username ,
-                       password : password
-                      }))
-    // handle login logic here
-    handle();
+  };
+  const handleClose = () => {
+   close();
   };
 
   return (
@@ -36,7 +45,7 @@ const LogIn = ({handle , close}) => {
         <input
           type="text"
           id="username"
-          value={username}
+          value={userName}
           onChange={handleUsernameChange}
         />
       </div>

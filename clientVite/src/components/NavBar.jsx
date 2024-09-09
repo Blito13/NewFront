@@ -13,36 +13,12 @@ export default function NavBar ({handleLog , handleHand}){
   const [showMenu , setShowmenu] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
 
-
-
-
-  useEffect(() => {
-    // Verificar si el usuario está autenticado al cargar el componente
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    console.log(isLoggedIn, "aca ");
-    if (isLoggedIn) {
-      setLoggedIn(true);
-    }
-  }, []);
-  
-  const handleLogin = () => {
-   
-    setLoggedIn(true);
-    localStorage.setItem('isLoggedIn', 'true');
-   
-    console.log("handleLogin");
- 
+  const menuLogIn = () => {
     setShowLogIn(false);
-   
-
   };
 
-  const handleLogout = () => {
-    setShowmenu(false);
+  const menuLogOut = () => {
    setShowLogIn(false);
-   setLoggedIn(false);
-    localStorage.removeItem('isLoggedIn');
-
   };
   const showModal = (e) => {
     e.preventDefault();
@@ -56,7 +32,7 @@ export default function NavBar ({handleLog , handleHand}){
      <>
      {
      showLogIn?
-      <LogIn handle = {handleLogin} close = {handleLogout}></LogIn>:
+      <LogIn open = {menuLogIn} close = {menuLogOut}></LogIn>:
     null
      }
       <nav className={styles.navigation} >
