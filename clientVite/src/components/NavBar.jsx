@@ -1,23 +1,24 @@
 import styles from "./NavBar.module.css";
 import { useState ,Fragment , useEffect }from "react";
 import { Link, useNavigate } from 'react-router-dom';
-import NavBarMenu from "./NavBarMenu";
-
+import { usePlay } from "../hooks/usePlay";
+import  DropMenu  from "./DropMenu";
 
 import LogIn from "./LogIn";
 
 export default function NavBar ({handleLog , handleHand}){
-  
+  const {play , sendForm ,update , logOut ,sessionLogIn} = usePlay();
+
   const [isNavExpanded, setIsNavExpanded] = useState(false);
   const [showLogIn,setShowLogIn] = useState(false);
   const [showMenu , setShowmenu] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState();
 
   const menuLogIn = () => {
     setShowLogIn(false);
   };
 
-  const menuLogOut = () => {
+  const menuClose = () => {
    setShowLogIn(false);
   };
   const showModal = (e) => {
@@ -28,11 +29,15 @@ export default function NavBar ({handleLog , handleHand}){
    e.preventDefault();
     setShowmenu(true);
   }
+  const sessionClose = () => {
+    logOut();
+
+  }
     return (
      <>
      {
      showLogIn?
-      <LogIn open = {menuLogIn} close = {menuLogOut}></LogIn>:
+      <LogIn open = {menuLogIn} close = {menuClose}></LogIn>:
     null
      }
       <nav className={styles.navigation} >
@@ -57,22 +62,22 @@ export default function NavBar ({handleLog , handleHand}){
           <li>
             <Link to="/create">Create</Link>
           </li>
-          {
-            loggedIn?
-            <button onClick = {dropMenu}> aca vendria la foto del user</button>:
-        <li>
-          <a onClick={showModal}>Ingresar</a>
-        </li>
-          }
-     
+          { play.status === "on-line"?(
+            <li>
+            <DropMenu
+              handleLogOut = {sessionClose}
+            />
+            </li>
+          ) : (
+            <>
+              <li>
+              <a onClick={showModal}>Ingresar</a>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </nav> 
-    {
-      showMenu?
-      <NavBarMenu func = {handleLogout} ></NavBarMenu>:
-      null
-    }
      </>
     )
 }

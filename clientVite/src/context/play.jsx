@@ -11,7 +11,7 @@ function useCartReducer (){
         {
            dispatch({
            type:'LOGIN_SESSION',
-           payload : json
+           payload : json.data
             })
         })
     };   

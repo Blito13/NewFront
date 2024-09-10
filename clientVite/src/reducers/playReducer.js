@@ -4,7 +4,8 @@ const setObject = {
   token : "",
   play : [],
   total : 0,
-  discounts : 0
+  discounts : 0,
+  status : ""
 }
 export const playInitialState = JSON.parse(window.localStorage.getItem('play')) || setObject
 
@@ -30,11 +31,12 @@ export const playReducer = (state, action) => {
   switch (type) {
     case PLAY_ACTION_TYPES.LOGIN_SESSION:
     const tk = action.payload;
-    console.log(tk);
+    console.log(tk , "ksalkdlaskdla");
 
       const newPlayState = {
       ...state, 
-      token:tk
+      token:tk.token,
+      status:"on-line"
       }
       
       updateLocalStorage(newPlayState); // Aquí también
@@ -54,7 +56,7 @@ export const playReducer = (state, action) => {
       updateLocalStorage(cleared);
       return cleared;
 
-    case CART_ACTION_TYPES.UPDATE_PASS:
+    case PLAY_ACTION_TYPES.UPDATE_PASS:
       const clear  = {
        ...state
       }

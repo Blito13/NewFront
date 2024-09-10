@@ -5,7 +5,7 @@ import { usePlay } from '../hooks/usePlay';
 
 const LogIn = ({open , close}) => {
 const { play, sendForm, update, logOut, sessionLogIn  } = usePlay();
-console.log(sessionLogIn);
+console.log(play);
 const [userName , setUserName] =  useState("");
 const [password , setPassword] = useState("");
 
