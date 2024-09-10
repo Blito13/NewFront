@@ -1,7 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import { usePlay } from "../hooks/usePlay";
-import styles from "./DropMenu.module.css"
+import styles from "./DropMenu.module.css";
+import userPic from "../utils/user.jpg";
+
 const DropMenu = ({handleLogOut}) => {
     const {play , sendForm ,update , logOut ,sessionLogIn} =  usePlay();
     console.log(play)
@@ -12,12 +14,13 @@ const DropMenu = ({handleLogOut}) => {
       setIsOpen(!isOpen);
     };
     return (
-        <>
     <div className={styles.dropdown}>
-      <button onClick={toggleMenu}>
+      <a onClick={toggleMenu}>
         Mi Cuenta
-      </button>
+      {/* <img src={userPic} alt="no img provided" style ={{ width : "20px"}}/> */}
+      </a>
       {isOpen && (
+
         <ul className={styles.dropdownmenu}>
           <li>Perfil</li>
           <li>Configuraciones</li>
@@ -25,7 +28,6 @@ const DropMenu = ({handleLogOut}) => {
         </ul>
       )}
     </div>
-        </>
     )
 };
 export default DropMenu;

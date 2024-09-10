@@ -1,9 +1,7 @@
 .dropdown {
- 
     justify-content: center ;
-
   }
-.dropdown button {
+.dropdown a {
     background: none;
     border: none;
     box-shadow: none;
@@ -13,10 +11,27 @@
     padding: 1.5rem 0;
 }
   .dropdownmenu li {
-    background-color: #eae755;
+    background-color: #929287;
     padding: 8px 12px;
     cursor: pointer;
   }
   .dropdownmenu li:hover {
-     background-color: #eee;
+     background-color: #0c6c08;
   } 
+  @media screen and (min-width: 550px) {
+    .dropdown a {
+      display:flex;
+      padding: 0%;
+      position :relative;
+    }
+    .dropdownmenu  {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: absolute;
+      top: 76px;
+      right: -15px;
+      z-index: 3;
+      padding: 0%;
+    }
+  }
