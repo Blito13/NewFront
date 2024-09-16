@@ -17,6 +17,6 @@ router.post('/expected' , percentajeOfPlayerGamble);
 router.get('/finalResults' , searchWinners);
 router.post('/singlePlay' ,validation, singlePlayDemo);
 router.get('/getplayers' ,getPlayersDb);    
-router.post('/en/sing-up',validation , isModerator ,signUp);
+router.post('/en/sing-up',validation, isModerator, signUp);
 router.post('/es/toc-toc' ,signIn);
 module.exports = router;

@@ -85,7 +85,7 @@ const postPlayer =  async (req, res) =>{
 };
 const editPlay = async (req, res) => {
     const playerId = req.params.id;
-    const { name, apuesta, numero } = req.body; // Suponiendo que quieres actualizar el nombre y la puntuación del jugador
+    const { name, apuesta, numero , email} = req.body; // Suponiendo que quieres actualizar el nombre y la puntuación del jugador
     
     try {
     const player = await Playerxs.findByPk(playerId);
@@ -98,7 +98,7 @@ const editPlay = async (req, res) => {
     player.name = name;
     player.apuesta = apuesta;
     player.numeros = numero;
-
+    player.email  = email; 
     // Guarda los cambios en la base de datos
    let resp =  await player.save();
 

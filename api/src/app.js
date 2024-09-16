@@ -2,7 +2,8 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const players = require ('./routes/Players.js');
+const players = require ('./routes/players.js');
+const cors = require('cors')
 
 const server = express();
 
@@ -19,8 +20,9 @@ server.use((req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   next();
 });
- 
 server.use(players);
+server.use(cors); 
+
 
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars

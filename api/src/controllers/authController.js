@@ -60,12 +60,12 @@ const signIn = async (req , res) => {
    
     console.log(email , password);
     const match =  await Playerxs.findOne({ where: { email : email }});
-    if(!match) return res.status(400).json({message : "user not found"});
+    if(!match) return res.status(400).json({token:null , message : "user not found"});
     const resc =  await comparePassword( password , match.passWord);
     if(!resc) return res.status(401).json({token:null , message :"invalid password"});
     const token =  jwt.sign({id:match.id} , SECRET , {expiresIn: 86400})
 
-    res.send({token})
+    res.status(200).json({token , message : "ok"})
 
 }
 module.exports = {
