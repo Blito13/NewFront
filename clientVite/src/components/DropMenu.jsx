@@ -16,11 +16,9 @@ const DropMenu = ({handleLogOut}) => {
     return (
     <div className={styles.dropdown}>
       <a onClick={toggleMenu}>
-        Mi Cuenta
-      {/* <img src={userPic} alt="no img provided" style ={{ width : "20px"}}/> */}
+      AcounT
       </a>
       {isOpen && (
-
         <ul className={styles.dropdownmenu}>
           <li>Perfil</li>
           <li>Configuraciones</li>

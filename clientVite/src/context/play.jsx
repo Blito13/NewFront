@@ -6,14 +6,14 @@ export const PlayContext = createContext();
 function useCartReducer (){
     const [state , dispatch] = useReducer(playReducer,playInitialState);
 
-    const sessionLogIn  = async (credentials) => {      
-       await axios.post("/es/toc-toc" , credentials).then((json)=>
-        {
-           dispatch({
-           type:'LOGIN_SESSION',
-           payload : json.data
-            })
-        })
+    const sessionLogIn  = async (credentials) => {  
+        let resp ={}; 
+        try {
+            resp =  await axios.post("/es/toc-toc" , credentials)
+        } catch (error) {
+            resp = error
+        }
+          dispatch({type:'LOGIN_SESSION',payload : resp})
     };   
     const sendForm =async (form) => {
         let config = {

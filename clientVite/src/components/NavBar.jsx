@@ -69,11 +69,9 @@ export default function NavBar ({handleLog , handleHand}){
             />
             </li>
           ) : (
-            <>
               <li>
               <a onClick={showModal}>Ingresar</a>
               </li>
-            </>
           )}
         </ul>
       </div>

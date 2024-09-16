@@ -19,19 +19,28 @@
      background-color: #0c6c08;
   } 
   @media screen and (min-width: 550px) {
+  
     .dropdown a {
-      display:flex;
-      padding: 0%;
-      position :relative;
+      padding: 0;
     }
-    .dropdownmenu  {
-      display: flex;
+    .dropdownmenu  {  
+      background-color: lightslategray;
       flex-direction: column;
-      justify-content: center;
       position: absolute;
       top: 76px;
-      right: -15px;
+      right: 0;
       z-index: 3;
-      padding: 0%;
+      margin: 0;
+      padding: 0;
+    }
+    .dropdownmenu li {
+      justify-content: center;
+      text-align: center;
+      background-color: #23a512;
+      margin : 0 ;
+      height: 32px;
+      padding:0; 
+      cursor: pointer;
+      justify-content: center;
     }
   }

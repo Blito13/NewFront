@@ -9,7 +9,7 @@ console.log(play);
 const [userName , setUserName] =  useState("");
 const [password , setPassword] = useState("");
 
-
+console.log(play )
   const handleUsernameChange = (event) => {
     setUserName(event.target.value);
     console.log(userName);
@@ -38,6 +38,10 @@ const [password , setPassword] = useState("");
 
   return (
     <div className={styles.formulario}>
+      {
+        play.message === "ok"? close() : 
+        play.message
+      }
        <form  onSubmit={ handleSubmit}>
       <button className={styles.closeBtn} onClick={handleClose}>X</button>
       <div>
