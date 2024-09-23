@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import styles from "./LogIn.module.css";
+import styles from './Section.module.css';
+import signinStyles from './Signin.module.css';
 import { usePlay } from '../hooks/usePlay';
 
 
@@ -35,42 +36,115 @@ console.log(play )
   const handleClose = () => {
    close();
   };
-
+  
   return (
-    <div className={styles.formulario}>
+    <section className={styles.section}>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
       {
         play.message === "ok"? close() : 
         play.message
       }
-       <form  onSubmit={ handleSubmit}>
-      <button className={styles.closeBtn} onClick={handleClose}>X</button>
-      <div>
-        <label htmlFor="username">Username:</label>
-        <input
-          type="text"
-          id="username"
-          value={userName}
-          onChange={handleUsernameChange}
-        />
+
+    <div className={signinStyles.signin}>
+      <div className={signinStyles.content}>
+        <h5>Sign In</h5>
+        <form className={signinStyles.form}>
+          <div className={signinStyles.inputBox}>
+            <input type="text" required />
+            <i>Username</i>
+          </div>
+          <div className={signinStyles.inputBox}>
+            <input type="password" required />
+            <i>Password</i>
+          </div>
+          {/* <div className={signinStyles.links}>
+            <a href="#">Forgot Password?</a>
+            <a href="#">Sign Up</a>
+          </div> */}
+          <input type="submit" value="Login" />
+        </form>
       </div>
-      <div>
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={handlePasswordChange}
-        />
-      </div>
-      <div>
-      <button 
-      className={styles.btn}
-       type="submit"
-       onClick={handleSubmit}
-       >Log In</button>
-      </div>
-    </form>
-     </div>
+    </div>
+  </section>
   );
 };
 
