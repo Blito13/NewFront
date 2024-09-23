@@ -32,9 +32,8 @@ export const playReducer = (state, action) => {
     case PLAY_ACTION_TYPES.LOGIN_SESSION:
       const tk = action.payload;
       let newPlayState = {}
-    console.log(tk, "when everything its ok the data must appear here")
-   /*  console.log(tk.response.data.message , "when the server rejectes the credentials status must be shown here"); */
-    tk.data ? 
+      tk.data 
+      ? 
       newPlayState = {...state, 
       token:tk.data.token,
       status:"on-line",

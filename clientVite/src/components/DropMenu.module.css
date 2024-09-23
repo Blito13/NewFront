@@ -23,6 +23,7 @@
     .dropdown a {
       padding: 0;
     }
+    
     .dropdownmenu  {  
       background-color: lightslategray;
       flex-direction: column;
@@ -39,8 +40,10 @@
       background-color: #23a512;
       margin : 0 ;
       height: 32px;
+      
       padding:0; 
       cursor: pointer;
       justify-content: center;
+      
     }
   }
