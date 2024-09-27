@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 *
 {
   margin: 0;
@@ -65,7 +65,7 @@ section span:hover
 section .signin
 {
   position: absolute;
-  width: 400px;
+  width: 200px;
   background: #222;  
   z-index: 1000;
   display: flex;
@@ -179,4 +179,4 @@ input[type="submit"]:active
     width: calc(20vw - 2px);
     height: calc(20vw - 2px);
   }
-}
+} */

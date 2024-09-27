@@ -1,7 +1,6 @@
-.signin {
-
+.signIn {
     position: absolute;
-    width: 400px;
+    width: 200px;
     background: #222;
     z-index: 1000;
     display: flex;
@@ -10,22 +9,23 @@
     padding: 40px;
     border-radius: 4px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.9);
-    background-color: darkblue;
+    background-color: rgb(0, 139, 56);
   }
   
-  .content {
-    position: relative;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 40px;
-    background-color: #fff;
-  }
+    .content {
+      position: relative;
+      width: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 40px;
+      background-color: #fff;
+    }
   
   .content h2 {
     font-size: 2em;
+    margin-left: 0px;
     color: #0f0;
     text-transform: uppercase;
   }
@@ -82,6 +82,7 @@
   .links a {
     color: #fff;
     text-decoration: none;
+  
   }
   
   .links a:nth-child(2) {
